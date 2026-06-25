@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>14843 Hammersmith Cir — Private Furnished Room | MIT Secure Stay</title>
+<style>
+  :root {
+    --ink:        #12110F;
+    --ink-light:  #5A5751;
+    --bg:         #F7F6F3;
+    --surface:    #FFFFFF;
+    --border:     #E2DFD8;
+    --accent:     #1B4FD8;
+    --accent-soft:#EEF2FC;
+    --green:      #1A7A4A;
+    --green-soft: #EAF4EE;
+    --amber:      #C48A00;
+    --amber-soft: #FBF3E1;
+    --pill-radius:6px;
+    --card-radius:10px;
+    --shadow:     0 1px 4px rgba(0,0,0,.08);
+    --font-head:  'Georgia', serif;
+    --font-body:  -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 16px; scroll-behavior: smooth; }
+  body { font-family: var(--font-body); background: var(--bg); color: var(--ink); min-height: 100vh; }
+  a { color: var(--accent); }
+  .page-wrap { max-width: 780px; margin: 0 auto; padding: 0 16px 64px; }
+
+  .hero { padding: 40px 0 24px; border-bottom: 1px solid var(--border); margin-bottom: 24px; }
+  .hero-eyebrow { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-light); margin-bottom: 10px; }
+  .hero h1 { font-family: var(--font-head); font-size: clamp(24px, 5.5vw, 34px); font-weight: 700; line-height: 1.18; margin-bottom: 10px; }
+  .hero-sub { font-size: 15px; color: var(--ink-light); margin-bottom: 20px; line-height: 1.5; max-width: 540px; }
+
+  .price-row { display: flex; align-items: baseline; gap: 8px; margin-bottom: 12px; }
+  .price-num { font-family: var(--font-head); font-size: 30px; font-weight: 700; }
+  .price-sub { font-size: 13px; color: var(--ink-light); }
+  .badge { display: inline-block; font-size: 11px; font-weight: 700; padding: 3px 9px; border-radius: 20px; margin-bottom: 18px; }
+  .badge.soon { background: var(--amber-soft); color: var(--amber); }
+
+  .cta-row { display: flex; gap: 10px; flex-wrap: wrap; }
+  .btn { display: inline-flex; align-items: center; gap: 6px; padding: 12px 22px; border-radius: var(--pill-radius);
+         font-size: 14px; font-weight: 700; text-decoration: none; transition: opacity .15s, background .15s, color .15s; }
+  .btn-primary { background: var(--accent); color: #fff; }
+  .btn-primary:hover { opacity: .88; }
+  .btn-secondary { background: var(--surface); color: var(--accent); border: 1.5px solid var(--accent); }
+  .btn-secondary:hover { background: var(--accent-soft); }
+
+  .facts-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 28px; }
+  .fact-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--card-radius); padding: 14px 12px; text-align: center; }
+  .fact-label { font-size: 10.5px; text-transform: uppercase; letter-spacing: .06em; color: var(--ink-light); margin-bottom: 6px; }
+  .fact-val { font-size: 16px; font-weight: 700; }
+  .fact-val.accent { color: var(--amber); }
+
+  .section { margin-bottom: 32px; }
+  .section h2 { font-family: var(--font-head); font-size: 19px; font-weight: 700; margin-bottom: 14px; }
+
+  .check-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .check-item { display: flex; gap: 10px; align-items: flex-start; background: var(--surface); border: 1px solid var(--border);
+                border-radius: var(--card-radius); padding: 12px 14px; font-size: 13.5px; line-height: 1.4; }
+  .check-mark { color: var(--green); font-weight: 700; flex-shrink: 0; }
+
+  .todo { background: var(--amber-soft); border: 1.5px dashed var(--amber); border-radius: 6px; padding: 8px 10px;
+          font-size: 12.5px; color: #6b4d00; margin-top: 10px; }
+  .todo strong { font-weight: 700; }
+
+  .transit-card { background: var(--accent); color: #fff; border-radius: var(--card-radius); padding: 18px 20px; }
+  .transit-card .label { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; opacity: .8; margin-bottom: 6px; }
+  .transit-card p { font-size: 14px; line-height: 1.55; opacity: .95; margin-bottom: 12px; }
+  .transit-card a.maps-btn { display: inline-flex; align-items: center; gap: 6px; padding: 9px 16px; background: #fff;
+                              color: var(--accent); border-radius: var(--pill-radius); font-size: 13px; font-weight: 700; text-decoration: none; }
+
+  .fit-list { display: grid; gap: 10px; }
+  .fit-item { background: var(--surface); border: 1px solid var(--border); border-radius: var(--card-radius);
+              padding: 13px 16px; font-size: 13.5px; line-height: 1.5; }
+  .fit-item b { display: block; font-size: 14px; margin-bottom: 3px; }
+
+  .know-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .know-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--card-radius); padding: 13px 16px; font-size: 13px; line-height: 1.5; }
+  .know-card .k-label { font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--ink-light); margin-bottom: 5px; font-weight: 700; }
+
+  .housemates-box { background: var(--surface); border: 1px solid var(--border); border-radius: var(--card-radius); padding: 16px 18px; }
+
+  .steps { display: grid; gap: 10px; }
+  .step { display: flex; gap: 14px; align-items: flex-start; background: var(--surface); border: 1px solid var(--border);
+          border-radius: var(--card-radius); padding: 13px 16px; }
+  .step-num { font-family: var(--font-head); font-size: 18px; font-weight: 700; color: var(--accent); flex-shrink: 0; width: 22px; }
+  .step-body b { display: block; font-size: 14px; margin-bottom: 2px; }
+  .step-body span { font-size: 13px; color: var(--ink-light); line-height: 1.4; }
+
+  .cta-bottom { margin-top: 8px; padding: 28px 24px; background: var(--surface); border: 1px solid var(--border);
+                border-radius: var(--card-radius); text-align: center; }
+  .cta-bottom h3 { font-family: var(--font-head); font-size: 20px; font-weight: 700; margin-bottom: 8px; }
+  .cta-bottom p { font-size: 14px; color: var(--ink-light); margin-bottom: 18px; }
+
+  .disclaimer { margin-top: 36px; font-size: 11.5px; color: var(--ink-light); border-top: 1px solid var(--border);
+                padding-top: 16px; line-height: 1.6; }
+
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  @media (max-width: 540px) {
+    .facts-strip { grid-template-columns: 1fr 1fr; }
+    .check-grid, .know-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="page-wrap">
+
+  <div class="hero">
+    <div class="hero-eyebrow">MIT Secure Stay · 14843 Hammersmith Cir · Silver Spring, MD 20906</div>
+    <h1>A private room opening soon, minutes from NIH.</h1>
+    <p class="hero-sub">One room in a screened, all-inclusive 4-bedroom house — close to the NIH and Montgomery County biotech corridor. Built for medical professionals, biotech staff, and relocators on a deadline.</p>
+    <div class="price-row">
+      <span class="price-num">$925</span>
+      <span class="price-sub">/ month, utilities included</span>
+    </div>
+    <div class="badge soon">Available September 1</div>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="https://calendly.com/mitsecurestay" target="_blank" rel="noopener">📅 Schedule a Tour</a>
+      <a class="btn btn-secondary" href="https://forms.gle/Km7K7EZvTzJMK62M9" target="_blank" rel="noopener">Start Pre-Screening</a>
+    </div>
+  </div>
+
+  <div class="facts-strip">
+    <div class="fact-card"><div class="fact-label">Rent</div><div class="fact-val">$925/mo</div></div>
+    <div class="fact-card"><div class="fact-label">Bathroom</div><div class="fact-val">Shared (2.5 baths)</div></div>
+    <div class="fact-card"><div class="fact-label">Available</div><div class="fact-val accent">Sep 1</div></div>
+    <div class="fact-card"><div class="fact-label">House Size</div><div class="fact-val">4 Rooms</div></div>
+  </div>
+
+  <div class="section">
+    <h2>What's included</h2>
+    <div class="check-grid">
+      <div class="check-item"><span class="check-mark">✓</span> All utilities — electricity, water, gas, internet</div>
+      <div class="check-item"><span class="check-mark">✓</span> In-unit washer/dryer</div>
+      <div class="check-item"><span class="check-mark">✓</span> Shared bathroom (2.5 total)</div>
+      <div class="check-item"><span class="check-mark">✓</span> Community pools, clubhouse, tennis courts, walking trails</div>
+      <div class="check-item"><span class="check-mark">✓</span> Screened housemates — everyone passes the same checks you will</div>
+    </div>
+    <div class="todo"><strong>Greg — fill in:</strong> bed size, furniture, room sq ft, and a photo for this room. None of that is in Notion yet for this property.</div>
+  </div>
+
+  <div class="section">
+    <h2>Location &amp; commute</h2>
+    <div class="transit-card">
+      <div class="label">Walk Score 29 · Transit Score 35 · Bike Score 4</div>
+      <p>A short walk to the Ride On Route 26 bus, which runs direct to Glenmont Metro (Red Line terminus) — and passes North Bethesda station, right across from NRC Headquarters. Once on the Red Line, NIH (Medical Center station), Union Station, and downtown DC are direct rides with no transfer. Two blocks from Argyle Country Club.</p>
+      <a class="maps-btn" href="https://mitsecurestay.github.io/routecheck/silverspring.html" target="_blank" rel="noopener">🚇 Check your full commute →</a>
+    </div>
+    <div class="todo">Conflicting walk time to the Route 26 stop: an existing flyer for this room says 3 minutes; RouteCheck (the more rigorously verified source — checked against actual WMATA/Ride On data) says 5 minutes. Worth a quick real-world walk to confirm which is accurate before this goes live.</div>
+  </div>
+
+  <div class="section">
+    <h2>Built for people on a timeline</h2>
+    <div class="fit-list">
+      <div class="fit-item"><b>Medical &amp; biotech professionals</b> Direct Red Line access to NIH and the NRC — no transfer required.</div>
+      <div class="fit-item"><b>Relocating contractors</b> Furnished and ready, with the I-270 biotech corridor a short drive away.</div>
+      <div class="fit-item"><b>Traveling nurses</b> Close to Holy Cross Hospital Health Center and the broader Montgomery County hospital network.</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Good to know</h2>
+    <div class="know-grid">
+      <div class="know-card"><div class="k-label">Screening</div>Background, credit, and rental history check for every applicant — including current housemates.</div>
+      <div class="know-card"><div class="k-label">Lease terms</div>Flexible length — tell us your timeline during the tour and we'll confirm what's possible.</div>
+      <div class="know-card"><div class="k-label">Payments</div>Rent collected securely online via Zelle, bank transfer, or card.</div>
+      <div class="know-card"><div class="k-label">Nearby</div>Aldi is a 2-minute walk; Giant Food, Costco, and two gyms are all within a 10-minute drive or less.</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Who you'd be living with</h2>
+    <div class="housemates-box">
+      <p style="font-size:13.5px; line-height:1.5;">Every housemate has gone through the same screening you will. We'll walk you through who you'd be living with — schedules, what they do, the general vibe of the house — during your tour call, rather than posting it here.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>How to apply</h2>
+    <div class="steps">
+      <div class="step"><span class="step-num">1</span><div class="step-body"><b>Pre-screen</b><span>Quick form — move-in date, budget, length of stay.</span></div></div>
+      <div class="step"><span class="step-num">2</span><div class="step-body"><b>Tour</b><span>In person or virtual.</span></div></div>
+      <div class="step"><span class="step-num">3</span><div class="step-body"><b>Apply &amp; screen</b><span>Formal application plus background, credit, and eviction check.</span></div></div>
+      <div class="step"><span class="step-num">4</span><div class="step-body"><b>Sign &amp; move in</b><span>Digital lease, deposit collected, the room is yours.</span></div></div>
+    </div>
+  </div>
+
+  <div class="cta-bottom">
+    <h3>Ready to see it for yourself?</h3>
+    <p>Pre-screen now to be first in line when this room opens September 1.</p>
+    <div class="cta-row" style="justify-content:center;">
+      <a class="btn btn-primary" href="https://calendly.com/mitsecurestay" target="_blank" rel="noopener">📅 Schedule a Tour</a>
+      <a class="btn btn-secondary" href="https://forms.gle/Km7K7EZvTzJMK62M9" target="_blank" rel="noopener">Start Pre-Screening</a>
+    </div>
+  </div>
+
+  <div class="disclaimer">
+    Commute times are estimates and vary by time of day. Questions? Email <a href="mailto:mitsecurestay@gmail.com">mitsecurestay@gmail.com</a>.
+  </div>
+
+</div>
+</body>
+</html>

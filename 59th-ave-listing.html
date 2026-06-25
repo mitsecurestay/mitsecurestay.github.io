@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>5311 59th Ave — Furnished Rooms | MIT Secure Stay</title>
+<style>
+  :root {
+    --ink:        #12110F;
+    --ink-light:  #5A5751;
+    --bg:         #F7F6F3;
+    --surface:    #FFFFFF;
+    --border:     #E2DFD8;
+    --accent:     #1B4FD8;
+    --accent-soft:#EEF2FC;
+    --green:      #1A7A4A;
+    --green-soft: #EAF4EE;
+    --amber:      #C48A00;
+    --amber-soft: #FBF3E1;
+    --pill-radius:6px;
+    --card-radius:10px;
+    --shadow:     0 1px 4px rgba(0,0,0,.08);
+    --font-head:  'Georgia', serif;
+    --font-body:  -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 16px; scroll-behavior: smooth; }
+  body { font-family: var(--font-body); background: var(--bg); color: var(--ink); min-height: 100vh; }
+  a { color: var(--accent); }
+  .page-wrap { max-width: 780px; margin: 0 auto; padding: 0 16px 64px; }
+
+  .hero { padding: 40px 0 24px; border-bottom: 1px solid var(--border); margin-bottom: 24px; }
+  .hero-eyebrow { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-light); margin-bottom: 10px; }
+  .hero h1 { font-family: var(--font-head); font-size: clamp(24px, 5.5vw, 34px); font-weight: 700; line-height: 1.18; margin-bottom: 10px; }
+  .hero-sub { font-size: 15px; color: var(--ink-light); margin-bottom: 20px; line-height: 1.5; max-width: 540px; }
+
+  .cta-row { display: flex; gap: 10px; flex-wrap: wrap; }
+  .btn { display: inline-flex; align-items: center; gap: 6px; padding: 12px 22px; border-radius: var(--pill-radius);
+         font-size: 14px; font-weight: 700; text-decoration: none; transition: opacity .15s, background .15s, color .15s; }
+  .btn-primary { background: var(--accent); color: #fff; }
+  .btn-primary:hover { opacity: .88; }
+  .btn-secondary { background: var(--surface); color: var(--accent); border: 1.5px solid var(--accent); }
+  .btn-secondary:hover { background: var(--accent-soft); }
+
+  .facts-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 28px; }
+  .fact-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--card-radius); padding: 14px 12px; text-align: center; }
+  .fact-label { font-size: 10.5px; text-transform: uppercase; letter-spacing: .06em; color: var(--ink-light); margin-bottom: 6px; }
+  .fact-val { font-size: 16px; font-weight: 700; }
+  .fact-val.accent { color: var(--green); }
+
+  .section { margin-bottom: 32px; }
+  .section h2 { font-family: var(--font-head); font-size: 19px; font-weight: 700; margin-bottom: 14px; }
+  .section-note { font-size: 13px; color: var(--ink-light); margin: -6px 0 14px; line-height: 1.5; }
+
+  /* ROOM LIST */
+  .room-row { display: flex; align-items: center; gap: 14px; background: var(--surface); border: 1px solid var(--border);
+              border-radius: var(--card-radius); padding: 14px 16px; margin-bottom: 10px; flex-wrap: wrap; }
+  .room-row .badge { font-size: 11px; font-weight: 700; padding: 3px 9px; border-radius: 20px; flex-shrink: 0; }
+  .badge.available { background: var(--green-soft); color: var(--green); }
+  .badge.soon { background: var(--amber-soft); color: var(--amber); }
+  .room-row .room-price { font-family: var(--font-head); font-size: 18px; font-weight: 700; flex-shrink: 0; }
+  .room-row .room-meta { font-size: 13px; color: var(--ink-light); flex: 1; min-width: 140px; }
+  .room-row .room-cta { flex-shrink: 0; }
+  .room-row .room-cta a { font-size: 13px; font-weight: 700; color: var(--accent); text-decoration: none; border-bottom: 1px dashed var(--accent); }
+
+  .check-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .check-item { display: flex; gap: 10px; align-items: flex-start; background: var(--surface); border: 1px solid var(--border);
+                border-radius: var(--card-radius); padding: 12px 14px; font-size: 13.5px; line-height: 1.4; }
+  .check-mark { color: var(--green); font-weight: 700; flex-shrink: 0; }
+
+  .todo { background: var(--amber-soft); border: 1.5px dashed var(--amber); border-radius: 6px; padding: 8px 10px;
+          font-size: 12.5px; color: #6b4d00; margin-top: 10px; }
+  .todo strong { font-weight: 700; }
+  .photo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 32px; }
+  .photo-grid img { width: 100%; height: 220px; object-fit: cover; border-radius: var(--card-radius); border: 1px solid var(--border); display: block; }
+  .photo-grid .wide { grid-column: 1 / -1; height: 320px; }
+
+  .transit-card { background: var(--accent); color: #fff; border-radius: var(--card-radius); padding: 18px 20px; }
+  .transit-card .label { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; opacity: .8; margin-bottom: 6px; }
+  .transit-card p { font-size: 14px; line-height: 1.55; opacity: .95; margin-bottom: 12px; }
+  .transit-card a.maps-btn { display: inline-flex; align-items: center; gap: 6px; padding: 9px 16px; background: #fff;
+                              color: var(--accent); border-radius: var(--pill-radius); font-size: 13px; font-weight: 700; text-decoration: none; }
+
+  .fit-list { display: grid; gap: 10px; }
+  .fit-item { background: var(--surface); border: 1px solid var(--border); border-radius: var(--card-radius);
+              padding: 13px 16px; font-size: 13.5px; line-height: 1.5; }
+  .fit-item b { display: block; font-size: 14px; margin-bottom: 3px; }
+
+  .know-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .know-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--card-radius); padding: 13px 16px; font-size: 13px; line-height: 1.5; }
+  .know-card .k-label { font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--ink-light); margin-bottom: 5px; font-weight: 700; }
+
+  .housemates-box { background: var(--surface); border: 1px solid var(--border); border-radius: var(--card-radius); padding: 16px 18px; }
+
+  .steps { display: grid; gap: 10px; }
+  .step { display: flex; gap: 14px; align-items: flex-start; background: var(--surface); border: 1px solid var(--border);
+          border-radius: var(--card-radius); padding: 13px 16px; }
+  .step-num { font-family: var(--font-head); font-size: 18px; font-weight: 700; color: var(--accent); flex-shrink: 0; width: 22px; }
+  .step-body b { display: block; font-size: 14px; margin-bottom: 2px; }
+  .step-body span { font-size: 13px; color: var(--ink-light); line-height: 1.4; }
+
+  .cta-bottom { margin-top: 8px; padding: 28px 24px; background: var(--surface); border: 1px solid var(--border);
+                border-radius: var(--card-radius); text-align: center; }
+  .cta-bottom h3 { font-family: var(--font-head); font-size: 20px; font-weight: 700; margin-bottom: 8px; }
+  .cta-bottom p { font-size: 14px; color: var(--ink-light); margin-bottom: 18px; }
+
+  .disclaimer { margin-top: 36px; font-size: 11.5px; color: var(--ink-light); border-top: 1px solid var(--border);
+                padding-top: 16px; line-height: 1.6; }
+
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  @media (max-width: 540px) {
+    .facts-strip { grid-template-columns: 1fr 1fr; }
+    .check-grid, .know-grid { grid-template-columns: 1fr; }
+    .room-row { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+<div class="page-wrap">
+
+  <div class="hero">
+    <div class="hero-eyebrow">MIT Secure Stay · 5311 59th Ave · Riverdale, MD 20737</div>
+    <h1>Furnished rooms in a shared Riverdale house, two ready now.</h1>
+    <p class="hero-sub">An 8-room shared house on the Green Line corridor — strong for UMD students, PG County federal staff, and Northeast DC hospital commuters. All-inclusive, furnished, screened.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="https://calendly.com/mitsecurestay" target="_blank" rel="noopener">📅 Schedule a Tour</a>
+      <a class="btn btn-secondary" href="https://forms.gle/Km7K7EZvTzJMK62M9" target="_blank" rel="noopener">Start Pre-Screening</a>
+    </div>
+  </div>
+
+  <div class="facts-strip">
+    <div class="fact-card"><div class="fact-label">Rooms From</div><div class="fact-val">$850/mo</div></div>
+    <div class="fact-card"><div class="fact-label">House Size</div><div class="fact-val">8 Rooms</div></div>
+    <div class="fact-card"><div class="fact-label">Available Now</div><div class="fact-val accent">2 Rooms</div></div>
+    <div class="fact-card"><div class="fact-label">Bathroom</div><div class="fact-val">Shared</div></div>
+  </div>
+
+  <div class="section">
+    <h2>Available rooms</h2>
+    <p class="section-note">This house has 8 rooms total; five have a known turnover date. The rest are occupied with no near-term move-out.</p>
+
+    <div class="room-row">
+      <span class="badge available">Available Now</span>
+      <span class="room-price">$900/mo</span>
+      <span class="room-meta">Shared bath · in-unit washer/dryer</span>
+      <span class="room-cta"><a href="https://forms.gle/Km7K7EZvTzJMK62M9" target="_blank" rel="noopener">Pre-screen →</a></span>
+    </div>
+    <div class="todo">Room C — bookable today, but its only photos are from 2022. Fresh photos are the priority here since this is one of the two rooms a lead can actually move into right now.</div>
+    <div class="room-row">
+      <span class="badge available">Available Now</span>
+      <span class="room-price">$850/mo</span>
+      <span class="room-meta">Shared bath · in-unit washer/dryer</span>
+      <span class="room-cta"><a href="https://forms.gle/Km7K7EZvTzJMK62M9" target="_blank" rel="noopener">Pre-screen →</a></span>
+    </div>
+    <div class="todo">Room F — also bookable today; no photos located in Drive at all yet. Same priority as Room C above.</div>
+    <div class="room-row">
+      <span class="badge soon">Available Aug 1</span>
+      <span class="room-price">$850/mo</span>
+      <span class="room-meta">Shared bath · in-unit washer/dryer</span>
+      <span class="room-cta"><a href="https://forms.gle/Km7K7EZvTzJMK62M9" target="_blank" rel="noopener">Pre-screen →</a></span>
+    </div>
+    <div class="todo"><strong>Greg — resolve before this room goes live:</strong> Notion says $850, but two existing flyers for this room say $875 and $900. Pick the real number and update whichever sources are wrong.</div>
+    <div class="room-row">
+      <span class="badge soon">Available Aug 1</span>
+      <span class="room-price">$950/mo</span>
+      <span class="room-meta">Shared bath · in-unit washer/dryer</span>
+      <span class="room-cta"><a href="https://forms.gle/Km7K7EZvTzJMK62M9" target="_blank" rel="noopener">Pre-screen →</a></span>
+    </div>
+    <div class="room-row">
+      <span class="badge soon">Available Sep 1</span>
+      <span class="room-price">$950/mo</span>
+      <span class="room-meta">Queen bed, desk, Smart TV, large closet · shared bath · in-unit washer/dryer</span>
+      <span class="room-cta"><a href="https://forms.gle/Km7K7EZvTzJMK62M9" target="_blank" rel="noopener">Pre-screen →</a></span>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>About this room — Available Sep 1, $950/mo</h2>
+    <p class="section-note">Confirmed from the existing flyer for this room: queen-size bed, Smart TV, desk, and a large closet. Part of a 3-bedroom, 1-bath wing with its own cozy living room, fully equipped kitchen, and on-site laundry. Designated parking included, with easy access to UMD shuttle routes.</p>
+    <div class="photo-grid">
+      <img class="wide" src="59th-ave-photos/rear-patio.jpg" alt="Patio at 5311 59th Ave Rear Unit">
+      <img src="59th-ave-photos/room-d-bed-desk.jpg" alt="Room D bedroom with desk">
+      <img src="59th-ave-photos/rear-kitchen.jpg" alt="Rear Unit kitchen">
+      <img src="59th-ave-photos/rear-living-room.jpg" alt="Rear Unit living room">
+      <img src="59th-ave-photos/rear-dining.jpg" alt="Rear Unit dining area">
+      <img class="wide" src="59th-ave-photos/rear-bathroom.jpg" alt="Rear Unit bathroom">
+    </div>
+    <div class="todo">Whether the patio is private to Room D or shared across the whole Rear Unit isn't confirmed yet — worth checking before promising "private patio" anywhere in copy.</div>
+  </div>
+
+  <div class="section">
+    <h2>What's included</h2>
+    <div class="check-grid">
+      <div class="check-item"><span class="check-mark">✓</span> All utilities — electricity, water, gas, internet</div>
+      <div class="check-item"><span class="check-mark">✓</span> In-unit washer/dryer</div>
+      <div class="check-item"><span class="check-mark">✓</span> Designated parking</div>
+      <div class="check-item"><span class="check-mark">✓</span> Furnished room (bed size varies by room — confirmed queen for the Sep 1 room)</div>
+      <div class="check-item"><span class="check-mark">✓</span> Screened housemates — everyone passes the same checks you will</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Location &amp; commute</h2>
+    <div class="transit-card">
+      <div class="label">Green Line Corridor</div>
+      <p>Riverdale sits on the Green Line — College Park, downtown DC, and major medical centers are all within reach. UMD College Park is 1–2 Metro stops away, and the Green Line runs direct to Capitol Hill and Navy Yard with no transfer.</p>
+      <a class="maps-btn" href="https://mitsecurestay.github.io/routecheck/riverdale.html" target="_blank" rel="noopener">🚇 Check your full commute →</a>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Built for people on a timeline</h2>
+    <div class="fit-list">
+      <div class="fit-item"><b>Students</b> UMD College Park is 1–2 Metro stops away — one of the closest properties to campus.</div>
+      <div class="fit-item"><b>Federal &amp; PG County staff</b> Direct Green Line access to Capitol Hill, Navy Yard, and DOJ.</div>
+      <div class="fit-item"><b>Budget-conscious relocators</b> The most affordable rooms in the portfolio, fully furnished.</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Good to know</h2>
+    <div class="know-grid">
+      <div class="know-card"><div class="k-label">Screening</div>Background, credit, and rental history check for every applicant — including current housemates.</div>
+      <div class="know-card"><div class="k-label">Lease terms</div>Flexible length — tell us your timeline during the tour and we'll confirm what's possible.</div>
+      <div class="know-card"><div class="k-label">Payments</div>Rent collected securely online via Zelle, bank transfer, or card.</div>
+      <div class="know-card"><div class="k-label">Nearby</div>Whole Foods is a 5-minute drive; CVS is 3 minutes. Busboys and Poets and The Mall at Prince George's are both within 10 minutes.</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Who you'd be living with</h2>
+    <div class="housemates-box">
+      <p style="font-size:13.5px; line-height:1.5;">Every housemate has gone through the same screening you will. With 8 rooms in this house, we'll walk you through the current mix — schedules, what people do, the general vibe — during your tour call, rather than posting it here.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>How to apply</h2>
+    <div class="steps">
+      <div class="step"><span class="step-num">1</span><div class="step-body"><b>Pre-screen</b><span>Quick form — move-in date, budget, length of stay.</span></div></div>
+      <div class="step"><span class="step-num">2</span><div class="step-body"><b>Tour</b><span>In person or virtual — we'll show you which room is the best fit.</span></div></div>
+      <div class="step"><span class="step-num">3</span><div class="step-body"><b>Apply &amp; screen</b><span>Formal application plus background, credit, and eviction check.</span></div></div>
+      <div class="step"><span class="step-num">4</span><div class="step-body"><b>Sign &amp; move in</b><span>Digital lease, deposit collected, the room is yours.</span></div></div>
+    </div>
+  </div>
+
+  <div class="cta-bottom">
+    <h3>Ready to see it for yourself?</h3>
+    <p>Two rooms are ready now — the rest open between August and September.</p>
+    <div class="cta-row" style="justify-content:center;">
+      <a class="btn btn-primary" href="https://calendly.com/mitsecurestay" target="_blank" rel="noopener">📅 Schedule a Tour</a>
+      <a class="btn btn-secondary" href="https://forms.gle/Km7K7EZvTzJMK62M9" target="_blank" rel="noopener">Start Pre-Screening</a>
+    </div>
+  </div>
+
+  <div class="disclaimer">
+    Commute times are estimates and vary by time of day. Questions? Email <a href="mailto:mitsecurestay@gmail.com">mitsecurestay@gmail.com</a>.
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>5521 Jay St NE — Private Furnished Room | MIT Secure Stay</title>
+<style>
+  /* ── TOKENS (shared with RouteCheck for brand consistency) ──────── */
+  :root {
+    --ink:        #12110F;
+    --ink-light:  #5A5751;
+    --bg:         #F7F6F3;
+    --surface:    #FFFFFF;
+    --border:     #E2DFD8;
+    --accent:     #1B4FD8;
+    --accent-soft:#EEF2FC;
+    --green:      #1A7A4A;
+    --green-soft: #EAF4EE;
+    --amber:      #C48A00;
+    --amber-soft: #FBF3E1;
+    --drive:      #C8410B;
+    --pill-radius:6px;
+    --card-radius:10px;
+    --shadow:     0 1px 4px rgba(0,0,0,.08);
+    --font-head:  'Georgia', serif;
+    --font-body:  -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 16px; scroll-behavior: smooth; }
+  body { font-family: var(--font-body); background: var(--bg); color: var(--ink); min-height: 100vh; }
+  a { color: var(--accent); }
+  .page-wrap { max-width: 780px; margin: 0 auto; padding: 0 16px 64px; }
+
+  /* ── HERO ─────────────────────────────────────────────────────── */
+  .hero { padding: 40px 0 24px; border-bottom: 1px solid var(--border); margin-bottom: 24px; }
+  .hero-eyebrow { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-light); margin-bottom: 10px; }
+  .hero h1 { font-family: var(--font-head); font-size: clamp(24px, 5.5vw, 34px); font-weight: 700; line-height: 1.18; margin-bottom: 10px; }
+  .hero-sub { font-size: 15px; color: var(--ink-light); margin-bottom: 20px; line-height: 1.5; max-width: 540px; }
+
+  .price-row { display: flex; align-items: baseline; gap: 8px; margin-bottom: 22px; }
+  .price-num { font-family: var(--font-head); font-size: 30px; font-weight: 700; }
+  .price-sub { font-size: 13px; color: var(--ink-light); }
+
+  .cta-row { display: flex; gap: 10px; flex-wrap: wrap; }
+  .btn { display: inline-flex; align-items: center; gap: 6px; padding: 12px 22px; border-radius: var(--pill-radius);
+         font-size: 14px; font-weight: 700; text-decoration: none; transition: opacity .15s, background .15s, color .15s; }
+  .btn-primary { background: var(--accent); color: #fff; }
+  .btn-primary:hover { opacity: .88; }
+  .btn-secondary { background: var(--surface); color: var(--accent); border: 1.5px solid var(--accent); }
+  .btn-secondary:hover { background: var(--accent-soft); }
+
+  /* ── QUICK FACTS ──────────────────────────────────────────────── */
+  .facts-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 28px; }
+  .fact-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--card-radius); padding: 14px 12px; text-align: center; }
+  .fact-label { font-size: 10.5px; text-transform: uppercase; letter-spacing: .06em; color: var(--ink-light); margin-bottom: 6px; }
+  .fact-val { font-size: 16px; font-weight: 700; }
+  .fact-val.accent { color: var(--accent); }
+
+  /* ── SECTIONS ─────────────────────────────────────────────────── */
+  .section { margin-bottom: 32px; }
+  .section h2 { font-family: var(--font-head); font-size: 19px; font-weight: 700; margin-bottom: 14px; }
+  .section-note { font-size: 13px; color: var(--ink-light); margin: -6px 0 14px; line-height: 1.5; }
+
+  /* ── INCLUDED CHECKLIST ───────────────────────────────────────── */
+  .check-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .check-item { display: flex; gap: 10px; align-items: flex-start; background: var(--surface); border: 1px solid var(--border);
+                border-radius: var(--card-radius); padding: 12px 14px; font-size: 13.5px; line-height: 1.4; }
+  .check-mark { color: var(--green); font-weight: 700; flex-shrink: 0; }
+
+  /* ── ROOM PICKER (signature element — echoes RouteCheck's toggle UI) ─ */
+  .room-toggle { display: flex; background: var(--surface); border: 1px solid var(--border); border-radius: var(--card-radius);
+                 padding: 4px; gap: 4px; margin-bottom: 14px; max-width: 320px; }
+  .room-btn { flex: 1; padding: 10px 0; border: none; background: transparent; border-radius: 6px; font-family: var(--font-body);
+              font-size: 14px; font-weight: 700; color: var(--ink-light); cursor: pointer; transition: background .15s, color .15s; }
+  .room-btn.active { background: var(--accent); color: #fff; }
+  .room-panel { display: none; background: var(--surface); border: 1px solid var(--border); border-radius: var(--card-radius); padding: 18px; }
+  .room-panel.active { display: block; }
+  .room-detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 6px; }
+  .room-detail { background: var(--bg); border-radius: 6px; padding: 10px 12px; }
+  .room-detail-label { font-size: 10.5px; text-transform: uppercase; letter-spacing: .06em; color: var(--ink-light); margin-bottom: 3px; }
+  .room-detail-val { font-size: 13.5px; font-weight: 600; }
+
+  /* ── EDITABLE PLACEHOLDER (visible cue to fill in real details) ─── */
+  .todo { background: var(--amber-soft); border: 1.5px dashed var(--amber); border-radius: 6px; padding: 8px 10px;
+          font-size: 12.5px; color: #6b4d00; margin-top: 10px; }
+  .todo strong { font-weight: 700; }
+
+  /* ── TRANSIT CALLOUT ──────────────────────────────────────────── */
+  .transit-card { background: var(--accent); color: #fff; border-radius: var(--card-radius); padding: 18px 20px; }
+  .transit-card .label { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; opacity: .8; margin-bottom: 6px; }
+  .transit-card p { font-size: 14px; line-height: 1.55; opacity: .95; margin-bottom: 12px; }
+  .score-row { display: flex; gap: 18px; margin-bottom: 12px; }
+  .score-item { font-size: 13px; }
+  .score-item b { font-size: 20px; display: block; }
+  .transit-card a.maps-btn { display: inline-flex; align-items: center; gap: 6px; padding: 9px 16px; background: #fff;
+                              color: var(--accent); border-radius: var(--pill-radius); font-size: 13px; font-weight: 700; text-decoration: none; }
+
+  /* ── FIT LIST ─────────────────────────────────────────────────── */
+  .fit-list { display: grid; gap: 10px; }
+  .fit-item { background: var(--surface); border: 1px solid var(--border); border-radius: var(--card-radius);
+              padding: 13px 16px; font-size: 13.5px; line-height: 1.5; }
+  .fit-item b { display: block; font-size: 14px; margin-bottom: 3px; }
+
+  /* ── GOOD TO KNOW ─────────────────────────────────────────────── */
+  .know-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .know-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--card-radius); padding: 13px 16px; font-size: 13px; line-height: 1.5; }
+  .know-card .k-label { font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--ink-light); margin-bottom: 5px; font-weight: 700; }
+
+  /* ── HOUSEMATES ───────────────────────────────────────────────── */
+  .housemates-box { background: var(--surface); border: 1px solid var(--border); border-radius: var(--card-radius); padding: 16px 18px; }
+
+  /* ── APPLY STEPS ──────────────────────────────────────────────── */
+  .steps { display: grid; gap: 10px; }
+  .step { display: flex; gap: 14px; align-items: flex-start; background: var(--surface); border: 1px solid var(--border);
+          border-radius: var(--card-radius); padding: 13px 16px; }
+  .step-num { font-family: var(--font-head); font-size: 18px; font-weight: 700; color: var(--accent); flex-shrink: 0; width: 22px; }
+  .step-body b { display: block; font-size: 14px; margin-bottom: 2px; }
+  .step-body span { font-size: 13px; color: var(--ink-light); line-height: 1.4; }
+
+  .cta-bottom { margin-top: 8px; padding: 28px 24px; background: var(--surface); border: 1px solid var(--border);
+                border-radius: var(--card-radius); text-align: center; }
+  .cta-bottom h3 { font-family: var(--font-head); font-size: 20px; font-weight: 700; margin-bottom: 8px; }
+  .cta-bottom p { font-size: 14px; color: var(--ink-light); margin-bottom: 18px; }
+
+  /* ── DISCLAIMER ───────────────────────────────────────────────── */
+  .disclaimer { margin-top: 36px; font-size: 11.5px; color: var(--ink-light); border-top: 1px solid var(--border);
+                padding-top: 16px; line-height: 1.6; }
+
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  @media (max-width: 540px) {
+    .facts-strip { grid-template-columns: 1fr 1fr; }
+    .check-grid, .know-grid, .room-detail-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="page-wrap">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-eyebrow">MIT Secure Stay · 5521 Jay St NE · Washington, DC 20019</div>
+    <h1>A private room, fully furnished — ready when you are.</h1>
+    <p class="hero-sub">Two rooms available now, plus a private suite opening in October — a screened, all-inclusive shared home in DC's Deanwood neighborhood, with three Metro stations within walking distance. Built for traveling nurses, contractors, relocators, and anyone landing in DC on a deadline.</p>
+    <div class="price-row">
+      <span class="price-num">$925</span>
+      <span class="price-sub">/ month, per room — utilities included</span>
+    </div>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="https://calendly.com/mitsecurestay" target="_blank" rel="noopener">📅 Schedule a Tour</a>
+      <a class="btn btn-secondary" href="https://forms.gle/Km7K7EZvTzJMK62M9" target="_blank" rel="noopener">Start Pre-Screening</a>
+    </div>
+  </div>
+
+  <!-- QUICK FACTS -->
+  <div class="facts-strip">
+    <div class="fact-card"><div class="fact-label">Rent</div><div class="fact-val">$925/mo</div></div>
+    <div class="fact-card"><div class="fact-label">Rooms Open</div><div class="fact-val">B &amp; C</div></div>
+    <div class="fact-card"><div class="fact-label">Move-in</div><div class="fact-val accent">Now</div></div>
+    <div class="fact-card"><div class="fact-label">Transit Score</div><div class="fact-val accent">55</div></div>
+  </div>
+
+  <!-- WHAT'S INCLUDED -->
+  <div class="section">
+    <h2>What's included</h2>
+    <div class="check-grid">
+      <div class="check-item"><span class="check-mark">✓</span> All utilities — electricity, water, gas, internet</div>
+      <div class="check-item"><span class="check-mark">✓</span> Full-size bed, desk, and Smart TV in your room</div>
+      <div class="check-item"><span class="check-mark">✓</span> In-unit washer/dryer</div>
+      <div class="check-item"><span class="check-mark">✓</span> Shared kitchen and living room</div>
+      <div class="check-item"><span class="check-mark">✓</span> Screened housemates — everyone passes the same checks you will</div>
+    </div>
+  </div>
+
+  <!-- ROOM PICKER -->
+  <div class="section">
+    <h2>Choose your room</h2>
+    <div class="room-toggle">
+      <button class="room-btn active" id="btnB" onclick="showRoom('B')">Room B</button>
+      <button class="room-btn" id="btnC" onclick="showRoom('C')">Room C</button>
+    </div>
+    <div class="room-panel active" id="panelB">
+      <div class="room-detail-grid">
+        <div class="room-detail"><div class="room-detail-label">Rent</div><div class="room-detail-val">$925/mo</div></div>
+        <div class="room-detail"><div class="room-detail-label">Available</div><div class="room-detail-val">Now</div></div>
+        <div class="room-detail"><div class="room-detail-label">Bathroom</div><div class="room-detail-val">Shared (1 bath / 3 bedrooms)</div></div>
+        <div class="room-detail"><div class="room-detail-label">Bed size</div><div class="room-detail-val">Full-size bed + desk</div></div>
+        <div class="room-detail"><div class="room-detail-label">Room size</div><div class="room-detail-val">[Add sq ft]</div></div>
+      </div>
+      <div class="todo"><strong>Greg — fill in:</strong> sq ft, closet/storage notes, and a photo for Room B.</div>
+    </div>
+    <div class="room-panel" id="panelC">
+      <div class="room-detail-grid">
+        <div class="room-detail"><div class="room-detail-label">Rent</div><div class="room-detail-val">$925/mo</div></div>
+        <div class="room-detail"><div class="room-detail-label">Available</div><div class="room-detail-val">Now</div></div>
+        <div class="room-detail"><div class="room-detail-label">Bathroom</div><div class="room-detail-val">Shared (1 bath / 3 bedrooms)</div></div>
+        <div class="room-detail"><div class="room-detail-label">Bed size</div><div class="room-detail-val">Full-size bed + desk</div></div>
+        <div class="room-detail"><div class="room-detail-label">Room size</div><div class="room-detail-val">[Add sq ft]</div></div>
+      </div>
+      <div class="todo"><strong>Greg — fill in:</strong> sq ft, closet/storage notes, and a photo for Room C. Also: Notion's Available Date field for this unit still says Jul 1 even though Status is Vacant — worth clearing that field so it doesn't disagree with itself.</div>
+    </div>
+  </div>
+
+  <!-- PRIVATE SUITE -->
+  <div class="section">
+    <h2>Also at this property: a private suite</h2>
+    <div class="room-panel active">
+      <div class="room-detail-grid">
+        <div class="room-detail"><div class="room-detail-label">Rent</div><div class="room-detail-val">$1,600/mo</div></div>
+        <div class="room-detail"><div class="room-detail-label">Available</div><div class="room-detail-val">Oct 1</div></div>
+        <div class="room-detail"><div class="room-detail-label">Bathroom</div><div class="room-detail-val">Private</div></div>
+        <div class="room-detail"><div class="room-detail-label">Space Type</div><div class="room-detail-val">Private Suite</div></div>
+      </div>
+      <div class="todo"><strong>Greg — fill in:</strong> sq ft, furniture, and a photo for this suite. It's currently occupied with a longer lead time than the rooms above — fine to pre-screen interested leads now, but it's a real wait until October.</div>
+    </div>
+  </div>
+
+  <!-- TRANSIT -->
+  <div class="section">
+    <h2>Location &amp; commute</h2>
+    <div class="transit-card">
+      <div class="label">Walk Score 38 · Transit Score 55</div>
+      <p>Three Metro stations within reach — Benning Road and Capitol Heights (Blue/Silver Line) plus Deanwood (Orange Line). Direct rides to the Pentagon, Navy Yard, Foggy Bottom, and Largo Town Center with zero or one transfer.</p>
+      <div class="score-row">
+        <div class="score-item"><b>38</b>Walk Score</div>
+        <div class="score-item"><b>55</b>Transit Score</div>
+      </div>
+      <a class="maps-btn" href="https://mitsecurestay.github.io/routecheck/jay-st.html" target="_blank" rel="noopener">🚇 Check your full commute →</a>
+    </div>
+  </div>
+
+  <!-- WHO THIS IS FOR -->
+  <div class="section">
+    <h2>Built for people on a timeline</h2>
+    <div class="fit-list">
+      <div class="fit-item"><b>Traveling nurses &amp; medical staff</b> Short assignments, fast turnaround — no time to furnish an apartment between contracts.</div>
+      <div class="fit-item"><b>J-1 visa holders &amp; relocating professionals</b> No U.S. credit history needed — pay stubs, proof of income, or a guarantor work too.</div>
+      <div class="fit-item"><b>Contractors &amp; corporate relocators</b> In town for the job. A private, furnished room from day one.</div>
+    </div>
+  </div>
+
+  <!-- GOOD TO KNOW -->
+  <div class="section">
+    <h2>Good to know</h2>
+    <div class="know-grid">
+      <div class="know-card"><div class="k-label">House rules</div>No smoking indoors, guests in moderation with notice, quiet hours 10pm–8am. Full house rules shared after your tour.</div>
+      <div class="know-card"><div class="k-label">Screening</div>Background, credit, and rental history check for every applicant — including current housemates.</div>
+      <div class="know-card"><div class="k-label">Lease terms</div>Flexible length — tell us your timeline during the tour and we'll confirm what's possible.</div>
+      <div class="know-card"><div class="k-label">Payments</div>Rent collected securely online via Zelle, bank transfer, or card — no checks, no cash.</div>
+    </div>
+  </div>
+
+  <!-- HOUSEMATES -->
+  <div class="section">
+    <h2>Who you'd be living with</h2>
+    <div class="housemates-box">
+      <p style="font-size:13.5px; line-height:1.5;">Every housemate has gone through the same screening you will. We'll walk you through who you'd be living with — schedules, what they do, the general vibe of the house — during your tour call, rather than posting it here.</p>
+    </div>
+  </div>
+
+  <!-- HOW TO APPLY -->
+  <div class="section">
+    <h2>How to apply</h2>
+    <div class="steps">
+      <div class="step"><span class="step-num">1</span><div class="step-body"><b>Pre-screen</b><span>Quick form — move-in date, budget, length of stay.</span></div></div>
+      <div class="step"><span class="step-num">2</span><div class="step-body"><b>Tour</b><span>In person or virtual — see Room B or C before you commit.</span></div></div>
+      <div class="step"><span class="step-num">3</span><div class="step-body"><b>Apply &amp; screen</b><span>Formal application plus background, credit, and eviction check.</span></div></div>
+      <div class="step"><span class="step-num">4</span><div class="step-body"><b>Sign &amp; move in</b><span>Digital lease, deposit collected, the room is yours.</span></div></div>
+    </div>
+  </div>
+
+  <div class="cta-bottom">
+    <h3>Ready to see it for yourself?</h3>
+    <p>Tours run in person or virtually — pick whatever's easier from where you are.</p>
+    <div class="cta-row" style="justify-content:center;">
+      <a class="btn btn-primary" href="https://calendly.com/mitsecurestay" target="_blank" rel="noopener">📅 Schedule a Tour</a>
+      <a class="btn btn-secondary" href="https://forms.gle/Km7K7EZvTzJMK62M9" target="_blank" rel="noopener">Start Pre-Screening</a>
+    </div>
+  </div>
+
+  <div class="disclaimer">
+    Walk Score® and Transit Score® are registered trademarks of Walk Score, sourced from <a href="https://www.walkscore.com" target="_blank" rel="noopener">walkscore.com</a>. Commute times are estimates and vary by time of day. Questions? Email <a href="mailto:mitsecurestay@gmail.com">mitsecurestay@gmail.com</a>.
+  </div>
+
+</div>
+
+<script>
+  function showRoom(room) {
+    document.getElementById('btnB').classList.toggle('active', room === 'B');
+    document.getElementById('btnC').classList.toggle('active', room === 'C');
+    document.getElementById('panelB').classList.toggle('active', room === 'B');
+    document.getElementById('panelC').classList.toggle('active', room === 'C');
+  }
+</script>
+
+</body>
+</html>

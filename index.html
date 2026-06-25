@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MIT Secure Stay — Available Housing in DC & Maryland</title>
+<style>
+  :root {
+    --ink:        #12110F;
+    --ink-light:  #5A5751;
+    --bg:         #F7F6F3;
+    --surface:    #FFFFFF;
+    --border:     #E2DFD8;
+    --accent:     #1B4FD8;
+    --accent-soft:#EEF2FC;
+    --green:      #1A7A4A;
+    --green-soft: #EAF4EE;
+    --amber:      #C48A00;
+    --amber-soft: #FBF3E1;
+    --pill-radius:6px;
+    --card-radius:10px;
+    --shadow:     0 1px 4px rgba(0,0,0,.08);
+    --font-head:  'Georgia', serif;
+    --font-body:  -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 16px; scroll-behavior: smooth; }
+  body { font-family: var(--font-body); background: var(--bg); color: var(--ink); min-height: 100vh; }
+  a { color: var(--accent); }
+  .page-wrap { max-width: 1040px; margin: 0 auto; padding: 0 16px 64px; }
+
+  .hero { padding: 44px 0 20px; text-align: center; }
+  .hero h1 { font-family: var(--font-head); font-size: clamp(26px, 5vw, 36px); font-weight: 700; margin-bottom: 8px; }
+  .hero p { font-size: 15px; color: var(--ink-light); }
+
+  .value-strip { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; margin-bottom: 24px; font-size: 13.5px; }
+  .value-strip span { color: var(--green); font-weight: 700; }
+
+  .stats-strip {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--card-radius);
+    padding: 16px;
+    margin-bottom: 32px;
+    text-align: center;
+    box-shadow: var(--shadow);
+  }
+  .stat-box { border-right: 1px solid var(--border); }
+  .stat-box:last-child { border-right: none; }
+  .stat-num { font-size: 20px; font-weight: 700; color: var(--accent); margin-bottom: 2px; }
+  .stat-label { font-size: 12px; color: var(--ink-light); text-transform: uppercase; letter-spacing: 0.03em; }
+
+  .filter-row { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-bottom: 28px; }
+  .filter-btn {
+    padding: 10px 20px; border: 2px solid var(--border); border-radius: var(--pill-radius);
+    background: var(--surface); font-family: var(--font-body); font-size: 14px; font-weight: 600;
+    color: var(--ink-light); cursor: pointer; transition: border-color .15s, color .15s, background .15s;
+  }
+  .filter-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .filter-btn.active { border-color: var(--accent); background: var(--accent-soft); color: var(--accent); }
+
+  .listings { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; margin-bottom: 44px; }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--card-radius); padding: 24px; transition: box-shadow .15s; display: flex; flex-direction: column; }
+  .card:hover { box-shadow: var(--shadow); }
+  .card.filtered { display: none; }
+
+  .card-tag { font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--ink-light); margin-bottom: 8px; }
+  .badge-row { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
+  .badge { display: inline-block; font-size: 11px; font-weight: 700; padding: 3px 9px; border-radius: 20px; }
+  .badge.available { background: var(--green-soft); color: var(--green); }
+  .badge.soon { background: var(--amber-soft); color: var(--amber); }
+
+  .card h2 { font-family: var(--font-head); font-size: 20px; font-weight: 700; margin-bottom: 4px; }
+  .card-price { font-size: 24px; font-weight: 700; color: var(--accent); margin-bottom: 6px; }
+  .card-meta { font-size: 13.5px; color: var(--ink-light); margin-bottom: 14px; line-height: 1.4; }
+  .card-tagline { font-size: 13.5px; color: var(--ink); margin-bottom: 16px; line-height: 1.4; font-style: italic; border-left: 2px solid var(--border); padding-left: 10px; }
+
+  .card-details { margin-bottom: 20px; background: var(--bg); padding: 12px; border-radius: var(--pill-radius); font-size: 13px; }
+  .card-fit { margin-bottom: 10px; line-height: 1.4; }
+  .card-fit:last-child { margin-bottom: 0; }
+  .card-fit b { display: block; font-size: 11px; text-transform: uppercase; letter-spacing: .05em; color: var(--ink-light); margin-bottom: 2px; }
+
+  .card-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: auto; }
+  .card-actions a {
+    flex: 1; text-align: center; text-decoration: none; padding: 10px 14px; border-radius: var(--pill-radius);
+    font-size: 13.5px; font-weight: 700; border: 1.5px solid var(--accent); color: var(--accent); transition: background .15s, color .15s;
+  }
+  .card-actions a:hover { background: var(--accent-soft); }
+  .card-actions a.primary { background: var(--accent); color: #fff; }
+  .card-actions a.primary:hover { opacity: .88; background: var(--accent); }
+
+  .how { margin-bottom: 44px; border-top: 1px solid var(--border); padding-top: 36px; }
+  .how h2 { font-family: var(--font-head); font-size: 22px; font-weight: 700; text-align: center; margin-bottom: 24px; }
+  .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; }
+  .step { background: var(--surface); border: 1px solid var(--border); border-radius: var(--card-radius); padding: 20px; text-align: center; }
+  .step-num { font-family: var(--font-head); font-size: 22px; font-weight: 700; color: var(--accent); margin-bottom: 6px; }
+  .step span { font-size: 14px; font-weight: 600; }
+
+  footer { text-align: center; padding: 24px 0; border-top: 1px solid var(--border); font-size: 13px; color: var(--ink-light); }
+  footer a { color: var(--accent); }
+
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  @media (max-width: 600px) {
+    .stats-strip { grid-template-columns: 1fr 1fr; gap: 16px; }
+    .stat-box { border-right: none; }
+    .stat-box:nth-child(odd) { border-right: 1px solid var(--border); }
+  }
+  @media (max-width: 480px) {
+    .value-strip { gap: 12px; font-size: 12px; }
+    .stats-strip { grid-template-columns: 1fr; }
+    .stat-box { border-right: none !important; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+    .stat-box:last-child { border-bottom: none; padding-bottom: 0; }
+  }
+</style>
+</head>
+<body>
+<div class="page-wrap">
+
+  <div class="hero">
+    <h1>MIT Secure Stay</h1>
+    <p>Furnished rooms &amp; private living spaces in Washington DC &amp; Maryland</p>
+  </div>
+
+  <div class="value-strip">
+    <div><span>✓</span> Utilities included</div>
+    <div><span>✓</span> Furnished rooms</div>
+    <div><span>✓</span> In-unit washer/dryer</div>
+    <div><span>✓</span> Tenant screening process</div>
+  </div>
+
+  <div class="stats-strip">
+    <div class="stat-box">
+      <div class="stat-num">4 Rooms</div>
+      <div class="stat-label">Available Now</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">6 Rooms</div>
+      <div class="stat-label">Upcoming (Aug–Oct)</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">DC &amp; MD</div>
+      <div class="stat-label">Metro Accessible</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">100%</div>
+      <div class="stat-label">Utilities Included</div>
+    </div>
+  </div>
+
+  <div class="filter-row">
+    <button class="filter-btn active" onclick="filterBy('all', this)">All Locations</button>
+    <button class="filter-btn" onclick="filterBy('dc', this)">Washington DC</button>
+    <button class="filter-btn" onclick="filterBy('md', this)">Maryland</button>
+  </div>
+
+  <div class="listings">
+
+    <div class="card" data-region="dc">
+      <div class="card-tag">Property · Washington, DC</div>
+      <div class="badge-row">
+        <span class="badge available">2 Rooms Available Now</span>
+        <span class="badge soon">1 Private Suite Oct 1</span>
+      </div>
+      <h2>5521 Jay St NE</h2>
+      <div class="card-price">Starting at $925/mo</div>
+      <div class="card-meta">Deanwood location · Shared rooms &amp; private suites · Near 3 Metro stations · In-unit W/D</div>
+      <div class="card-tagline">Three Metro stations within walking distance — built for fast, predictable commutes.</div>
+
+      <div class="card-details">
+        <div class="card-fit"><b>Best for</b>Traveling nurses, contractors, relocators on a timeline</div>
+        <div class="card-fit"><b>Household</b>Details shared during your tour call</div>
+      </div>
+
+      <div class="card-actions">
+        <a href="jay-st-listing.html">View Available Rooms</a>
+        <a href="https://forms.gle/Km7K7EZvTzJMK62M9" class="primary">Start Pre-Screening</a>
+      </div>
+    </div>
+
+    <div class="card" data-region="md">
+      <div class="card-tag">Property · Riverdale, MD</div>
+      <div class="badge-row">
+        <span class="badge available">2 Rooms Available Now</span>
+        <span class="badge soon">2 Rooms Aug 1</span>
+        <span class="badge soon">1 Room Sep 1</span>
+      </div>
+      <h2>5311 59th Ave</h2>
+      <div class="card-price">Starting at $850/mo</div>
+      <div class="card-meta">All-inclusive shared house · Shared bath · In-unit washer/dryer</div>
+      <div class="card-tagline">Furnished, all-inclusive community house close to transit links.</div>
+
+      <div class="card-details">
+        <div class="card-fit"><b>Best for</b>Students, interns, budget-conscious professional relocators</div>
+        <div class="card-fit"><b>Household</b>Details shared during your tour call</div>
+      </div>
+
+      <div class="card-actions">
+        <a href="59th-ave-listing.html">View Available Rooms</a>
+        <a href="https://forms.gle/Km7K7EZvTzJMK62M9" class="primary">Start Pre-Screening</a>
+      </div>
+    </div>
+
+    <div class="card" data-region="dc">
+      <div class="card-tag">Private Living Space · Washington, DC</div>
+      <div class="badge-row">
+        <span class="badge soon">Available Aug 5</span>
+      </div>
+      <h2>12 Knox Cir SE</h2>
+      <div class="card-price">$1,650/mo</div>
+      <div class="card-meta">Private Suite · Private bath · In-unit washer/dryer · Strong federal commute</div>
+      <div class="card-tagline">A private suite with its own bath — more separation than a shared room.</div>
+
+      <div class="card-details">
+        <div class="card-fit"><b>Best for</b>Federal contractors, corporate relocators wanting more privacy</div>
+        <div class="card-fit"><b>Household</b>Details shared during your tour call</div>
+      </div>
+
+      <div class="card-actions">
+        <a href="knox-cir-listing.html">View Details</a>
+        <a href="https://forms.gle/Km7K7EZvTzJMK62M9" class="primary">Start Pre-Screening</a>
+      </div>
+    </div>
+
+    <div class="card" data-region="md">
+      <div class="card-tag">Room Rental · Silver Spring, MD</div>
+      <div class="badge-row">
+        <span class="badge soon">Available Sep 1</span>
+      </div>
+      <h2>14843 Hammersmith Cir</h2>
+      <div class="card-price">$925/mo</div>
+      <div class="card-meta">Shared bath · In-unit washer/dryer · Near NIH / biotech corridor</div>
+      <div class="card-tagline">Minutes from the NIH and Silver Spring's biotech corridor.</div>
+
+      <div class="card-details">
+        <div class="card-fit"><b>Best for</b>Medical and biotech professionals, relocating contractors</div>
+        <div class="card-fit"><b>Household</b>Details shared during your tour call</div>
+      </div>
+
+      <div class="card-actions">
+        <a href="hammersmith-listing.html">View Details</a>
+        <a href="https://forms.gle/Km7K7EZvTzJMK62M9" class="primary">Start Pre-Screening</a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="how">
+    <h2>How It Works</h2>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><span>Pre-screen</span></div>
+      <div class="step"><div class="step-num">2</div><span>Tour</span></div>
+      <div class="step"><div class="step-num">3</div><span>Apply &amp; screen</span></div>
+      <div class="step"><div class="step-num">4</div><span>Sign &amp; move in</span></div>
+    </div>
+  </div>
+
+  <footer>
+    MIT Secure Stay · DC &amp; Maryland housing for professionals · <a href="mailto:mitsecurestay@gmail.com">mitsecurestay@gmail.com</a> · <a href="https://calendly.com/mitsecurestay" target="_blank" rel="noopener">Schedule a tour</a>
+  </footer>
+
+</div>
+
+<script>
+  function filterBy(region, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.card').forEach(card => {
+      card.classList.toggle('filtered', region !== 'all' && card.dataset.region !== region);
+    });
+  }
+</script>
+
+</body>
+</html>
