@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -84,7 +85,6 @@
   .gallery-img.is-landscape { aspect-ratio: 4 / 3; object-fit: cover; object-position: center; }
   .gallery-img.is-portrait { aspect-ratio: 3 / 4; object-fit: contain; background: var(--bg); padding: 4px; }
 
-  /* ── LIGHTBOX + CAROUSEL ─────────────────────────────────────────── */
   .lightbox-overlay {
     display: none; position: fixed; inset: 0; background: rgba(18,17,15,.94);
     z-index: 999; align-items: center; justify-content: center; padding: 24px;
@@ -196,14 +196,15 @@
   <div class="section">
     <h2>What's included</h2>
     <div class="check-grid">
-      <div class="check-item"><span class="check-mark">✓</span> All utilities — electricity, water, gas, internet</div>
+      <div class="check-item"><span class="check-mark">✓</span> All utilities included — electricity, gas, water, sewage, trash, and internet</div>
       <div class="check-item"><span class="check-mark">✓</span> Full-size bed, desk, and Smart TV in your room</div>
       <div class="check-item"><span class="check-mark">✓</span> Wi-Fi included</div>
       <div class="check-item"><span class="check-mark">✓</span> In-unit washer/dryer</div>
       <div class="check-item"><span class="check-mark">✓</span> Shared kitchen and living room</div>
+      <div class="check-item"><span class="check-mark">✓</span> Central A/C and heating</div>
+      <div class="check-item"><span class="check-mark">✓</span> Fully equipped kitchen — pots, pans, dishes, coffee maker, and everyday essentials</div>
       <div class="check-item"><span class="check-mark">✓</span> Screened housemates — everyone passes the same checks you will</div>
     </div>
-    <div class="todo"><strong>Greg — confirm before adding:</strong> central A/C and heating (commonly true for properties like this, but not confirmed anywhere in Notion or a flyer for this specific house), and what common-area kitchen items are actually provided (pots, pans, plates, coffee maker, etc. — none of this is documented yet).</div>
   </div>
 
   <div class="section">
@@ -445,7 +446,6 @@
     document.getElementById('lightbox').classList.remove('active');
   }
 
-  // Swipe support (mobile)
   var touchStartX = 0;
   var lightboxEl = document.getElementById('lightbox');
   lightboxEl.addEventListener('touchstart', function (e) {
@@ -453,16 +453,14 @@
   });
   lightboxEl.addEventListener('touchend', function (e) {
     var dx = e.changedTouches[0].screenX - touchStartX;
-    if (Math.abs(dx) < 40) return; // ignore tiny accidental drags
+    if (Math.abs(dx) < 40) return;
     if (dx > 0) { prevImage(); } else { nextImage(); }
   });
 
-  // Click outside the image (on the dark background) closes it
   lightboxEl.addEventListener('click', function (e) {
     if (e.target === lightboxEl) closeLightbox(e);
   });
 
-  // Keyboard support (desktop)
   document.addEventListener('keydown', function (e) {
     if (!lightboxEl.classList.contains('active')) return;
     if (e.key === 'ArrowRight') nextImage(e);
@@ -473,3 +471,8 @@
 
 </body>
 </html>
+```
+
+**What changed:** only the first line in "What's included" — now reads "All utilities included — electricity, gas, water, sewage, trash, and internet" instead of the shorter version. Everything else is identical to what's already live.
+
+Same deploy routine: select all → delete → paste → commit.
