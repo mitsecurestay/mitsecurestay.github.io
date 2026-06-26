@@ -17,6 +17,7 @@
     --green-soft: #EAF4EE;
     --amber:      #C48A00;
     --amber-soft: #FBF3E1;
+    --drive:      #C8410B;
     --pill-radius:6px;
     --card-radius:10px;
     --shadow:     0 1px 4px rgba(0,0,0,.08);
@@ -30,9 +31,14 @@
   .page-wrap { max-width: 780px; margin: 0 auto; padding: 0 16px 64px; }
 
   .hero { padding: 40px 0 24px; border-bottom: 1px solid var(--border); margin-bottom: 24px; }
+  .hero-logo { height: 44px; width: auto; margin-bottom: 14px; display: block; }
   .hero-eyebrow { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-light); margin-bottom: 10px; }
   .hero h1 { font-family: var(--font-head); font-size: clamp(24px, 5.5vw, 34px); font-weight: 700; line-height: 1.18; margin-bottom: 10px; }
   .hero-sub { font-size: 15px; color: var(--ink-light); margin-bottom: 20px; line-height: 1.5; max-width: 540px; }
+
+  .price-row { display: flex; align-items: baseline; gap: 8px; margin-bottom: 22px; }
+  .price-num { font-family: var(--font-head); font-size: 30px; font-weight: 700; }
+  .price-sub { font-size: 13px; color: var(--ink-light); }
 
   .cta-row { display: flex; gap: 10px; flex-wrap: wrap; }
   .btn { display: inline-flex; align-items: center; gap: 6px; padding: 12px 22px; border-radius: var(--pill-radius);
@@ -46,34 +52,70 @@
   .fact-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--card-radius); padding: 14px 12px; text-align: center; }
   .fact-label { font-size: 10.5px; text-transform: uppercase; letter-spacing: .06em; color: var(--ink-light); margin-bottom: 6px; }
   .fact-val { font-size: 16px; font-weight: 700; }
-  .fact-val.accent { color: var(--green); }
+  .fact-val.accent { color: var(--accent); }
 
   .section { margin-bottom: 32px; }
   .section h2 { font-family: var(--font-head); font-size: 19px; font-weight: 700; margin-bottom: 14px; }
   .section-note { font-size: 13px; color: var(--ink-light); margin: -6px 0 14px; line-height: 1.5; }
-
-  /* ROOM LIST */
-  .room-row { display: flex; align-items: center; gap: 14px; background: var(--surface); border: 1px solid var(--border);
-              border-radius: var(--card-radius); padding: 14px 16px; margin-bottom: 10px; flex-wrap: wrap; }
-  .room-row .badge { font-size: 11px; font-weight: 700; padding: 3px 9px; border-radius: 20px; flex-shrink: 0; }
-  .badge.available { background: var(--green-soft); color: var(--green); }
-  .badge.soon { background: var(--amber-soft); color: var(--amber); }
-  .room-row .room-price { font-family: var(--font-head); font-size: 18px; font-weight: 700; flex-shrink: 0; }
-  .room-row .room-meta { font-size: 13px; color: var(--ink-light); flex: 1; min-width: 140px; }
-  .room-row .room-cta { flex-shrink: 0; }
-  .room-row .room-cta a { font-size: 13px; font-weight: 700; color: var(--accent); text-decoration: none; border-bottom: 1px dashed var(--accent); }
 
   .check-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
   .check-item { display: flex; gap: 10px; align-items: flex-start; background: var(--surface); border: 1px solid var(--border);
                 border-radius: var(--card-radius); padding: 12px 14px; font-size: 13.5px; line-height: 1.4; }
   .check-mark { color: var(--green); font-weight: 700; flex-shrink: 0; }
 
+  .unit-block { margin-bottom: 34px; }
+  .unit-heading { font-family: var(--font-head); font-size: 19px; font-weight: 700; margin-bottom: 4px; }
+  .unit-sub { font-size: 13px; color: var(--ink-light); margin-bottom: 14px; }
+
+  .room-toggle { display: flex; background: var(--surface); border: 1px solid var(--border); border-radius: var(--card-radius);
+                 padding: 4px; gap: 4px; margin-bottom: 14px; max-width: 320px; }
+  .room-btn { flex: 1; padding: 10px 0; border: none; background: transparent; border-radius: 6px; font-family: var(--font-body);
+              font-size: 14px; font-weight: 700; color: var(--ink-light); cursor: pointer; transition: background .15s, color .15s; }
+  .room-btn.active { background: var(--accent); color: #fff; }
+  .room-panel { display: none; background: var(--surface); border: 1px solid var(--border); border-radius: var(--card-radius); padding: 18px; }
+  .room-panel.active { display: block; }
+  .room-detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 6px; }
+  .room-detail { background: var(--bg); border-radius: 6px; padding: 10px 12px; }
+  .room-detail-label { font-size: 10.5px; text-transform: uppercase; letter-spacing: .06em; color: var(--ink-light); margin-bottom: 3px; }
+  .room-detail-val { font-size: 13.5px; font-weight: 600; }
+
   .todo { background: var(--amber-soft); border: 1.5px dashed var(--amber); border-radius: 6px; padding: 8px 10px;
           font-size: 12.5px; color: #6b4d00; margin-top: 10px; }
   .todo strong { font-weight: 700; }
-  .photo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 32px; }
-  .photo-grid img { width: 100%; height: 220px; object-fit: cover; border-radius: var(--card-radius); border: 1px solid var(--border); display: block; }
-  .photo-grid .wide { grid-column: 1 / -1; height: 320px; }
+
+  .photo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 8px; margin-top: 12px; align-items: start; }
+  .gallery-img { width: 100%; border-radius: 6px; display: block; cursor: pointer; transition: opacity .15s; }
+  .gallery-img:hover { opacity: .85; }
+  .gallery-img.is-landscape { aspect-ratio: 4 / 3; object-fit: cover; object-position: center; }
+  .gallery-img.is-portrait { aspect-ratio: 3 / 4; object-fit: contain; background: var(--bg); padding: 4px; }
+
+  .lightbox-overlay {
+    display: none; position: fixed; inset: 0; background: rgba(18,17,15,.94);
+    z-index: 999; align-items: center; justify-content: center; padding: 24px;
+    touch-action: none;
+  }
+  .lightbox-overlay.active { display: flex; }
+  .lightbox-overlay img { max-width: 100%; max-height: 100%; border-radius: 6px; user-select: none; -webkit-user-select: none; }
+  .lightbox-close {
+    position: absolute; top: 20px; right: 24px; background: none; border: none;
+    color: #fff; font-size: 32px; line-height: 1; cursor: pointer; font-weight: 300; z-index: 1001;
+  }
+  .lightbox-nav {
+    position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,.12);
+    border: none; color: #fff; font-size: 24px; width: 44px; height: 44px; border-radius: 50%;
+    cursor: pointer; z-index: 1001; display: flex; align-items: center; justify-content: center;
+    transition: background .15s;
+  }
+  .lightbox-nav:hover { background: rgba(255,255,255,.22); }
+  .lightbox-prev { left: 12px; }
+  .lightbox-next { right: 12px; }
+  .lightbox-counter {
+    position: absolute; bottom: 18px; left: 50%; transform: translateX(-50%);
+    color: #fff; font-size: 13px; opacity: .8; letter-spacing: .04em;
+  }
+  @media (max-width: 540px) {
+    .lightbox-nav { width: 38px; height: 38px; font-size: 20px; }
+  }
 
   .transit-card { background: var(--accent); color: #fff; border-radius: var(--card-radius); padding: 18px 20px; }
   .transit-card .label { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; opacity: .8; margin-bottom: 6px; }
@@ -89,6 +131,16 @@
   .know-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
   .know-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--card-radius); padding: 13px 16px; font-size: 13px; line-height: 1.5; }
   .know-card .k-label { font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--ink-light); margin-bottom: 5px; font-weight: 700; }
+  .back-link { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; color: var(--ink-light); text-decoration: none; margin-bottom: 16px; }
+  .back-link:hover { color: var(--accent); }
+  .tour-policy { font-size: 12.5px; color: var(--ink-light); margin-top: 10px; font-style: italic; }
+  details.accordion { background: var(--surface); border: 1px solid var(--border); border-radius: var(--card-radius); margin-bottom: 10px; }
+  details.accordion summary { padding: 13px 16px; font-weight: 700; font-size: 14px; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+  details.accordion summary::-webkit-details-marker { display: none; }
+  details.accordion summary::after { content: '+'; font-size: 18px; color: var(--accent); }
+  details.accordion[open] summary::after { content: '–'; }
+  details.accordion .accordion-body { padding: 0 16px 14px; font-size: 13.5px; line-height: 1.6; color: var(--ink-light); }
+  details.accordion .accordion-body ul { padding-left: 18px; margin-top: 6px; }
 
   .housemates-box { background: var(--surface); border: 1px solid var(--border); border-radius: var(--card-radius); padding: 16px 18px; }
 
@@ -111,92 +163,169 @@
 
   @media (max-width: 540px) {
     .facts-strip { grid-template-columns: 1fr 1fr; }
-    .check-grid, .know-grid { grid-template-columns: 1fr; }
-    .room-row { flex-direction: column; align-items: flex-start; }
+    .check-grid, .know-grid, .room-detail-grid { grid-template-columns: 1fr; }
   }
 </style>
 </head>
 <body>
 <div class="page-wrap">
 
+  <a class="back-link" href="index.html">← Back to Listings</a>
+
   <div class="hero">
+    <img src="assets/mit-logo.png" alt="MIT Secure Stay logo" class="hero-logo">
     <div class="hero-eyebrow">MIT Secure Stay · 5311 59th Ave · Riverdale, MD 20737</div>
-    <h1>Furnished rooms in a shared Riverdale house, two ready now.</h1>
-    <p class="hero-sub">An 8-room shared house on the Green Line corridor — strong for UMD students, PG County federal staff, and Northeast DC hospital commuters. All-inclusive, furnished, screened.</p>
+    <h1>Three private households, one Riverdale address.</h1>
+    <p class="hero-sub">This property is split into three separate, non-connected units — Front, Patio, and Lower Level — each its own small household. Furnished, all-inclusive, on the Green Line corridor. Two rooms available now.</p>
+    <div class="price-row">
+      <span class="price-num">$800–$950</span>
+      <span class="price-sub">/ month, per room — utilities included</span>
+    </div>
     <div class="cta-row">
       <a class="btn btn-primary" href="https://calendly.com/mitsecurestay" target="_blank" rel="noopener">📅 Schedule a Tour</a>
       <a class="btn btn-secondary" href="https://forms.gle/Km7K7EZvTzJMK62M9" target="_blank" rel="noopener">Start Pre-Screening</a>
     </div>
+    <p class="tour-policy">Tours are scheduled after the Tenant Pre-Screening Questionnaire is completed — start there first.</p>
   </div>
 
   <div class="facts-strip">
-    <div class="fact-card"><div class="fact-label">Rooms From</div><div class="fact-val">$850/mo</div></div>
-    <div class="fact-card"><div class="fact-label">House Size</div><div class="fact-val">8 Rooms</div></div>
+    <div class="fact-card"><div class="fact-label">Rent Range</div><div class="fact-val">$800–$950/mo</div></div>
+    <div class="fact-card"><div class="fact-label">Structure</div><div class="fact-val">3 Separate Units</div></div>
     <div class="fact-card"><div class="fact-label">Available Now</div><div class="fact-val accent">2 Rooms</div></div>
     <div class="fact-card"><div class="fact-label">Bathroom</div><div class="fact-val">Shared</div></div>
   </div>
 
   <div class="section">
-    <h2>Available rooms</h2>
-    <p class="section-note">This house has 8 rooms total; five have a known turnover date. The rest are occupied with no near-term move-out.</p>
-
-    <div class="room-row">
-      <span class="badge available">Available Now</span>
-      <span class="room-price">$900/mo</span>
-      <span class="room-meta">Shared bath · in-unit washer/dryer</span>
-      <span class="room-cta"><a href="https://forms.gle/Km7K7EZvTzJMK62M9" target="_blank" rel="noopener">Pre-screen →</a></span>
-    </div>
-    <div class="todo">Room C — bookable today, but its only photos are from 2022. Fresh photos are the priority here since this is one of the two rooms a lead can actually move into right now.</div>
-    <div class="room-row">
-      <span class="badge available">Available Now</span>
-      <span class="room-price">$850/mo</span>
-      <span class="room-meta">Shared bath · in-unit washer/dryer</span>
-      <span class="room-cta"><a href="https://forms.gle/Km7K7EZvTzJMK62M9" target="_blank" rel="noopener">Pre-screen →</a></span>
-    </div>
-    <div class="todo">Room F — also bookable today; no photos located in Drive at all yet. Same priority as Room C above.</div>
-    <div class="room-row">
-      <span class="badge soon">Available Aug 1</span>
-      <span class="room-price">$850/mo</span>
-      <span class="room-meta">Shared bath · in-unit washer/dryer</span>
-      <span class="room-cta"><a href="https://forms.gle/Km7K7EZvTzJMK62M9" target="_blank" rel="noopener">Pre-screen →</a></span>
-    </div>
-    <div class="todo"><strong>Greg — resolve before this room goes live:</strong> Notion says $850, but two existing flyers for this room say $875 and $900. Pick the real number and update whichever sources are wrong.</div>
-    <div class="room-row">
-      <span class="badge soon">Available Aug 1</span>
-      <span class="room-price">$950/mo</span>
-      <span class="room-meta">Shared bath · in-unit washer/dryer</span>
-      <span class="room-cta"><a href="https://forms.gle/Km7K7EZvTzJMK62M9" target="_blank" rel="noopener">Pre-screen →</a></span>
-    </div>
-    <div class="room-row">
-      <span class="badge soon">Available Sep 1</span>
-      <span class="room-price">$950/mo</span>
-      <span class="room-meta">Queen bed, desk, Smart TV, large closet · shared bath · in-unit washer/dryer</span>
-      <span class="room-cta"><a href="https://forms.gle/Km7K7EZvTzJMK62M9" target="_blank" rel="noopener">Pre-screen →</a></span>
-    </div>
-  </div>
-
-  <div class="section">
-    <h2>About this room — Available Sep 1, $950/mo</h2>
-    <p class="section-note">Confirmed from the existing flyer for this room: queen-size bed, Smart TV, desk, and a large closet. Part of a 3-bedroom, 1-bath wing with its own cozy living room, fully equipped kitchen, and on-site laundry. Designated parking included, with easy access to UMD shuttle routes.</p>
-    <div class="photo-grid">
-      <img class="wide" src="59th-ave-photos/rear-patio.jpg" alt="Patio at 5311 59th Ave Rear Unit">
-      <img src="59th-ave-photos/room-d-bed-desk.jpg" alt="Room D bedroom with desk">
-      <img src="59th-ave-photos/rear-kitchen.jpg" alt="Rear Unit kitchen">
-      <img src="59th-ave-photos/rear-living-room.jpg" alt="Rear Unit living room">
-      <img src="59th-ave-photos/rear-dining.jpg" alt="Rear Unit dining area">
-      <img class="wide" src="59th-ave-photos/rear-bathroom.jpg" alt="Rear Unit bathroom">
-    </div>
-    <div class="todo">Whether the patio is private to Room D or shared across the whole Rear Unit isn't confirmed yet — worth checking before promising "private patio" anywhere in copy.</div>
-  </div>
-
-  <div class="section">
     <h2>What's included</h2>
     <div class="check-grid">
-      <div class="check-item"><span class="check-mark">✓</span> All utilities — electricity, water, gas, internet</div>
+      <div class="check-item"><span class="check-mark">✓</span> All utilities included — electricity, water, gas, internet</div>
       <div class="check-item"><span class="check-mark">✓</span> In-unit washer/dryer</div>
       <div class="check-item"><span class="check-mark">✓</span> Designated parking</div>
-      <div class="check-item"><span class="check-mark">✓</span> Furnished room (bed size varies by room — confirmed queen for the Sep 1 room)</div>
+      <div class="check-item"><span class="check-mark">✓</span> Furnished room</div>
       <div class="check-item"><span class="check-mark">✓</span> Screened housemates — everyone passes the same checks you will</div>
+    </div>
+    <div class="todo"><strong>Greg — confirm before adding:</strong> central A/C and heating, and what (if anything) is provided in each unit's kitchen beyond the appliances themselves — neither is documented yet for this property the way it is for Jay St.</div>
+  </div>
+
+  <!-- FRONT UNIT -->
+  <div class="unit-block">
+    <div class="unit-heading">Front Unit — 3BR / 1BA</div>
+    <div class="unit-sub">Rooms A, B, C · its own small household, not shared with the other two units</div>
+
+    <div class="room-toggle">
+      <button class="room-btn active" id="btnFront-A" onclick="showRoom('Front','A')">Room A</button>
+      <button class="room-btn" id="btnFront-B" onclick="showRoom('Front','B')">Room B</button>
+      <button class="room-btn" id="btnFront-C" onclick="showRoom('Front','C')">Room C</button>
+    </div>
+
+    <div class="room-panel active" id="panelFront-A">
+      <div class="room-detail-grid">
+        <div class="room-detail"><div class="room-detail-label">Rent</div><div class="room-detail-val">$850/mo</div></div>
+        <div class="room-detail"><div class="room-detail-label">Available</div><div class="room-detail-val">Aug 1</div></div>
+        <div class="room-detail"><div class="room-detail-label">Bathroom</div><div class="room-detail-val">Shared</div></div>
+        <div class="room-detail"><div class="room-detail-label">Room size</div><div class="room-detail-val">[Add sq ft]</div></div>
+      </div>
+      <div class="todo"><strong>Greg — resolve before this room goes live:</strong> Notion says $850, but two existing flyers for this room say $875 and $900. Pick the real number and update whichever sources are wrong.</div>
+      <div class="todo"><strong>Greg — fill in:</strong> bed size, sq ft, and photos. Only 2022-era photos exist for this unit so far.</div>
+    </div>
+    <div class="room-panel" id="panelFront-B">
+      <div class="room-detail-grid">
+        <div class="room-detail"><div class="room-detail-label">Rent</div><div class="room-detail-val">$900/mo</div></div>
+        <div class="room-detail"><div class="room-detail-label">Available</div><div class="room-detail-val">2027 (long-term, not actively marketed)</div></div>
+        <div class="room-detail"><div class="room-detail-label">Bathroom</div><div class="room-detail-val">Shared</div></div>
+        <div class="room-detail"><div class="room-detail-label">Room size</div><div class="room-detail-val">[Add sq ft]</div></div>
+      </div>
+      <div class="todo">Occupied with no near-term turnover — shown here for completeness, not actively marketed.</div>
+    </div>
+    <div class="room-panel" id="panelFront-C">
+      <div class="room-detail-grid">
+        <div class="room-detail"><div class="room-detail-label">Rent</div><div class="room-detail-val">$900/mo</div></div>
+        <div class="room-detail"><div class="room-detail-label">Available</div><div class="room-detail-val">Now</div></div>
+        <div class="room-detail"><div class="room-detail-label">Bathroom</div><div class="room-detail-val">Shared</div></div>
+        <div class="room-detail"><div class="room-detail-label">Room size</div><div class="room-detail-val">[Add sq ft]</div></div>
+      </div>
+      <div class="todo"><strong>Greg — fill in:</strong> bed size, sq ft, and fresh photos. This room is bookable today, but its only photos are from 2022 — the highest-priority photo gap on this whole property.</div>
+    </div>
+  </div>
+
+  <!-- PATIO UNIT -->
+  <div class="unit-block">
+    <div class="unit-heading">Patio Unit — 2BR / 1BA</div>
+    <div class="unit-sub">Rooms D, E · private patio · its own small household</div>
+
+    <div class="room-toggle">
+      <button class="room-btn active" id="btnPatio-D" onclick="showRoom('Patio','D')">Room D</button>
+      <button class="room-btn" id="btnPatio-E" onclick="showRoom('Patio','E')">Room E</button>
+    </div>
+
+    <div class="room-panel active" id="panelPatio-D">
+      <div class="room-detail-grid">
+        <div class="room-detail"><div class="room-detail-label">Rent</div><div class="room-detail-val">$950/mo</div></div>
+        <div class="room-detail"><div class="room-detail-label">Available</div><div class="room-detail-val">Sep 1</div></div>
+        <div class="room-detail"><div class="room-detail-label">Bathroom</div><div class="room-detail-val">Shared</div></div>
+        <div class="room-detail"><div class="room-detail-label">Bed size</div><div class="room-detail-val">Queen bed + desk</div></div>
+      </div>
+      <p style="font-size:13px; color:var(--ink-light); margin-top:10px;"><strong>Room description:</strong> Confirmed from the existing flyer — queen bed, Smart TV, desk, and a large closet.</p>
+      <div class="todo"><strong>Greg — fill in:</strong> sq ft and a room-specific photo for Room D (the photos below show the unit's shared spaces, not the bedroom itself).</div>
+    </div>
+    <div class="room-panel" id="panelPatio-E">
+      <div class="room-detail-grid">
+        <div class="room-detail"><div class="room-detail-label">Rent</div><div class="room-detail-val">$950/mo</div></div>
+        <div class="room-detail"><div class="room-detail-label">Available</div><div class="room-detail-val">Aug 1</div></div>
+        <div class="room-detail"><div class="room-detail-label">Bathroom</div><div class="room-detail-val">Shared</div></div>
+        <div class="room-detail"><div class="room-detail-label">Room size</div><div class="room-detail-val">[Add sq ft]</div></div>
+      </div>
+      <div class="todo"><strong>Greg — fill in:</strong> bed size, sq ft, and a room-specific photo for Room E.</div>
+    </div>
+
+    <div class="photo-grid">
+      <img class="gallery-img is-landscape" src="59th-ave-photos/rear-patio.jpg" alt="Private patio at the Patio Unit" onclick="openLightbox(this)">
+      <img class="gallery-img is-landscape" src="59th-ave-photos/rear-kitchen.jpg" alt="Patio Unit kitchen" onclick="openLightbox(this)">
+      <img class="gallery-img is-landscape" src="59th-ave-photos/rear-living-room.jpg" alt="Patio Unit living room" onclick="openLightbox(this)">
+      <img class="gallery-img is-landscape" src="59th-ave-photos/rear-dining.jpg" alt="Patio Unit dining area" onclick="openLightbox(this)">
+      <img class="gallery-img is-landscape" src="59th-ave-photos/rear-bathroom.jpg" alt="Patio Unit bathroom" onclick="openLightbox(this)">
+      <img class="gallery-img is-landscape" src="59th-ave-photos/room-d-bed-desk.jpg" alt="Room D bed and desk" onclick="openLightbox(this)">
+    </div>
+    <div class="todo">No fireplace appears in any of these photos. If the Patio Unit actually has one, it isn't shown here — confirm before adding it to copy.</div>
+  </div>
+
+  <!-- LOWER LEVEL -->
+  <div class="unit-block">
+    <div class="unit-heading">Lower Level — 3BR / 1BA</div>
+    <div class="unit-sub">Rooms F, G, H · its own small household</div>
+
+    <div class="room-toggle">
+      <button class="room-btn active" id="btnLower-F" onclick="showRoom('Lower','F')">Room F</button>
+      <button class="room-btn" id="btnLower-G" onclick="showRoom('Lower','G')">Room G</button>
+      <button class="room-btn" id="btnLower-H" onclick="showRoom('Lower','H')">Room H</button>
+    </div>
+
+    <div class="room-panel active" id="panelLower-F">
+      <div class="room-detail-grid">
+        <div class="room-detail"><div class="room-detail-label">Rent</div><div class="room-detail-val">$850/mo</div></div>
+        <div class="room-detail"><div class="room-detail-label">Available</div><div class="room-detail-val">Now</div></div>
+        <div class="room-detail"><div class="room-detail-label">Bathroom</div><div class="room-detail-val">Shared</div></div>
+        <div class="room-detail"><div class="room-detail-label">Room size</div><div class="room-detail-val">[Add sq ft]</div></div>
+      </div>
+      <div class="todo"><strong>Greg — fill in:</strong> bed size, sq ft, and photos. Bookable today with zero photos located anywhere — the other highest-priority photo gap on this property.</div>
+    </div>
+    <div class="room-panel" id="panelLower-G">
+      <div class="room-detail-grid">
+        <div class="room-detail"><div class="room-detail-label">Rent</div><div class="room-detail-val">$935/mo</div></div>
+        <div class="room-detail"><div class="room-detail-label">Available</div><div class="room-detail-val">2027 (long-term, not actively marketed)</div></div>
+        <div class="room-detail"><div class="room-detail-label">Bathroom</div><div class="room-detail-val">Shared</div></div>
+        <div class="room-detail"><div class="room-detail-label">Room size</div><div class="room-detail-val">[Add sq ft]</div></div>
+      </div>
+      <div class="todo">10 fresh (April 2026) photos exist in Drive for this room but haven't been pulled in — worth doing once this room is closer to actually turning over.</div>
+    </div>
+    <div class="room-panel" id="panelLower-H">
+      <div class="room-detail-grid">
+        <div class="room-detail"><div class="room-detail-label">Rent</div><div class="room-detail-val">$800/mo</div></div>
+        <div class="room-detail"><div class="room-detail-label">Available</div><div class="room-detail-val">2027 (long-term, not actively marketed)</div></div>
+        <div class="room-detail"><div class="room-detail-label">Bathroom</div><div class="room-detail-val">Shared</div></div>
+        <div class="room-detail"><div class="room-detail-label">Room size</div><div class="room-detail-val">[Add sq ft]</div></div>
+      </div>
+      <div class="todo">Notion shows this room as Occupied but with an Available Date of "today" — an unresolved data inconsistency, never fixed. No room-specific photos found either.</div>
     </div>
   </div>
 
@@ -207,6 +336,7 @@
       <p>Riverdale sits on the Green Line — College Park, downtown DC, and major medical centers are all within reach. UMD College Park is 1–2 Metro stops away, and the Green Line runs direct to Capitol Hill and Navy Yard with no transfer.</p>
       <a class="maps-btn" href="https://mitsecurestay.github.io/routecheck/riverdale.html" target="_blank" rel="noopener">🚇 Check your full commute →</a>
     </div>
+    <div class="todo">Walk Score / Transit Score numbers aren't confirmed for this property the way they are for Jay St — don't publish a specific score here until one's actually been pulled from walkscore.com.</div>
   </div>
 
   <div class="section">
@@ -214,24 +344,42 @@
     <div class="fit-list">
       <div class="fit-item"><b>Students</b> UMD College Park is 1–2 Metro stops away — one of the closest properties to campus.</div>
       <div class="fit-item"><b>Federal &amp; PG County staff</b> Direct Green Line access to Capitol Hill, Navy Yard, and DOJ.</div>
-      <div class="fit-item"><b>Budget-conscious relocators</b> The most affordable rooms in the portfolio, fully furnished.</div>
+      <div class="fit-item"><b>Budget-conscious relocators</b> Some of the most affordable rooms in the portfolio, fully furnished.</div>
     </div>
   </div>
 
   <div class="section">
     <h2>Good to know</h2>
+    <details class="accordion">
+      <summary>House Rules</summary>
+      <div class="accordion-body">Full house rules shared after your tour — they may vary slightly by unit, since each is its own household.</div>
+    </details>
+    <details class="accordion">
+      <summary>Screening</summary>
+      <div class="accordion-body">Background, credit, and rental history check for every applicant — including current housemates in your unit.</div>
+    </details>
+    <details class="accordion">
+      <summary>Lease Terms</summary>
+      <div class="accordion-body">Flexible length — tell us your timeline during the tour and we'll confirm what's possible.</div>
+    </details>
+    <details class="accordion">
+      <summary>Payments</summary>
+      <div class="accordion-body">Rent collected securely online via Zelle, bank transfer, or card — no checks, no cash.</div>
+    </details>
+  </div>
+
+  <div class="section">
+    <h2>Move-in costs</h2>
     <div class="know-grid">
-      <div class="know-card"><div class="k-label">Screening</div>Background, credit, and rental history check for every applicant — including current housemates.</div>
-      <div class="know-card"><div class="k-label">Lease terms</div>Flexible length — tell us your timeline during the tour and we'll confirm what's possible.</div>
-      <div class="know-card"><div class="k-label">Payments</div>Rent collected securely online via Zelle, bank transfer, or card.</div>
-      <div class="know-card"><div class="k-label">Nearby</div>Whole Foods is a 5-minute drive; CVS is 3 minutes. Busboys and Poets and The Mall at Prince George's are both within 10 minutes.</div>
+      <div class="know-card"><div class="k-label">Security Deposit</div>Equal to one month's rent</div>
+      <div class="know-card"><div class="k-label">Due before move-in</div>First month's rent (or prorated amount, if applicable)</div>
     </div>
   </div>
 
   <div class="section">
     <h2>Who you'd be living with</h2>
     <div class="housemates-box">
-      <p style="font-size:13.5px; line-height:1.5;">Every housemate has gone through the same screening you will. With 8 rooms in this house, we'll walk you through the current mix — schedules, what people do, the general vibe — during your tour call, rather than posting it here.</p>
+      <p style="font-size:13.5px; line-height:1.5;">Every housemate has gone through the same screening you will. Because the three units don't connect, your household is just the 2–3 people in your specific unit — we'll walk you through who that is during your tour call, rather than posting it here.</p>
     </div>
   </div>
 
@@ -239,7 +387,7 @@
     <h2>How to apply</h2>
     <div class="steps">
       <div class="step"><span class="step-num">1</span><div class="step-body"><b>Pre-screen</b><span>Quick form — move-in date, budget, length of stay.</span></div></div>
-      <div class="step"><span class="step-num">2</span><div class="step-body"><b>Tour</b><span>In person or virtual — we'll show you which room is the best fit.</span></div></div>
+      <div class="step"><span class="step-num">2</span><div class="step-body"><b>Tour</b><span>In person or virtual — we'll show you which unit and room fit best.</span></div></div>
       <div class="step"><span class="step-num">3</span><div class="step-body"><b>Apply &amp; screen</b><span>Formal application plus background, credit, and eviction check.</span></div></div>
       <div class="step"><span class="step-num">4</span><div class="step-body"><b>Sign &amp; move in</b><span>Digital lease, deposit collected, the room is yours.</span></div></div>
     </div>
@@ -258,6 +406,82 @@
     Commute times are estimates and vary by time of day. Questions? Email <a href="mailto:mitsecurestay@gmail.com">mitsecurestay@gmail.com</a>.
   </div>
 
+  <div class="lightbox-overlay" id="lightbox">
+    <button class="lightbox-close" onclick="closeLightbox(event)">×</button>
+    <button class="lightbox-nav lightbox-prev" onclick="prevImage(event)">‹</button>
+    <img id="lightbox-img" src="" alt="">
+    <button class="lightbox-nav lightbox-next" onclick="nextImage(event)">›</button>
+    <div class="lightbox-counter" id="lightbox-counter"></div>
+  </div>
+
 </div>
+
+<script>
+  var unitRooms = { Front: ['A','B','C'], Patio: ['D','E'], Lower: ['F','G','H'] };
+
+  function showRoom(unit, letter) {
+    unitRooms[unit].forEach(function (l) {
+      document.getElementById('btn' + unit + '-' + l).classList.toggle('active', l === letter);
+      document.getElementById('panel' + unit + '-' + l).classList.toggle('active', l === letter);
+    });
+  }
+
+  var currentGallery = [];
+  var currentIndex = 0;
+
+  function openLightbox(imgEl) {
+    var grid = imgEl.closest('.photo-grid');
+    currentGallery = Array.prototype.slice.call(grid.querySelectorAll('.gallery-img'));
+    currentIndex = currentGallery.indexOf(imgEl);
+    showLightboxImage();
+    document.getElementById('lightbox').classList.add('active');
+  }
+
+  function showLightboxImage() {
+    var img = currentGallery[currentIndex];
+    document.getElementById('lightbox-img').src = img.src;
+    document.getElementById('lightbox-img').alt = img.alt;
+    document.getElementById('lightbox-counter').textContent = (currentIndex + 1) + ' / ' + currentGallery.length;
+  }
+
+  function nextImage(e) {
+    if (e) e.stopPropagation();
+    currentIndex = (currentIndex + 1) % currentGallery.length;
+    showLightboxImage();
+  }
+
+  function prevImage(e) {
+    if (e) e.stopPropagation();
+    currentIndex = (currentIndex - 1 + currentGallery.length) % currentGallery.length;
+    showLightboxImage();
+  }
+
+  function closeLightbox(e) {
+    document.getElementById('lightbox').classList.remove('active');
+  }
+
+  var touchStartX = 0;
+  var lightboxEl = document.getElementById('lightbox');
+  lightboxEl.addEventListener('touchstart', function (e) {
+    touchStartX = e.changedTouches[0].screenX;
+  });
+  lightboxEl.addEventListener('touchend', function (e) {
+    var dx = e.changedTouches[0].screenX - touchStartX;
+    if (Math.abs(dx) < 40) return;
+    if (dx > 0) { prevImage(); } else { nextImage(); }
+  });
+
+  lightboxEl.addEventListener('click', function (e) {
+    if (e.target === lightboxEl) closeLightbox(e);
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (!lightboxEl.classList.contains('active')) return;
+    if (e.key === 'ArrowRight') nextImage(e);
+    if (e.key === 'ArrowLeft') prevImage(e);
+    if (e.key === 'Escape') closeLightbox(e);
+  });
+</script>
+
 </body>
 </html>
