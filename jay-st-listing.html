@@ -85,6 +85,12 @@
           font-size: 12.5px; color: #6b4d00; margin-top: 10px; }
   .todo strong { font-weight: 700; }
 
+  /* ── PHOTO GALLERY (mixed orientation handling — added) ─────────── */
+  .photo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 8px; margin-top: 12px; align-items: start; }
+  .gallery-img { width: 100%; border-radius: 6px; display: block; }
+  .gallery-img.is-landscape { aspect-ratio: 4 / 3; object-fit: cover; object-position: center; }
+  .gallery-img.is-portrait { aspect-ratio: 3 / 4; object-fit: contain; background: var(--bg); padding: 4px; }
+
   /* ── TRANSIT CALLOUT ──────────────────────────────────────────── */
   .transit-card { background: var(--accent); color: #fff; border-radius: var(--card-radius); padding: 18px 20px; }
   .transit-card .label { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; opacity: .8; margin-bottom: 6px; }
@@ -104,9 +110,19 @@
   /* ── GOOD TO KNOW ─────────────────────────────────────────────── */
   .know-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
   .know-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--card-radius); padding: 13px 16px; font-size: 13px; line-height: 1.5; }
-  .know-card .k-label { font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--ink-light); margin-bottom: 5px; font-weight: 700; }
+  .back-link { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; color: var(--ink-light); text-decoration: none; margin-bottom: 16px; }
+  .back-link:hover { color: var(--accent); }
+  .tour-policy { font-size: 12.5px; color: var(--ink-light); margin-top: 10px; font-style: italic; }
+  details.accordion { background: var(--surface); border: 1px solid var(--border); border-radius: var(--card-radius); margin-bottom: 10px; }
+  details.accordion summary { padding: 13px 16px; font-weight: 700; font-size: 14px; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+  details.accordion summary::-webkit-details-marker { display: none; }
+  details.accordion summary::after { content: '+'; font-size: 18px; color: var(--accent); }
+  details.accordion[open] summary::after { content: '–'; }
+  details.accordion .accordion-body { padding: 0 16px 14px; font-size: 13.5px; line-height: 1.6; color: var(--ink-light); }
+  details.accordion .accordion-body ul { padding-left: 18px; margin-top: 6px; }
 
   /* ── HOUSEMATES ───────────────────────────────────────────────── */
+  .know-card .k-label { font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--ink-light); margin-bottom: 5px; font-weight: 700; }
   .housemates-box { background: var(--surface); border: 1px solid var(--border); border-radius: var(--card-radius); padding: 16px 18px; }
 
   /* ── APPLY STEPS ──────────────────────────────────────────────── */
@@ -137,6 +153,8 @@
 <body>
 <div class="page-wrap">
 
+  <a class="back-link" href="index.html">← Back to Listings</a>
+
   <!-- HERO -->
   <div class="hero">
     <div class="hero-eyebrow">MIT Secure Stay · 5521 Jay St NE · Washington, DC 20019</div>
@@ -150,6 +168,7 @@
       <a class="btn btn-primary" href="https://calendly.com/mitsecurestay" target="_blank" rel="noopener">📅 Schedule a Tour</a>
       <a class="btn btn-secondary" href="https://forms.gle/Km7K7EZvTzJMK62M9" target="_blank" rel="noopener">Start Pre-Screening</a>
     </div>
+    <p class="tour-policy">Tours are scheduled after the Tenant Pre-Screening Questionnaire is completed — start there first.</p>
   </div>
 
   <!-- QUICK FACTS -->
@@ -166,19 +185,54 @@
     <div class="check-grid">
       <div class="check-item"><span class="check-mark">✓</span> All utilities — electricity, water, gas, internet</div>
       <div class="check-item"><span class="check-mark">✓</span> Full-size bed, desk, and Smart TV in your room</div>
+      <div class="check-item"><span class="check-mark">✓</span> Wi-Fi included</div>
       <div class="check-item"><span class="check-mark">✓</span> In-unit washer/dryer</div>
       <div class="check-item"><span class="check-mark">✓</span> Shared kitchen and living room</div>
       <div class="check-item"><span class="check-mark">✓</span> Screened housemates — everyone passes the same checks you will</div>
+    </div>
+    <div class="todo"><strong>Greg — confirm before adding:</strong> central A/C and heating (commonly true for properties like this, but not confirmed anywhere in Notion or a flyer for this specific house), and what common-area kitchen items are actually provided (pots, pans, plates, coffee maker, etc. — none of this is documented yet).</div>
+  </div>
+
+  <!-- OCCUPANCY -->
+  <div class="section">
+    <h2>Occupancy &amp; household</h2>
+    <div class="know-grid">
+      <div class="know-card"><div class="k-label">Layout</div>3 Bedrooms · 1 Bathroom (shared)</div>
+      <div class="know-card"><div class="k-label">Occupancy</div>Single occupancy per room — one tenant, one room, no exceptions</div>
+      <div class="know-card"><div class="k-label">Shared spaces</div>Kitchen, living room — see "What's included" above</div>
+      <div class="know-card"><div class="k-label">Household size</div>Up to 3 residents across the shared rooms</div>
     </div>
   </div>
 
   <!-- ROOM PICKER -->
   <div class="section">
     <h2>Choose your room</h2>
+    <p class="section-note">Availability changes as leases turn over — what's shown below was accurate as of this page's last update, not guaranteed at this exact moment. Confirm current status when you reach out.</p>
     <div class="room-toggle">
+      <button class="room-btn" id="btnA" onclick="showRoom('A')">Room A</button>
       <button class="room-btn active" id="btnB" onclick="showRoom('B')">Room B</button>
       <button class="room-btn" id="btnC" onclick="showRoom('C')">Room C</button>
     </div>
+
+    <!-- ROOM A (new) -->
+    <div class="room-panel" id="panelA">
+      <div class="room-detail-grid">
+        <div class="room-detail"><div class="room-detail-label">Rent</div><div class="room-detail-val">$925/mo</div></div>
+        <div class="room-detail"><div class="room-detail-label">Available</div><div class="room-detail-val">Aug 1</div></div>
+        <div class="room-detail"><div class="room-detail-label">Bathroom</div><div class="room-detail-val">Shared (1 bath / 3 bedrooms)</div></div>
+        <div class="room-detail"><div class="room-detail-label">Bed size</div><div class="room-detail-val">Full-size bed + desk</div></div>
+        <div class="room-detail"><div class="room-detail-label">Room size</div><div class="room-detail-val">[Add sq ft]</div></div>
+      </div>
+      <div class="photo-grid">
+        <img class="gallery-img is-portrait" src="jay-st-photos/Room%20A/DCN-R-01-A%20bed-desk.jpg" alt="Room A bed and desk workspace">
+        <img class="gallery-img is-portrait" src="jay-st-photos/Room%20A/DCN-R-01-A%20bed-desk-tv.jpg" alt="Room A desk and wall-mounted Smart TV">
+        <img class="gallery-img is-portrait" src="jay-st-photos/Room%20A/DCN-R-01-A%20bed.jpg" alt="Room A bed">
+        <img class="gallery-img is-portrait" src="jay-st-photos/Room%20A/DCN-R-01-A%20bed2.jpg" alt="Room A bed, alternate angle">
+        <img class="gallery-img is-portrait" src="jay-st-photos/Room%20A/DCN-R-01-A%20bed-closet.jpg" alt="Room A double-door closet">
+      </div>
+      <div class="todo"><strong>Greg — fill in:</strong> sq ft for Room A. Currently occupied — available Aug 1, so fine to pre-screen interested leads now.</div>
+    </div>
+
     <div class="room-panel active" id="panelB">
       <div class="room-detail-grid">
         <div class="room-detail"><div class="room-detail-label">Rent</div><div class="room-detail-val">$925/mo</div></div>
@@ -187,7 +241,17 @@
         <div class="room-detail"><div class="room-detail-label">Bed size</div><div class="room-detail-val">Full-size bed + desk</div></div>
         <div class="room-detail"><div class="room-detail-label">Room size</div><div class="room-detail-val">[Add sq ft]</div></div>
       </div>
-      <div class="todo"><strong>Greg — fill in:</strong> sq ft, closet/storage notes, and a photo for Room B.</div>
+      <p style="font-size:13px; color:var(--ink-light); margin-top:10px;"><strong>Room description:</strong> Full-size bed, desk, and Smart TV are confirmed. Natural light, exact layout, and closet/storage size aren't documented yet.</p>
+      <div class="photo-grid">
+        <img class="gallery-img is-portrait" src="jay-st-photos/Room%20B/DCN-R-01-B%20Bed-Desk-TV2.jpg" alt="Room B bed, desk, and TV">
+        <img class="gallery-img is-portrait" src="jay-st-photos/Room%20B/DCN-R-01-B%20Bed-Desk-TV.jpg" alt="Room B desk and TV setup">
+        <img class="gallery-img is-portrait" src="jay-st-photos/Room%20B/DCN-R-01-B%20Bed-Desk.jpg" alt="Room B desk near the window">
+        <img class="gallery-img is-portrait" src="jay-st-photos/Room%20B/DCN-R-01-B%20Drawer.jpg" alt="Room B dresser and shelving">
+        <!-- VERIFY FILENAME: confirm this ends in .jpg -->
+        <img class="gallery-img is-portrait" src="jay-st-photos/Room%20B/DCN-R-01-B%20Bed-Desk-Closet.jpg" alt="Room B closet entrance">
+        <img class="gallery-img is-portrait" src="jay-st-photos/Room%20B/DCN-R-01-B%20bed.jpg" alt="Room B bed, profile shot">
+      </div>
+      <div class="todo"><strong>Greg — fill in:</strong> sq ft and closet/storage notes for Room B. Also: Notion's Available Date field for this unit still says Jul 1 even though Status is Vacant — worth clearing that field so it doesn't disagree with itself.</div>
     </div>
     <div class="room-panel" id="panelC">
       <div class="room-detail-grid">
@@ -197,8 +261,27 @@
         <div class="room-detail"><div class="room-detail-label">Bed size</div><div class="room-detail-val">Full-size bed + desk</div></div>
         <div class="room-detail"><div class="room-detail-label">Room size</div><div class="room-detail-val">[Add sq ft]</div></div>
       </div>
-      <div class="todo"><strong>Greg — fill in:</strong> sq ft, closet/storage notes, and a photo for Room C. Also: Notion's Available Date field for this unit still says Jul 1 even though Status is Vacant — worth clearing that field so it doesn't disagree with itself.</div>
+      <p style="font-size:13px; color:var(--ink-light); margin-top:10px;"><strong>Room description:</strong> Full-size bed, desk, and Smart TV are confirmed. Natural light, exact layout, and closet/storage size aren't documented yet.</p>
+      <div class="photo-grid">
+        <!-- VERIFY FILENAME: full name was cut off in the screenshot, confirm this is correct -->
+        <img class="gallery-img is-portrait" src="jay-st-photos/Room%20C/DCN-R-01-C%20bed-desk-drawer.jpg" alt="Room C bed, desk, and drawer storage">
+        <img class="gallery-img is-portrait" src="jay-st-photos/Room%20C/DCN-R-01-C%20bed-desk.jpg" alt="Room C bed and desk setup">
+      </div>
+      <div class="todo"><strong>Greg — fill in:</strong> sq ft, closet/storage notes for Room C. Also: Notion's Available Date field for this unit still says Jul 1 even though Status is Vacant.</div>
     </div>
+  </div>
+
+  <!-- COMMON AREAS -->
+  <div class="section">
+    <h2>Living room &amp; common areas</h2>
+    <div class="photo-grid">
+      <img class="gallery-img is-portrait" src="jay-st-photos/Common%20Areas/living-room.jpg" alt="Living room with fireplace, accent wall, and chandelier">
+      <img class="gallery-img is-portrait" src="jay-st-photos/Common%20Areas/livingroom.jpg" alt="Living room facing the fireplace and wall-mounted TV">
+      <img class="gallery-img is-portrait" src="jay-st-photos/Common%20Areas/kitchen.jpg" alt="Kitchen with storage and island seating">
+      <img class="gallery-img is-portrait" src="jay-st-photos/Common%20Areas/kitchen2.jpg" alt="Kitchen island and storage, angled view">
+      <img class="gallery-img is-portrait" src="jay-st-photos/Common%20Areas/bathroom.jpg" alt="Shared bathroom with vanity and shower">
+    </div>
+    <div class="todo"><strong>Greg — confirm before adding:</strong> a piano and electric fireplace were suggested as living-room features in feedback notes, but neither is clearly confirmed in the photos above — check before claiming either in copy.</div>
   </div>
 
   <!-- PRIVATE SUITE -->
@@ -242,11 +325,37 @@
   <!-- GOOD TO KNOW -->
   <div class="section">
     <h2>Good to know</h2>
+    <details class="accordion">
+      <summary>House Rules</summary>
+      <div class="accordion-body">
+        <ul>
+          <li>No smoking indoors</li>
+          <li>Quiet hours: 10pm–8am</li>
+          <li>Guests allowed in moderation, with notice</li>
+          <li>Full house rules shared after your tour</li>
+        </ul>
+      </div>
+    </details>
+    <details class="accordion">
+      <summary>Screening</summary>
+      <div class="accordion-body">Background, credit, and rental history check for every applicant — including current housemates.</div>
+    </details>
+    <details class="accordion">
+      <summary>Lease Terms</summary>
+      <div class="accordion-body">Flexible length — tell us your timeline during the tour and we'll confirm what's possible.</div>
+    </details>
+    <details class="accordion">
+      <summary>Payments</summary>
+      <div class="accordion-body">Rent collected securely online via Zelle, bank transfer, or card — no checks, no cash.</div>
+    </details>
+  </div>
+
+  <!-- DEPOSIT & MOVE-IN COSTS -->
+  <div class="section">
+    <h2>Move-in costs</h2>
     <div class="know-grid">
-      <div class="know-card"><div class="k-label">House rules</div>No smoking indoors, guests in moderation with notice, quiet hours 10pm–8am. Full house rules shared after your tour.</div>
-      <div class="know-card"><div class="k-label">Screening</div>Background, credit, and rental history check for every applicant — including current housemates.</div>
-      <div class="know-card"><div class="k-label">Lease terms</div>Flexible length — tell us your timeline during the tour and we'll confirm what's possible.</div>
-      <div class="know-card"><div class="k-label">Payments</div>Rent collected securely online via Zelle, bank transfer, or card — no checks, no cash.</div>
+      <div class="know-card"><div class="k-label">Security Deposit</div>Equal to one month's rent</div>
+      <div class="know-card"><div class="k-label">Due before move-in</div>First month's rent (or prorated amount, if applicable)</div>
     </div>
   </div>
 
@@ -263,7 +372,7 @@
     <h2>How to apply</h2>
     <div class="steps">
       <div class="step"><span class="step-num">1</span><div class="step-body"><b>Pre-screen</b><span>Quick form — move-in date, budget, length of stay.</span></div></div>
-      <div class="step"><span class="step-num">2</span><div class="step-body"><b>Tour</b><span>In person or virtual — see Room B or C before you commit.</span></div></div>
+      <div class="step"><span class="step-num">2</span><div class="step-body"><b>Tour</b><span>In person or virtual — see Room A, B, or C before you commit.</span></div></div>
       <div class="step"><span class="step-num">3</span><div class="step-body"><b>Apply &amp; screen</b><span>Formal application plus background, credit, and eviction check.</span></div></div>
       <div class="step"><span class="step-num">4</span><div class="step-body"><b>Sign &amp; move in</b><span>Digital lease, deposit collected, the room is yours.</span></div></div>
     </div>
@@ -286,8 +395,10 @@
 
 <script>
   function showRoom(room) {
+    document.getElementById('btnA').classList.toggle('active', room === 'A');
     document.getElementById('btnB').classList.toggle('active', room === 'B');
     document.getElementById('btnC').classList.toggle('active', room === 'C');
+    document.getElementById('panelA').classList.toggle('active', room === 'A');
     document.getElementById('panelB').classList.toggle('active', room === 'B');
     document.getElementById('panelC').classList.toggle('active', room === 'C');
   }
