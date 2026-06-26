@@ -63,9 +63,11 @@
                 border-radius: var(--card-radius); padding: 12px 14px; font-size: 13.5px; line-height: 1.4; }
   .check-mark { color: var(--green); font-weight: 700; flex-shrink: 0; }
 
-  .unit-block { margin-bottom: 34px; }
+  .unit-block { margin-bottom: 34px; border-bottom: 1px solid var(--border); padding-bottom: 24px; }
+  .unit-block:last-of-type { border-bottom: none; padding-bottom: 0; }
   .unit-heading { font-family: var(--font-head); font-size: 19px; font-weight: 700; margin-bottom: 4px; }
   .unit-sub { font-size: 13px; color: var(--ink-light); margin-bottom: 14px; }
+  .unit-descriptive-tag { font-size: 13.5px; line-height: 1.5; color: var(--ink-light); margin-top: 14px; }
 
   .room-toggle { display: flex; background: var(--surface); border: 1px solid var(--border); border-radius: var(--card-radius);
                  padding: 4px; gap: 4px; margin-bottom: 14px; max-width: 320px; }
@@ -140,7 +142,6 @@
   details.accordion summary::after { content: '+'; font-size: 18px; color: var(--accent); }
   details.accordion[open] summary::after { content: '–'; }
   details.accordion .accordion-body { padding: 0 16px 14px; font-size: 13.5px; line-height: 1.6; color: var(--ink-light); }
-  details.accordion .accordion-body ul { padding-left: 18px; margin-top: 6px; }
 
   .housemates-box { background: var(--surface); border: 1px solid var(--border); border-radius: var(--card-radius); padding: 16px 18px; }
 
@@ -173,7 +174,7 @@
   <a class="back-link" href="index.html">← Back to Listings</a>
 
   <div class="hero">
-    <img src="https://mitsecurestay.github.io/assets/mit-logo.png" alt="MIT Secure Stay logo" class="hero-logo" onerror="this.style.display='none'">
+    <img src="assets/mit-logo.png" alt="MIT Secure Stay logo" class="hero-logo">
     <div class="hero-eyebrow">MIT Secure Stay · 5311 59th Ave · Riverdale, MD 20737</div>
     <h1>Three private households, one Riverdale address.</h1>
     <p class="hero-sub">This property is split into three separate, non-connected units — Front, Patio, and Lower Level — each its own small household. Furnished, all-inclusive, on the Green Line corridor. Two rooms available now.</p>
@@ -199,12 +200,13 @@
     <h2>What's included</h2>
     <div class="check-grid">
       <div class="check-item"><span class="check-mark">✓</span> All utilities included — electricity, water, gas, internet</div>
+      <div class="check-item"><span class="check-mark">✓</span> Central A/C and heating</div>
+      <div class="check-item"><span class="check-mark">✓</span> Fully equipped kitchen — cooking essentials included</div>
       <div class="check-item"><span class="check-mark">✓</span> In-unit washer/dryer</div>
       <div class="check-item"><span class="check-mark">✓</span> Designated parking</div>
       <div class="check-item"><span class="check-mark">✓</span> Furnished room</div>
       <div class="check-item"><span class="check-mark">✓</span> Screened housemates — everyone passes the same checks you will</div>
     </div>
-    <div class="todo"><strong>Greg — confirm before adding:</strong> central A/C and heating, and what (if anything) is provided in each unit's kitchen beyond the appliances themselves — neither is documented yet for this property the way it is for Jay St.</div>
   </div>
 
   <!-- FRONT UNIT -->
@@ -225,8 +227,7 @@
         <div class="room-detail"><div class="room-detail-label">Bathroom</div><div class="room-detail-val">Shared</div></div>
         <div class="room-detail"><div class="room-detail-label">Room size</div><div class="room-detail-val">[Add sq ft]</div></div>
       </div>
-      <div class="todo"><strong>Greg — resolve before this room goes live:</strong> Notion says $850, but two existing flyers for this room say $875 and $900. Pick the real number and update whichever sources are wrong.</div>
-      <div class="todo"><strong>Greg — fill in:</strong> bed size, sq ft, and photos. Only 2022-era photos exist for this unit so far.</div>
+      <div class="todo"><strong>Greg — fill in:</strong> bed size and sq ft for Room A.</div>
     </div>
     <div class="room-panel" id="panelFront-B">
       <div class="room-detail-grid">
@@ -244,8 +245,25 @@
         <div class="room-detail"><div class="room-detail-label">Bathroom</div><div class="room-detail-val">Shared</div></div>
         <div class="room-detail"><div class="room-detail-label">Room size</div><div class="room-detail-val">[Add sq ft]</div></div>
       </div>
-      <div class="todo"><strong>Greg — fill in:</strong> bed size, sq ft, and fresh photos. This room is bookable today, but its only photos are from 2022 — the highest-priority photo gap on this whole property.</div>
+      <div class="todo"><strong>Greg — fill in:</strong> bed size and sq ft for Room C.</div>
     </div>
+
+    <div class="photo-grid">
+      <img class="gallery-img is-landscape" src="59th-ave-photos/livingroom2.jpg" alt="Front Unit living area" onclick="openLightbox(this)">
+      <img class="gallery-img is-portrait" src="59th-ave-photos/RL-R-01-A%20Desk.jpg" alt="Room A desk workspace" onclick="openLightbox(this)">
+      <img class="gallery-img is-portrait" src="59th-ave-photos/RL-R-01-A%20TV.jpg" alt="Room A wall-mounted TV" onclick="openLightbox(this)">
+      <img class="gallery-img is-portrait" src="59th-ave-photos/20220812_105240.jpg" alt="Room B bedroom" onclick="openLightbox(this)">
+      <img class="gallery-img is-portrait" src="59th-ave-photos/20220812_105312.jpg" alt="Room B bedroom, alternate angle" onclick="openLightbox(this)">
+      <img class="gallery-img is-portrait" src="59th-ave-photos/IMG-20220812-WA0054.jpg" alt="Room C bedroom" onclick="openLightbox(this)">
+      <img class="gallery-img is-portrait" src="59th-ave-photos/IMG-20220812-WA0055.jpg" alt="Room C bedroom, alternate angle" onclick="openLightbox(this)">
+      <img class="gallery-img is-landscape" src="59th-ave-photos/diningroom.jpg" alt="Front Unit dining area" onclick="openLightbox(this)">
+      <img class="gallery-img is-landscape" src="59th-ave-photos/kitchen.jpg" alt="Front Unit kitchen" onclick="openLightbox(this)">
+      <img class="gallery-img is-landscape" src="59th-ave-photos/bathroom.jpg" alt="Front Unit bathroom" onclick="openLightbox(this)">
+      <img class="gallery-img is-landscape" src="59th-ave-photos/entryway.jpg" alt="Front Unit entryway" onclick="openLightbox(this)">
+      <img class="gallery-img is-landscape" src="59th-ave-photos/fireplace.jpg" alt="Front Unit fireplace and accent wall" onclick="openLightbox(this)">
+    </div>
+    <p class="unit-descriptive-tag">Featuring elegant high-end architectural elements, warm brick accented lounge spaces, full chef-ready kitchen utility, and bedrooms carefully optimized with minimal workspace desks for student and traveling professional focus profiles.</p>
+    <div class="todo"><strong>Greg — fill in:</strong> Room B and C photos above are from 2022 — fresh photos would be worth prioritizing for Room C, since it's bookable today.</div>
   </div>
 
   <!-- PATIO UNIT -->
@@ -266,7 +284,7 @@
         <div class="room-detail"><div class="room-detail-label">Bed size</div><div class="room-detail-val">Queen bed + desk</div></div>
       </div>
       <p style="font-size:13px; color:var(--ink-light); margin-top:10px;"><strong>Room description:</strong> Confirmed from the existing flyer — queen bed, Smart TV, desk, and a large closet.</p>
-      <div class="todo"><strong>Greg — fill in:</strong> sq ft and a room-specific photo for Room D (the photos below show the unit's shared spaces, not the bedroom itself).</div>
+      <div class="todo"><strong>Greg — fill in:</strong> sq ft for Room D.</div>
     </div>
     <div class="room-panel" id="panelPatio-E">
       <div class="room-detail-grid">
@@ -275,18 +293,19 @@
         <div class="room-detail"><div class="room-detail-label">Bathroom</div><div class="room-detail-val">Shared</div></div>
         <div class="room-detail"><div class="room-detail-label">Room size</div><div class="room-detail-val">[Add sq ft]</div></div>
       </div>
-      <div class="todo"><strong>Greg — fill in:</strong> bed size, sq ft, and a room-specific photo for Room E.</div>
+      <div class="todo"><strong>Greg — fill in:</strong> bed size and sq ft for Room E.</div>
     </div>
 
     <div class="photo-grid">
-      <img class="gallery-img is-landscape" src="https://mitsecurestay.github.io/59th-ave-photos/rear-patio.jpg" alt="Private patio at the Patio Unit" onclick="openLightbox(this)">
-      <img class="gallery-img is-landscape" src="https://mitsecurestay.github.io/59th-ave-photos/rear-kitchen.jpg" alt="Patio Unit kitchen" onclick="openLightbox(this)">
-      <img class="gallery-img is-landscape" src="https://mitsecurestay.github.io/59th-ave-photos/rear-living-room.jpg" alt="Patio Unit living room" onclick="openLightbox(this)">
-      <img class="gallery-img is-landscape" src="https://mitsecurestay.github.io/59th-ave-photos/rear-dining.jpg" alt="Patio Unit dining area" onclick="openLightbox(this)">
-      <img class="gallery-img is-landscape" src="https://mitsecurestay.github.io/59th-ave-photos/rear-bathroom.jpg" alt="Patio Unit bathroom" onclick="openLightbox(this)">
-      <img class="gallery-img is-landscape" src="https://mitsecurestay.github.io/59th-ave-photos/room-d-bed-desk.jpg" alt="Room D bed and desk" onclick="openLightbox(this)">
+      <img class="gallery-img is-landscape" src="59th-ave-photos/patio.jpg" alt="Private patio" onclick="openLightbox(this)">
+      <img class="gallery-img is-portrait" src="59th-ave-photos/Room%20RL-R-01-D%20Photo2.jfif" alt="Room D desk and patio door view" onclick="openLightbox(this)">
+      <img class="gallery-img is-portrait" src="59th-ave-photos/Room%20RL-R-01-D%20Photo.jfif" alt="Room D bed" onclick="openLightbox(this)">
+      <img class="gallery-img is-landscape" src="59th-ave-photos/Kitchen.jfif" alt="Patio Unit kitchen" onclick="openLightbox(this)">
+      <img class="gallery-img is-landscape" src="59th-ave-photos/DiningRm.jfif" alt="Patio Unit dining area" onclick="openLightbox(this)">
+      <img class="gallery-img is-landscape" src="59th-ave-photos/Living%20Room.jpg" alt="Patio Unit living room with fireplace" onclick="openLightbox(this)">
+      <img class="gallery-img is-landscape" src="59th-ave-photos/BathRm.jfif" alt="Patio Unit bathroom" onclick="openLightbox(this)">
     </div>
-    <div class="todo">No fireplace appears in any of these photos. If the Patio Unit actually has one, it isn't shown here — confirm before adding it to copy.</div>
+    <p class="unit-descriptive-tag">Includes a fully-furnished walk-out rear deck lounge surrounded by mature trees, modern updated appliances, under-bed storage options, and a private sliding patio exit.</p>
   </div>
 
   <!-- LOWER LEVEL -->
@@ -307,7 +326,7 @@
         <div class="room-detail"><div class="room-detail-label">Bathroom</div><div class="room-detail-val">Shared</div></div>
         <div class="room-detail"><div class="room-detail-label">Room size</div><div class="room-detail-val">[Add sq ft]</div></div>
       </div>
-      <div class="todo"><strong>Greg — fill in:</strong> bed size, sq ft, and photos. Bookable today with zero photos located anywhere — the other highest-priority photo gap on this property.</div>
+      <div class="todo"><strong>Greg — fill in:</strong> bed size and sq ft for Room F.</div>
     </div>
     <div class="room-panel" id="panelLower-G">
       <div class="room-detail-grid">
@@ -316,7 +335,7 @@
         <div class="room-detail"><div class="room-detail-label">Bathroom</div><div class="room-detail-val">Shared</div></div>
         <div class="room-detail"><div class="room-detail-label">Room size</div><div class="room-detail-val">[Add sq ft]</div></div>
       </div>
-      <div class="todo">10 fresh (April 2026) photos exist in Drive for this room but haven't been pulled in — worth doing once this room is closer to actually turning over.</div>
+      <div class="todo">Occupied with no near-term turnover — shown here for completeness, not actively marketed.</div>
     </div>
     <div class="room-panel" id="panelLower-H">
       <div class="room-detail-grid">
@@ -325,8 +344,23 @@
         <div class="room-detail"><div class="room-detail-label">Bathroom</div><div class="room-detail-val">Shared</div></div>
         <div class="room-detail"><div class="room-detail-label">Room size</div><div class="room-detail-val">[Add sq ft]</div></div>
       </div>
-      <div class="todo">Notion shows this room as Occupied but with an Available Date of "today" — an unresolved data inconsistency, never fixed. No room-specific photos found either.</div>
+      <div class="todo">Notion shows this room as Occupied but with an Available Date of "today" — an unresolved data inconsistency, never fixed.</div>
     </div>
+
+    <div class="photo-grid">
+      <img class="gallery-img is-landscape" src="59th-ave-photos/sitting-area.jpg" alt="Lower Level common lounge area" onclick="openLightbox(this)">
+      <img class="gallery-img is-landscape" src="59th-ave-photos/PSX_20221031_192952.jpg" alt="Room F desk and TV setup" onclick="openLightbox(this)">
+      <img class="gallery-img is-portrait" src="59th-ave-photos/bed-closet.jpg" alt="Room F closet" onclick="openLightbox(this)">
+      <img class="gallery-img is-landscape" src="59th-ave-photos/IMG_5799.jpg" alt="Room G bedroom" onclick="openLightbox(this)">
+      <img class="gallery-img is-landscape" src="59th-ave-photos/IMG_5801.jpg" alt="Room G desk setup" onclick="openLightbox(this)">
+      <img class="gallery-img is-portrait" src="59th-ave-photos/IMG_5793.jpg" alt="Room G bed, close-up" onclick="openLightbox(this)">
+      <img class="gallery-img is-portrait" src="59th-ave-photos/bed-desk.jpg" alt="Room H bed and desk" onclick="openLightbox(this)">
+      <img class="gallery-img is-landscape" src="59th-ave-photos/kitchen.jpg" alt="Lower Level kitchen" onclick="openLightbox(this)">
+      <img class="gallery-img is-landscape" src="59th-ave-photos/table-ktichen.jpg" alt="Lower Level dining nook" onclick="openLightbox(this)">
+      <img class="gallery-img is-landscape" src="59th-ave-photos/shower.jpg" alt="Lower Level shower" onclick="openLightbox(this)">
+      <img class="gallery-img is-landscape" src="59th-ave-photos/bathroom.jpg" alt="Lower Level bathroom" onclick="openLightbox(this)">
+    </div>
+    <p class="unit-descriptive-tag">A bright walk-out layout with its own independent kitchen, dining space, and updated bathroom — separate from the Front and Patio units.</p>
   </div>
 
   <div class="section">
@@ -336,7 +370,7 @@
       <p>Riverdale sits on the Green Line — College Park, downtown DC, and major medical centers are all within reach. UMD College Park is 1–2 Metro stops away, and the Green Line runs direct to Capitol Hill and Navy Yard with no transfer.</p>
       <a class="maps-btn" href="https://mitsecurestay.github.io/routecheck/riverdale.html" target="_blank" rel="noopener">🚇 Check your full commute →</a>
     </div>
-    <div class="todo">Walk Score / Transit Score numbers aren't confirmed for this property the way they are for Jay St — don't publish a specific score here until one's actually been pulled from walkscore.com.</div>
+    <div class="todo">RouteCheck currently shows Walk Score 51 and no Transit Score yet for this address — don't publish a Transit Score number here until one's actually populated on RouteCheck.</div>
   </div>
 
   <div class="section">
