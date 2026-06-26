@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>5521 Jay St NE — Private Furnished Room | MIT Secure Stay</title>
 <style>
-  /* ── TOKENS (shared with RouteCheck for brand consistency) ──────── */
   :root {
     --ink:        #12110F;
     --ink-light:  #5A5751;
@@ -31,7 +30,6 @@
   a { color: var(--accent); }
   .page-wrap { max-width: 780px; margin: 0 auto; padding: 0 16px 64px; }
 
-  /* ── HERO ─────────────────────────────────────────────────────── */
   .hero { padding: 40px 0 24px; border-bottom: 1px solid var(--border); margin-bottom: 24px; }
   .hero-eyebrow { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-light); margin-bottom: 10px; }
   .hero h1 { font-family: var(--font-head); font-size: clamp(24px, 5.5vw, 34px); font-weight: 700; line-height: 1.18; margin-bottom: 10px; }
@@ -49,25 +47,21 @@
   .btn-secondary { background: var(--surface); color: var(--accent); border: 1.5px solid var(--accent); }
   .btn-secondary:hover { background: var(--accent-soft); }
 
-  /* ── QUICK FACTS ──────────────────────────────────────────────── */
   .facts-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 28px; }
   .fact-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--card-radius); padding: 14px 12px; text-align: center; }
   .fact-label { font-size: 10.5px; text-transform: uppercase; letter-spacing: .06em; color: var(--ink-light); margin-bottom: 6px; }
   .fact-val { font-size: 16px; font-weight: 700; }
   .fact-val.accent { color: var(--accent); }
 
-  /* ── SECTIONS ─────────────────────────────────────────────────── */
   .section { margin-bottom: 32px; }
   .section h2 { font-family: var(--font-head); font-size: 19px; font-weight: 700; margin-bottom: 14px; }
   .section-note { font-size: 13px; color: var(--ink-light); margin: -6px 0 14px; line-height: 1.5; }
 
-  /* ── INCLUDED CHECKLIST ───────────────────────────────────────── */
   .check-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
   .check-item { display: flex; gap: 10px; align-items: flex-start; background: var(--surface); border: 1px solid var(--border);
                 border-radius: var(--card-radius); padding: 12px 14px; font-size: 13.5px; line-height: 1.4; }
   .check-mark { color: var(--green); font-weight: 700; flex-shrink: 0; }
 
-  /* ── ROOM PICKER (signature element — echoes RouteCheck's toggle UI) ─ */
   .room-toggle { display: flex; background: var(--surface); border: 1px solid var(--border); border-radius: var(--card-radius);
                  padding: 4px; gap: 4px; margin-bottom: 14px; max-width: 320px; }
   .room-btn { flex: 1; padding: 10px 0; border: none; background: transparent; border-radius: 6px; font-family: var(--font-body);
@@ -80,31 +74,45 @@
   .room-detail-label { font-size: 10.5px; text-transform: uppercase; letter-spacing: .06em; color: var(--ink-light); margin-bottom: 3px; }
   .room-detail-val { font-size: 13.5px; font-weight: 600; }
 
-  /* ── EDITABLE PLACEHOLDER (visible cue to fill in real details) ─── */
   .todo { background: var(--amber-soft); border: 1.5px dashed var(--amber); border-radius: 6px; padding: 8px 10px;
           font-size: 12.5px; color: #6b4d00; margin-top: 10px; }
   .todo strong { font-weight: 700; }
 
-  /* ── PHOTO GALLERY (mixed orientation handling) ─────────────────── */
   .photo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 8px; margin-top: 12px; align-items: start; }
   .gallery-img { width: 100%; border-radius: 6px; display: block; cursor: pointer; transition: opacity .15s; }
   .gallery-img:hover { opacity: .85; }
   .gallery-img.is-landscape { aspect-ratio: 4 / 3; object-fit: cover; object-position: center; }
   .gallery-img.is-portrait { aspect-ratio: 3 / 4; object-fit: contain; background: var(--bg); padding: 4px; }
 
-  /* ── LIGHTBOX (click photo to enlarge) ───────────────────────────── */
+  /* ── LIGHTBOX + CAROUSEL ─────────────────────────────────────────── */
   .lightbox-overlay {
-    display: none; position: fixed; inset: 0; background: rgba(18,17,15,.92);
+    display: none; position: fixed; inset: 0; background: rgba(18,17,15,.94);
     z-index: 999; align-items: center; justify-content: center; padding: 24px;
+    touch-action: none;
   }
   .lightbox-overlay.active { display: flex; }
-  .lightbox-overlay img { max-width: 100%; max-height: 100%; border-radius: 6px; }
+  .lightbox-overlay img { max-width: 100%; max-height: 100%; border-radius: 6px; user-select: none; -webkit-user-select: none; }
   .lightbox-close {
     position: absolute; top: 20px; right: 24px; background: none; border: none;
-    color: #fff; font-size: 32px; line-height: 1; cursor: pointer; font-weight: 300;
+    color: #fff; font-size: 32px; line-height: 1; cursor: pointer; font-weight: 300; z-index: 1001;
+  }
+  .lightbox-nav {
+    position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,.12);
+    border: none; color: #fff; font-size: 24px; width: 44px; height: 44px; border-radius: 50%;
+    cursor: pointer; z-index: 1001; display: flex; align-items: center; justify-content: center;
+    transition: background .15s;
+  }
+  .lightbox-nav:hover { background: rgba(255,255,255,.22); }
+  .lightbox-prev { left: 12px; }
+  .lightbox-next { right: 12px; }
+  .lightbox-counter {
+    position: absolute; bottom: 18px; left: 50%; transform: translateX(-50%);
+    color: #fff; font-size: 13px; opacity: .8; letter-spacing: .04em;
+  }
+  @media (max-width: 540px) {
+    .lightbox-nav { width: 38px; height: 38px; font-size: 20px; }
   }
 
-  /* ── TRANSIT CALLOUT ──────────────────────────────────────────── */
   .transit-card { background: var(--accent); color: #fff; border-radius: var(--card-radius); padding: 18px 20px; }
   .transit-card .label { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; opacity: .8; margin-bottom: 6px; }
   .transit-card p { font-size: 14px; line-height: 1.55; opacity: .95; margin-bottom: 12px; }
@@ -114,13 +122,11 @@
   .transit-card a.maps-btn { display: inline-flex; align-items: center; gap: 6px; padding: 9px 16px; background: #fff;
                               color: var(--accent); border-radius: var(--pill-radius); font-size: 13px; font-weight: 700; text-decoration: none; }
 
-  /* ── FIT LIST ─────────────────────────────────────────────────── */
   .fit-list { display: grid; gap: 10px; }
   .fit-item { background: var(--surface); border: 1px solid var(--border); border-radius: var(--card-radius);
               padding: 13px 16px; font-size: 13.5px; line-height: 1.5; }
   .fit-item b { display: block; font-size: 14px; margin-bottom: 3px; }
 
-  /* ── GOOD TO KNOW ─────────────────────────────────────────────── */
   .know-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
   .know-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--card-radius); padding: 13px 16px; font-size: 13px; line-height: 1.5; }
   .back-link { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; color: var(--ink-light); text-decoration: none; margin-bottom: 16px; }
@@ -134,11 +140,9 @@
   details.accordion .accordion-body { padding: 0 16px 14px; font-size: 13.5px; line-height: 1.6; color: var(--ink-light); }
   details.accordion .accordion-body ul { padding-left: 18px; margin-top: 6px; }
 
-  /* ── HOUSEMATES ───────────────────────────────────────────────── */
   .know-card .k-label { font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--ink-light); margin-bottom: 5px; font-weight: 700; }
   .housemates-box { background: var(--surface); border: 1px solid var(--border); border-radius: var(--card-radius); padding: 16px 18px; }
 
-  /* ── APPLY STEPS ──────────────────────────────────────────────── */
   .steps { display: grid; gap: 10px; }
   .step { display: flex; gap: 14px; align-items: flex-start; background: var(--surface); border: 1px solid var(--border);
           border-radius: var(--card-radius); padding: 13px 16px; }
@@ -151,7 +155,6 @@
   .cta-bottom h3 { font-family: var(--font-head); font-size: 20px; font-weight: 700; margin-bottom: 8px; }
   .cta-bottom p { font-size: 14px; color: var(--ink-light); margin-bottom: 18px; }
 
-  /* ── DISCLAIMER ───────────────────────────────────────────────── */
   .disclaimer { margin-top: 36px; font-size: 11.5px; color: var(--ink-light); border-top: 1px solid var(--border);
                 padding-top: 16px; line-height: 1.6; }
 
@@ -168,7 +171,6 @@
 
   <a class="back-link" href="index.html">← Back to Listings</a>
 
-  <!-- HERO -->
   <div class="hero">
     <div class="hero-eyebrow">MIT Secure Stay · 5521 Jay St NE · Washington, DC 20019</div>
     <h1>A private room, fully furnished — ready when you are.</h1>
@@ -184,7 +186,6 @@
     <p class="tour-policy">Tours are scheduled after the Tenant Pre-Screening Questionnaire is completed — start there first.</p>
   </div>
 
-  <!-- QUICK FACTS -->
   <div class="facts-strip">
     <div class="fact-card"><div class="fact-label">Rent</div><div class="fact-val">$925/mo</div></div>
     <div class="fact-card"><div class="fact-label">Rooms Open</div><div class="fact-val">B &amp; C</div></div>
@@ -192,7 +193,6 @@
     <div class="fact-card"><div class="fact-label">Transit Score</div><div class="fact-val accent">55</div></div>
   </div>
 
-  <!-- WHAT'S INCLUDED -->
   <div class="section">
     <h2>What's included</h2>
     <div class="check-grid">
@@ -206,7 +206,6 @@
     <div class="todo"><strong>Greg — confirm before adding:</strong> central A/C and heating (commonly true for properties like this, but not confirmed anywhere in Notion or a flyer for this specific house), and what common-area kitchen items are actually provided (pots, pans, plates, coffee maker, etc. — none of this is documented yet).</div>
   </div>
 
-  <!-- OCCUPANCY -->
   <div class="section">
     <h2>Occupancy &amp; household</h2>
     <div class="know-grid">
@@ -217,7 +216,6 @@
     </div>
   </div>
 
-  <!-- ROOM PICKER -->
   <div class="section">
     <h2>Choose your room</h2>
     <p class="section-note">Availability changes as leases turn over — what's shown below was accurate as of this page's last update, not guaranteed at this exact moment. Confirm current status when you reach out.</p>
@@ -227,7 +225,6 @@
       <button class="room-btn" id="btnC" onclick="showRoom('C')">Room C</button>
     </div>
 
-    <!-- ROOM A -->
     <div class="room-panel" id="panelA">
       <div class="room-detail-grid">
         <div class="room-detail"><div class="room-detail-label">Rent</div><div class="room-detail-val">$925/mo</div></div>
@@ -237,11 +234,11 @@
         <div class="room-detail"><div class="room-detail-label">Room size</div><div class="room-detail-val">[Add sq ft]</div></div>
       </div>
       <div class="photo-grid">
-        <img class="gallery-img is-portrait" src="jay-st-photos/Room%20A/DCN-R-01-A%20bed-desk.jpg" alt="Room A bed and desk workspace" onclick="openLightbox(this.src, this.alt)">
-        <img class="gallery-img is-portrait" src="jay-st-photos/Room%20A/DCN-R-01-A%20bed-desk-tv.jpg" alt="Room A desk and wall-mounted Smart TV" onclick="openLightbox(this.src, this.alt)">
-        <img class="gallery-img is-portrait" src="jay-st-photos/Room%20A/DCN-R-01-A%20bed.jpg" alt="Room A bed" onclick="openLightbox(this.src, this.alt)">
-        <img class="gallery-img is-portrait" src="jay-st-photos/Room%20A/DCN-R-01-A%20bed2.jpg" alt="Room A bed, alternate angle" onclick="openLightbox(this.src, this.alt)">
-        <img class="gallery-img is-portrait" src="jay-st-photos/Room%20A/DCN-R-01-A%20bed-closet.jpg" alt="Room A double-door closet" onclick="openLightbox(this.src, this.alt)">
+        <img class="gallery-img is-portrait" src="jay-st-photos/Room%20A/DCN-R-01-A%20bed-desk.jpg" alt="Room A bed and desk workspace" onclick="openLightbox(this)">
+        <img class="gallery-img is-portrait" src="jay-st-photos/Room%20A/DCN-R-01-A%20bed-desk-tv.jpg" alt="Room A desk and wall-mounted Smart TV" onclick="openLightbox(this)">
+        <img class="gallery-img is-portrait" src="jay-st-photos/Room%20A/DCN-R-01-A%20bed.jpg" alt="Room A bed" onclick="openLightbox(this)">
+        <img class="gallery-img is-portrait" src="jay-st-photos/Room%20A/DCN-R-01-A%20bed2.jpg" alt="Room A bed, alternate angle" onclick="openLightbox(this)">
+        <img class="gallery-img is-portrait" src="jay-st-photos/Room%20A/DCN-R-01-A%20bed-closet.jpg" alt="Room A double-door closet" onclick="openLightbox(this)">
       </div>
       <div class="todo"><strong>Greg — fill in:</strong> sq ft for Room A. Currently occupied — available Aug 1, so fine to pre-screen interested leads now.</div>
     </div>
@@ -256,12 +253,12 @@
       </div>
       <p style="font-size:13px; color:var(--ink-light); margin-top:10px;"><strong>Room description:</strong> Full-size bed, desk, and Smart TV are confirmed. Natural light, exact layout, and closet/storage size aren't documented yet.</p>
       <div class="photo-grid">
-        <img class="gallery-img is-portrait" src="jay-st-photos/Room%20B/DCN-R-01-B%20Bed-Desk-TV2.jpg" alt="Room B bed, desk, and TV" onclick="openLightbox(this.src, this.alt)">
-        <img class="gallery-img is-portrait" src="jay-st-photos/Room%20B/DCN-R-01-B%20Bed-Desk-TV.jpg" alt="Room B desk and TV setup" onclick="openLightbox(this.src, this.alt)">
-        <img class="gallery-img is-portrait" src="jay-st-photos/Room%20B/DCN-R-01-B%20Bed-Desk.jpg" alt="Room B desk near the window" onclick="openLightbox(this.src, this.alt)">
-        <img class="gallery-img is-portrait" src="jay-st-photos/Room%20B/DCN-R-01-B%20Drawer.jpg" alt="Room B dresser and shelving" onclick="openLightbox(this.src, this.alt)">
-        <img class="gallery-img is-portrait" src="jay-st-photos/Room%20B/DCN-R-01-B%20Bed-Desk-Closet.jpg" alt="Room B closet entrance" onclick="openLightbox(this.src, this.alt)">
-        <img class="gallery-img is-portrait" src="jay-st-photos/Room%20B/DCN-R-01-B%20bed.jpg" alt="Room B bed, profile shot" onclick="openLightbox(this.src, this.alt)">
+        <img class="gallery-img is-portrait" src="jay-st-photos/Room%20B/DCN-R-01-B%20Bed-Desk-TV2.jpg" alt="Room B bed, desk, and TV" onclick="openLightbox(this)">
+        <img class="gallery-img is-portrait" src="jay-st-photos/Room%20B/DCN-R-01-B%20Bed-Desk-TV.jpg" alt="Room B desk and TV setup" onclick="openLightbox(this)">
+        <img class="gallery-img is-portrait" src="jay-st-photos/Room%20B/DCN-R-01-B%20Bed-Desk.jpg" alt="Room B desk near the window" onclick="openLightbox(this)">
+        <img class="gallery-img is-portrait" src="jay-st-photos/Room%20B/DCN-R-01-B%20Drawer.jpg" alt="Room B dresser and shelving" onclick="openLightbox(this)">
+        <img class="gallery-img is-portrait" src="jay-st-photos/Room%20B/DCN-R-01-B%20Bed-Desk-Closet.jpg" alt="Room B closet entrance" onclick="openLightbox(this)">
+        <img class="gallery-img is-portrait" src="jay-st-photos/Room%20B/DCN-R-01-B%20bed.jpg" alt="Room B bed, profile shot" onclick="openLightbox(this)">
       </div>
       <div class="todo"><strong>Greg — fill in:</strong> sq ft and closet/storage notes for Room B. Also: Notion's Available Date field for this unit still says Jul 1 even though Status is Vacant — worth clearing that field so it doesn't disagree with itself.</div>
     </div>
@@ -275,27 +272,25 @@
       </div>
       <p style="font-size:13px; color:var(--ink-light); margin-top:10px;"><strong>Room description:</strong> Full-size bed, desk, and Smart TV are confirmed. Natural light, exact layout, and closet/storage size aren't documented yet.</p>
       <div class="photo-grid">
-        <img class="gallery-img is-portrait" src="jay-st-photos/Room%20C/DCN-R-01-C%20bed-desk-drawer.jpg" alt="Room C bed, desk, and drawer storage" onclick="openLightbox(this.src, this.alt)">
-        <img class="gallery-img is-portrait" src="jay-st-photos/Room%20C/DCN-R-01-C%20bed-desk.jpg" alt="Room C bed and desk setup" onclick="openLightbox(this.src, this.alt)">
+        <img class="gallery-img is-portrait" src="jay-st-photos/Room%20C/DCN-R-01-C%20bed-desk-drawer.jpg" alt="Room C bed, desk, and drawer storage" onclick="openLightbox(this)">
+        <img class="gallery-img is-portrait" src="jay-st-photos/Room%20C/DCN-R-01-C%20bed-desk.jpg" alt="Room C bed and desk setup" onclick="openLightbox(this)">
       </div>
       <div class="todo"><strong>Greg — fill in:</strong> sq ft, closet/storage notes for Room C. Also: Notion's Available Date field for this unit still says Jul 1 even though Status is Vacant.</div>
     </div>
   </div>
 
-  <!-- COMMON AREAS -->
   <div class="section">
     <h2>Living room &amp; common areas</h2>
     <div class="photo-grid">
-      <img class="gallery-img is-portrait" src="jay-st-photos/Common%20Areas/living-room.jpg" alt="Living room with fireplace, accent wall, and chandelier" onclick="openLightbox(this.src, this.alt)">
-      <img class="gallery-img is-portrait" src="jay-st-photos/Common%20Areas/livingroom.jpg" alt="Living room facing the fireplace and wall-mounted TV" onclick="openLightbox(this.src, this.alt)">
-      <img class="gallery-img is-portrait" src="jay-st-photos/Common%20Areas/kitchen.jpg" alt="Kitchen with storage and island seating" onclick="openLightbox(this.src, this.alt)">
-      <img class="gallery-img is-portrait" src="jay-st-photos/Common%20Areas/kitchen2.jpg" alt="Kitchen island and storage, angled view" onclick="openLightbox(this.src, this.alt)">
-      <img class="gallery-img is-portrait" src="jay-st-photos/Common%20Areas/bathroom.jpg" alt="Shared bathroom with vanity and shower" onclick="openLightbox(this.src, this.alt)">
+      <img class="gallery-img is-portrait" src="jay-st-photos/Common%20Areas/living-room.jpg" alt="Living room with fireplace, accent wall, and chandelier" onclick="openLightbox(this)">
+      <img class="gallery-img is-portrait" src="jay-st-photos/Common%20Areas/livingroom.jpg" alt="Living room facing the fireplace and wall-mounted TV" onclick="openLightbox(this)">
+      <img class="gallery-img is-portrait" src="jay-st-photos/Common%20Areas/kitchen.jpg" alt="Kitchen with storage and island seating" onclick="openLightbox(this)">
+      <img class="gallery-img is-portrait" src="jay-st-photos/Common%20Areas/kitchen2.jpg" alt="Kitchen island and storage, angled view" onclick="openLightbox(this)">
+      <img class="gallery-img is-portrait" src="jay-st-photos/Common%20Areas/bathroom.jpg" alt="Shared bathroom with vanity and shower" onclick="openLightbox(this)">
     </div>
     <div class="todo"><strong>Greg — confirm before adding:</strong> a piano and electric fireplace were suggested as living-room features in feedback notes, but neither is clearly confirmed in the photos above — check before claiming either in copy.</div>
   </div>
 
-  <!-- PRIVATE SUITE -->
   <div class="section">
     <h2>Also at this property: a private suite</h2>
     <div class="room-panel active">
@@ -309,7 +304,6 @@
     </div>
   </div>
 
-  <!-- TRANSIT -->
   <div class="section">
     <h2>Location &amp; commute</h2>
     <div class="transit-card">
@@ -323,7 +317,6 @@
     </div>
   </div>
 
-  <!-- WHO THIS IS FOR -->
   <div class="section">
     <h2>Built for people on a timeline</h2>
     <div class="fit-list">
@@ -333,7 +326,6 @@
     </div>
   </div>
 
-  <!-- GOOD TO KNOW -->
   <div class="section">
     <h2>Good to know</h2>
     <details class="accordion">
@@ -361,7 +353,6 @@
     </details>
   </div>
 
-  <!-- DEPOSIT & MOVE-IN COSTS -->
   <div class="section">
     <h2>Move-in costs</h2>
     <div class="know-grid">
@@ -370,7 +361,6 @@
     </div>
   </div>
 
-  <!-- HOUSEMATES -->
   <div class="section">
     <h2>Who you'd be living with</h2>
     <div class="housemates-box">
@@ -378,7 +368,6 @@
     </div>
   </div>
 
-  <!-- HOW TO APPLY -->
   <div class="section">
     <h2>How to apply</h2>
     <div class="steps">
@@ -402,10 +391,12 @@
     Walk Score® and Transit Score® are registered trademarks of Walk Score, sourced from <a href="https://www.walkscore.com" target="_blank" rel="noopener">walkscore.com</a>. Commute times are estimates and vary by time of day. Questions? Email <a href="mailto:mitsecurestay@gmail.com">mitsecurestay@gmail.com</a>.
   </div>
 
-  <!-- LIGHTBOX OVERLAY -->
-  <div class="lightbox-overlay" id="lightbox" onclick="closeLightbox(event)">
+  <div class="lightbox-overlay" id="lightbox">
     <button class="lightbox-close" onclick="closeLightbox(event)">×</button>
+    <button class="lightbox-nav lightbox-prev" onclick="prevImage(event)">‹</button>
     <img id="lightbox-img" src="" alt="">
+    <button class="lightbox-nav lightbox-next" onclick="nextImage(event)">›</button>
+    <div class="lightbox-counter" id="lightbox-counter"></div>
   </div>
 
 </div>
@@ -419,14 +410,65 @@
     document.getElementById('panelB').classList.toggle('active', room === 'B');
     document.getElementById('panelC').classList.toggle('active', room === 'C');
   }
-  function openLightbox(src, alt) {
-    document.getElementById('lightbox-img').src = src;
-    document.getElementById('lightbox-img').alt = alt;
+
+  var currentGallery = [];
+  var currentIndex = 0;
+
+  function openLightbox(imgEl) {
+    var grid = imgEl.closest('.photo-grid');
+    currentGallery = Array.prototype.slice.call(grid.querySelectorAll('.gallery-img'));
+    currentIndex = currentGallery.indexOf(imgEl);
+    showLightboxImage();
     document.getElementById('lightbox').classList.add('active');
   }
+
+  function showLightboxImage() {
+    var img = currentGallery[currentIndex];
+    document.getElementById('lightbox-img').src = img.src;
+    document.getElementById('lightbox-img').alt = img.alt;
+    document.getElementById('lightbox-counter').textContent = (currentIndex + 1) + ' / ' + currentGallery.length;
+  }
+
+  function nextImage(e) {
+    if (e) e.stopPropagation();
+    currentIndex = (currentIndex + 1) % currentGallery.length;
+    showLightboxImage();
+  }
+
+  function prevImage(e) {
+    if (e) e.stopPropagation();
+    currentIndex = (currentIndex - 1 + currentGallery.length) % currentGallery.length;
+    showLightboxImage();
+  }
+
   function closeLightbox(e) {
     document.getElementById('lightbox').classList.remove('active');
   }
+
+  // Swipe support (mobile)
+  var touchStartX = 0;
+  var lightboxEl = document.getElementById('lightbox');
+  lightboxEl.addEventListener('touchstart', function (e) {
+    touchStartX = e.changedTouches[0].screenX;
+  });
+  lightboxEl.addEventListener('touchend', function (e) {
+    var dx = e.changedTouches[0].screenX - touchStartX;
+    if (Math.abs(dx) < 40) return; // ignore tiny accidental drags
+    if (dx > 0) { prevImage(); } else { nextImage(); }
+  });
+
+  // Click outside the image (on the dark background) closes it
+  lightboxEl.addEventListener('click', function (e) {
+    if (e.target === lightboxEl) closeLightbox(e);
+  });
+
+  // Keyboard support (desktop)
+  document.addEventListener('keydown', function (e) {
+    if (!lightboxEl.classList.contains('active')) return;
+    if (e.key === 'ArrowRight') nextImage(e);
+    if (e.key === 'ArrowLeft') prevImage(e);
+    if (e.key === 'Escape') closeLightbox(e);
+  });
 </script>
 
 </body>
