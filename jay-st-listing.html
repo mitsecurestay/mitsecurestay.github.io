@@ -17,10 +17,8 @@
     --green-soft: #EAF4EE;
     --amber:      #C48A00;
     --amber-soft: #FBF3E1;
-    --drive:      #C8410B;
     --pill-radius:6px;
     --card-radius:10px;
-    --shadow:     0 1px 4px rgba(0,0,0,.08);
     --font-head:  'Georgia', serif;
     --font-body:  -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   }
@@ -34,7 +32,8 @@
   .hero-logo { height: 44px; width: auto; margin-bottom: 14px; display: block; }
   .hero-eyebrow { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-light); margin-bottom: 10px; }
   .hero h1 { font-family: var(--font-head); font-size: clamp(24px, 5.5vw, 34px); font-weight: 700; line-height: 1.18; margin-bottom: 10px; }
-  .hero-sub { font-size: 15px; color: var(--ink-light); margin-bottom: 20px; line-height: 1.5; max-width: 540px; }
+  .hero-sub { font-size: 15px; color: var(--ink-light); margin-bottom: 14px; line-height: 1.5; max-width: 540px; }
+  .last-updated { font-size: 11.5px; color: var(--ink-light); margin-bottom: 18px; }
 
   .price-row { display: flex; align-items: baseline; gap: 8px; margin-bottom: 22px; }
   .price-num { font-family: var(--font-head); font-size: 30px; font-weight: 700; }
@@ -63,6 +62,18 @@
                 border-radius: var(--card-radius); padding: 12px 14px; font-size: 13.5px; line-height: 1.4; }
   .check-mark { color: var(--green); font-weight: 700; flex-shrink: 0; }
 
+  .avail-label { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; margin-bottom: 8px; margin-top: 14px; }
+  .avail-label.now { color: var(--green); }
+  .avail-label.soon { color: var(--ink-light); }
+  .avail-row { display: flex; justify-content: space-between; align-items: center; background: var(--surface); border: 1px solid var(--border);
+               border-radius: var(--card-radius); padding: 12px 14px; font-size: 13.5px; margin-bottom: 8px; }
+  .avail-row .avail-name { font-weight: 700; }
+  .avail-row .avail-price { color: var(--accent); font-weight: 700; white-space: nowrap; margin-left: 10px; }
+  .avail-row.is-now { border-left: 3px solid var(--green); }
+  .avail-row.is-soon { border-left: 3px solid var(--border); opacity: .85; }
+
+  .review-stat { font-size: 14px; font-weight: 700; color: var(--green); margin-bottom: 14px; }
+
   .room-toggle { display: flex; background: var(--surface); border: 1px solid var(--border); border-radius: var(--card-radius);
                  padding: 4px; gap: 4px; margin-bottom: 14px; max-width: 320px; }
   .room-btn { flex: 1; padding: 10px 0; border: none; background: transparent; border-radius: 6px; font-family: var(--font-body);
@@ -74,10 +85,6 @@
   .room-detail { background: var(--bg); border-radius: 6px; padding: 10px 12px; }
   .room-detail-label { font-size: 10.5px; text-transform: uppercase; letter-spacing: .06em; color: var(--ink-light); margin-bottom: 3px; }
   .room-detail-val { font-size: 13.5px; font-weight: 600; }
-
-  .todo { background: var(--amber-soft); border: 1.5px dashed var(--amber); border-radius: 6px; padding: 8px 10px;
-          font-size: 12.5px; color: #6b4d00; margin-top: 10px; }
-  .todo strong { font-weight: 700; }
 
   .photo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 8px; margin-top: 12px; align-items: start; }
   .gallery-img { width: 100%; border-radius: 6px; display: block; cursor: pointer; transition: opacity .15s; }
@@ -172,10 +179,11 @@
   <a class="back-link" href="index.html">← Back to Listings</a>
 
   <div class="hero">
-    <img src="assets/logo.jpg" alt="MIT Secure Stay logo" class="hero-logo">
+    <img src="assets/mit-logo.png" alt="MIT Secure Stay logo" class="hero-logo">
     <div class="hero-eyebrow">MIT Secure Stay · 5521 Jay St NE · Washington, DC 20019</div>
     <h1>A private room, fully furnished — ready when you are.</h1>
     <p class="hero-sub">Two rooms available now, plus a private suite opening in October — a screened, all-inclusive shared home in DC's Deanwood neighborhood, with three Metro stations within walking distance. Built for traveling nurses, contractors, relocators, and anyone landing in DC on a deadline.</p>
+    <p class="last-updated">Last updated: June 2026</p>
     <div class="price-row">
       <span class="price-num">$925</span>
       <span class="price-sub">/ month, per room — utilities included</span>
@@ -192,6 +200,16 @@
     <div class="fact-card"><div class="fact-label">Rooms Open</div><div class="fact-val">B &amp; C</div></div>
     <div class="fact-card"><div class="fact-label">Move-in</div><div class="fact-val accent">Now</div></div>
     <div class="fact-card"><div class="fact-label">Transit Score</div><div class="fact-val accent">55</div></div>
+  </div>
+
+  <div class="section">
+    <h2>Current Availability</h2>
+    <div class="avail-label now">Available Today</div>
+    <div class="avail-row is-now"><span class="avail-name">Room B</span><span class="avail-price">$925/mo</span></div>
+    <div class="avail-row is-now"><span class="avail-name">Room C</span><span class="avail-price">$925/mo</span></div>
+    <div class="avail-label soon">Coming Soon</div>
+    <div class="avail-row is-soon"><span class="avail-name">Room A — Aug 1</span><span class="avail-price">$925/mo</span></div>
+    <div class="avail-row is-soon"><span class="avail-name">Private Suite — Oct 1</span><span class="avail-price">$1,600/mo</span></div>
   </div>
 
   <div class="section">
@@ -219,6 +237,17 @@
   </div>
 
   <div class="section">
+    <h2>Living Room &amp; Common Areas</h2>
+    <div class="photo-grid">
+      <img class="gallery-img is-portrait" src="jay-st-photos/Common%20Areas/living-room.jpg" alt="Living room with fireplace, accent wall, and chandelier" onclick="openLightbox(this)">
+      <img class="gallery-img is-portrait" src="jay-st-photos/Common%20Areas/livingroom.jpg" alt="Living room facing the fireplace and wall-mounted TV" onclick="openLightbox(this)">
+      <img class="gallery-img is-portrait" src="jay-st-photos/Common%20Areas/kitchen.jpg" alt="Kitchen with storage and island seating" onclick="openLightbox(this)">
+      <img class="gallery-img is-portrait" src="jay-st-photos/Common%20Areas/kitchen2.jpg" alt="Kitchen island and storage, angled view" onclick="openLightbox(this)">
+      <img class="gallery-img is-portrait" src="jay-st-photos/Common%20Areas/bathroom.jpg" alt="Shared bathroom with vanity and shower" onclick="openLightbox(this)">
+    </div>
+  </div>
+
+  <div class="section">
     <h2>Choose Your Room</h2>
     <p class="section-note">Availability changes as leases turn over — what's shown below was accurate as of this page's last update, not guaranteed at this exact moment. Confirm current status when you reach out.</p>
     <div class="room-toggle">
@@ -233,7 +262,6 @@
         <div class="room-detail"><div class="room-detail-label">Available</div><div class="room-detail-val">Aug 1</div></div>
         <div class="room-detail"><div class="room-detail-label">Bathroom</div><div class="room-detail-val">Shared (1 bath / 3 bedrooms)</div></div>
         <div class="room-detail"><div class="room-detail-label">Bed size</div><div class="room-detail-val">Full-size bed + desk</div></div>
-        <div class="room-detail"><div class="room-detail-label">Room size</div><div class="room-detail-val">[Add sq ft]</div></div>
       </div>
       <div class="photo-grid">
         <img class="gallery-img is-portrait" src="jay-st-photos/Room%20A/DCN-R-01-A%20bed-desk.jpg" alt="Room A bed and desk workspace" onclick="openLightbox(this)">
@@ -242,7 +270,6 @@
         <img class="gallery-img is-portrait" src="jay-st-photos/Room%20A/DCN-R-01-A%20bed2.jpg" alt="Room A bed, alternate angle" onclick="openLightbox(this)">
         <img class="gallery-img is-portrait" src="jay-st-photos/Room%20A/DCN-R-01-A%20bed-closet.jpg" alt="Room A double-door closet" onclick="openLightbox(this)">
       </div>
-      <div class="todo"><strong>Greg — fill in:</strong> sq ft for Room A. Currently occupied — available Aug 1, so fine to pre-screen interested leads now.</div>
     </div>
 
     <div class="room-panel active" id="panelB">
@@ -251,7 +278,6 @@
         <div class="room-detail"><div class="room-detail-label">Available</div><div class="room-detail-val">Now</div></div>
         <div class="room-detail"><div class="room-detail-label">Bathroom</div><div class="room-detail-val">Shared (1 bath / 3 bedrooms)</div></div>
         <div class="room-detail"><div class="room-detail-label">Bed size</div><div class="room-detail-val">Full-size bed + desk</div></div>
-        <div class="room-detail"><div class="room-detail-label">Room size</div><div class="room-detail-val">[Add sq ft]</div></div>
       </div>
       <p style="font-size:13px; color:var(--ink-light); margin-top:10px;"><strong>Room description:</strong> Full-size bed, desk, and Smart TV are confirmed. Natural light, exact layout, and closet/storage size aren't documented yet.</p>
       <div class="photo-grid">
@@ -262,7 +288,6 @@
         <img class="gallery-img is-portrait" src="jay-st-photos/Room%20B/DCN-R-01-B%20Bed-Desk-Closet.jpg" alt="Room B closet entrance" onclick="openLightbox(this)">
         <img class="gallery-img is-portrait" src="jay-st-photos/Room%20B/DCN-R-01-B%20bed.jpg" alt="Room B bed, profile shot" onclick="openLightbox(this)">
       </div>
-      <div class="todo"><strong>Greg — fill in:</strong> sq ft and closet/storage notes for Room B. Also: Notion's Available Date field for this unit still says Jul 1 even though Status is Vacant — worth clearing that field so it doesn't disagree with itself.</div>
     </div>
     <div class="room-panel" id="panelC">
       <div class="room-detail-grid">
@@ -270,27 +295,13 @@
         <div class="room-detail"><div class="room-detail-label">Available</div><div class="room-detail-val">Now</div></div>
         <div class="room-detail"><div class="room-detail-label">Bathroom</div><div class="room-detail-val">Shared (1 bath / 3 bedrooms)</div></div>
         <div class="room-detail"><div class="room-detail-label">Bed size</div><div class="room-detail-val">Full-size bed + desk</div></div>
-        <div class="room-detail"><div class="room-detail-label">Room size</div><div class="room-detail-val">[Add sq ft]</div></div>
       </div>
       <p style="font-size:13px; color:var(--ink-light); margin-top:10px;"><strong>Room description:</strong> Full-size bed, desk, and Smart TV are confirmed. Natural light, exact layout, and closet/storage size aren't documented yet.</p>
       <div class="photo-grid">
         <img class="gallery-img is-portrait" src="jay-st-photos/Room%20C/DCN-R-01-C%20bed-desk-drawer.jpg" alt="Room C bed, desk, and drawer storage" onclick="openLightbox(this)">
         <img class="gallery-img is-portrait" src="jay-st-photos/Room%20C/DCN-R-01-C%20bed-desk.jpg" alt="Room C bed and desk setup" onclick="openLightbox(this)">
       </div>
-      <div class="todo"><strong>Greg — fill in:</strong> sq ft, closet/storage notes for Room C. Also: Notion's Available Date field for this unit still says Jul 1 even though Status is Vacant.</div>
     </div>
-  </div>
-
-  <div class="section">
-    <h2>Living Room &amp; Common Areas</h2>
-    <div class="photo-grid">
-      <img class="gallery-img is-portrait" src="jay-st-photos/Common%20Areas/living-room.jpg" alt="Living room with fireplace, accent wall, and chandelier" onclick="openLightbox(this)">
-      <img class="gallery-img is-portrait" src="jay-st-photos/Common%20Areas/livingroom.jpg" alt="Living room facing the fireplace and wall-mounted TV" onclick="openLightbox(this)">
-      <img class="gallery-img is-portrait" src="jay-st-photos/Common%20Areas/kitchen.jpg" alt="Kitchen with storage and island seating" onclick="openLightbox(this)">
-      <img class="gallery-img is-portrait" src="jay-st-photos/Common%20Areas/kitchen2.jpg" alt="Kitchen island and storage, angled view" onclick="openLightbox(this)">
-      <img class="gallery-img is-portrait" src="jay-st-photos/Common%20Areas/bathroom.jpg" alt="Shared bathroom with vanity and shower" onclick="openLightbox(this)">
-    </div>
-    <div class="todo"><strong>Greg — confirm before adding:</strong> a piano and electric fireplace were suggested as living-room features in feedback notes, but neither is clearly confirmed in the photos above — check before claiming either in copy.</div>
   </div>
 
   <div class="section">
@@ -302,7 +313,6 @@
         <div class="room-detail"><div class="room-detail-label">Bathroom</div><div class="room-detail-val">Private</div></div>
         <div class="room-detail"><div class="room-detail-label">Space Type</div><div class="room-detail-val">Private Suite</div></div>
       </div>
-      <div class="todo"><strong>Greg — fill in:</strong> sq ft, furniture, and a photo for this suite. It's currently occupied with a longer lead time than the rooms above — fine to pre-screen interested leads now, but it's a real wait until October.</div>
     </div>
   </div>
 
@@ -329,6 +339,28 @@
   </div>
 
   <div class="section">
+    <h2>Why MIT Secure Stay?</h2>
+    <div class="check-grid">
+      <div class="check-item"><span class="check-mark">✓</span> Professionally managed</div>
+      <div class="check-item"><span class="check-mark">✓</span> Fully furnished</div>
+      <div class="check-item"><span class="check-mark">✓</span> Utilities included</div>
+      <div class="check-item"><span class="check-mark">✓</span> Screened housemates</div>
+      <div class="check-item"><span class="check-mark">✓</span> Secure online rent payments</div>
+      <div class="check-item"><span class="check-mark">✓</span> Responsive property management</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>What Tenants Say</h2>
+    <div class="review-stat">★★★★★ 100% Recommend · 10 Reviews on Facebook</div>
+    <div class="fit-list">
+      <div class="fit-item">"There is no better option for those looking to rent in the DMV area." <b style="display:block; margin-top:4px; font-size:12.5px; color:var(--ink-light);">— Keiton, tenant for nearly 2 years</b></div>
+      <div class="fit-item">"It felt like a real home." <b style="display:block; margin-top:4px; font-size:12.5px; color:var(--ink-light);">— Alice</b></div>
+    </div>
+    <a href="https://www.facebook.com/mitsecurestay/reviews" target="_blank" rel="noopener" style="font-size:13px; font-weight:600; display:inline-block; margin-top:10px;">Read all reviews on Facebook →</a>
+  </div>
+
+  <div class="section">
     <h2>Good to Know</h2>
     <details class="accordion">
       <summary>House Rules</summary>
@@ -337,6 +369,8 @@
           <li>No smoking anywhere on the property — indoors or outdoors</li>
           <li>Quiet hours: 11:00 PM–6:30 AM</li>
           <li>Overnight guests require landlord permission in advance</li>
+          <li>No pets</li>
+          <li>No parties or events</li>
           <li>Full house rules shared after your tour</li>
         </ul>
       </div>
@@ -347,7 +381,7 @@
     </details>
     <details class="accordion">
       <summary>Lease Terms</summary>
-      <div class="accordion-body">Flexible lease terms! </div>
+      <div class="accordion-body">Month-to-month, with 30 days' written notice to end the lease from either party.</div>
     </details>
     <details class="accordion">
       <summary>Payments</summary>
