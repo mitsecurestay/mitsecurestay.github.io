@@ -17,6 +17,7 @@
     --green-soft: #EAF4EE;
     --amber:      #C48A00;
     --amber-soft: #FBF3E1;
+    --drive:      #C8410B;
     --pill-radius:6px;
     --card-radius:10px;
     --shadow:     0 1px 4px rgba(0,0,0,.08);
@@ -30,15 +31,15 @@
   .page-wrap { max-width: 780px; margin: 0 auto; padding: 0 16px 64px; }
 
   .hero { padding: 40px 0 24px; border-bottom: 1px solid var(--border); margin-bottom: 24px; }
+  .hero-logo { height: 44px; width: auto; margin-bottom: 14px; display: block; }
   .hero-eyebrow { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-light); margin-bottom: 10px; }
   .hero h1 { font-family: var(--font-head); font-size: clamp(24px, 5.5vw, 34px); font-weight: 700; line-height: 1.18; margin-bottom: 10px; }
   .hero-sub { font-size: 15px; color: var(--ink-light); margin-bottom: 20px; line-height: 1.5; max-width: 540px; }
 
-  .price-row { display: flex; align-items: baseline; gap: 8px; margin-bottom: 12px; }
+  .price-row { display: flex; align-items: baseline; gap: 8px; margin-bottom: 10px; }
   .price-num { font-family: var(--font-head); font-size: 30px; font-weight: 700; }
   .price-sub { font-size: 13px; color: var(--ink-light); }
-  .badge { display: inline-block; font-size: 11px; font-weight: 700; padding: 3px 9px; border-radius: 20px; margin-bottom: 18px; }
-  .badge.soon { background: var(--amber-soft); color: var(--amber); }
+  .avail-note { font-size: 13px; font-weight: 700; color: var(--accent); margin-bottom: 18px; }
 
   .cta-row { display: flex; gap: 10px; flex-wrap: wrap; }
   .btn { display: inline-flex; align-items: center; gap: 6px; padding: 12px 22px; border-radius: var(--pill-radius);
@@ -48,14 +49,15 @@
   .btn-secondary { background: var(--surface); color: var(--accent); border: 1.5px solid var(--accent); }
   .btn-secondary:hover { background: var(--accent-soft); }
 
-  .facts-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 28px; }
+  .facts-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 28px; margin-top: 22px; }
   .fact-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--card-radius); padding: 14px 12px; text-align: center; }
   .fact-label { font-size: 10.5px; text-transform: uppercase; letter-spacing: .06em; color: var(--ink-light); margin-bottom: 6px; }
   .fact-val { font-size: 16px; font-weight: 700; }
-  .fact-val.accent { color: var(--amber); }
+  .fact-val.accent { color: var(--accent); }
 
   .section { margin-bottom: 32px; }
   .section h2 { font-family: var(--font-head); font-size: 19px; font-weight: 700; margin-bottom: 14px; }
+  .section-note { font-size: 13px; color: var(--ink-light); margin: -6px 0 14px; line-height: 1.5; }
 
   .check-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
   .check-item { display: flex; gap: 10px; align-items: flex-start; background: var(--surface); border: 1px solid var(--border);
@@ -69,6 +71,9 @@
   .transit-card { background: var(--accent); color: #fff; border-radius: var(--card-radius); padding: 18px 20px; }
   .transit-card .label { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; opacity: .8; margin-bottom: 6px; }
   .transit-card p { font-size: 14px; line-height: 1.55; opacity: .95; margin-bottom: 12px; }
+  .score-row { display: flex; gap: 18px; margin-bottom: 12px; flex-wrap: wrap; }
+  .score-item { font-size: 13px; }
+  .score-item b { font-size: 20px; display: block; }
   .transit-card a.maps-btn { display: inline-flex; align-items: center; gap: 6px; padding: 9px 16px; background: #fff;
                               color: var(--accent); border-radius: var(--pill-radius); font-size: 13px; font-weight: 700; text-decoration: none; }
 
@@ -80,6 +85,16 @@
   .know-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
   .know-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--card-radius); padding: 13px 16px; font-size: 13px; line-height: 1.5; }
   .know-card .k-label { font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--ink-light); margin-bottom: 5px; font-weight: 700; }
+  .back-link { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; color: var(--ink-light); text-decoration: none; margin-bottom: 16px; }
+  .back-link:hover { color: var(--accent); }
+  .tour-policy { font-size: 12.5px; color: var(--ink-light); margin-top: 10px; font-style: italic; }
+  details.accordion { background: var(--surface); border: 1px solid var(--border); border-radius: var(--card-radius); margin-bottom: 10px; }
+  details.accordion summary { padding: 13px 16px; font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: .04em; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+  details.accordion summary::-webkit-details-marker { display: none; }
+  details.accordion summary::after { content: '+'; font-size: 18px; color: var(--accent); }
+  details.accordion[open] summary::after { content: '–'; }
+  details.accordion .accordion-body { padding: 0 16px 14px; font-size: 13.5px; line-height: 1.6; color: var(--ink-light); }
+  details.accordion .accordion-body ul { padding-left: 18px; margin-top: 6px; }
 
   .housemates-box { background: var(--surface); border: 1px solid var(--border); border-radius: var(--card-radius); padding: 16px 18px; }
 
@@ -109,19 +124,23 @@
 <body>
 <div class="page-wrap">
 
+  <a class="back-link" href="index.html">← Back to Listings</a>
+
   <div class="hero">
+    <img src="assets/mit-logo.png" alt="MIT Secure Stay logo" class="hero-logo">
     <div class="hero-eyebrow">MIT Secure Stay · 14843 Hammersmith Cir · Silver Spring, MD 20906</div>
     <h1>A private room opening soon, minutes from NIH.</h1>
     <p class="hero-sub">One room in a screened, all-inclusive 4-bedroom house — close to the NIH and Montgomery County biotech corridor. Built for medical professionals, biotech staff, and relocators on a deadline.</p>
     <div class="price-row">
       <span class="price-num">$925</span>
-      <span class="price-sub">/ month, utilities included</span>
+      <span class="price-sub">/ month — utilities included</span>
     </div>
-    <div class="badge soon">Available September 1</div>
+    <p class="avail-note">Available September 1</p>
     <div class="cta-row">
       <a class="btn btn-primary" href="https://calendly.com/mitsecurestay" target="_blank" rel="noopener">📅 Schedule a Tour</a>
       <a class="btn btn-secondary" href="https://forms.gle/Km7K7EZvTzJMK62M9" target="_blank" rel="noopener">Start Pre-Screening</a>
     </div>
+    <p class="tour-policy">Tours are scheduled after the Tenant Pre-Screening Questionnaire is completed — start there first.</p>
   </div>
 
   <div class="facts-strip">
@@ -132,7 +151,7 @@
   </div>
 
   <div class="section">
-    <h2>What's included</h2>
+    <h2>What's Included</h2>
     <div class="check-grid">
       <div class="check-item"><span class="check-mark">✓</span> All utilities — electricity, water, gas, internet</div>
       <div class="check-item"><span class="check-mark">✓</span> In-unit washer/dryer</div>
@@ -140,21 +159,26 @@
       <div class="check-item"><span class="check-mark">✓</span> Community pools, clubhouse, tennis courts, walking trails</div>
       <div class="check-item"><span class="check-mark">✓</span> Screened housemates — everyone passes the same checks you will</div>
     </div>
-    <div class="todo"><strong>Greg — fill in:</strong> bed size, furniture, room sq ft, and a photo for this room. None of that is in Notion yet for this property.</div>
+    <div class="todo"><strong>Greg — fill in:</strong> bed size, furniture details, and a photo for this room. None of that is in Notion yet for this property.</div>
   </div>
 
   <div class="section">
-    <h2>Location &amp; commute</h2>
+    <h2>Location &amp; Commute</h2>
     <div class="transit-card">
       <div class="label">Walk Score 29 · Transit Score 35 · Bike Score 4</div>
       <p>A short walk to the Ride On Route 26 bus, which runs direct to Glenmont Metro (Red Line terminus) — and passes North Bethesda station, right across from NRC Headquarters. Once on the Red Line, NIH (Medical Center station), Union Station, and downtown DC are direct rides with no transfer. Two blocks from Argyle Country Club.</p>
+      <div class="score-row">
+        <div class="score-item"><b>29</b>Walk Score</div>
+        <div class="score-item"><b>35</b>Transit Score</div>
+        <div class="score-item"><b>4</b>Bike Score</div>
+      </div>
       <a class="maps-btn" href="https://mitsecurestay.github.io/routecheck/silverspring.html" target="_blank" rel="noopener">🚇 Check your full commute →</a>
     </div>
     <div class="todo">Conflicting walk time to the Route 26 stop: an existing flyer for this room says 3 minutes; RouteCheck (the more rigorously verified source — checked against actual WMATA/Ride On data) says 5 minutes. Worth a quick real-world walk to confirm which is accurate before this goes live.</div>
   </div>
 
   <div class="section">
-    <h2>Built for people on a timeline</h2>
+    <h2>Built for People on a Timeline</h2>
     <div class="fit-list">
       <div class="fit-item"><b>Medical &amp; biotech professionals</b> Direct Red Line access to NIH and the NRC — no transfer required.</div>
       <div class="fit-item"><b>Relocating contractors</b> Furnished and ready, with the I-270 biotech corridor a short drive away.</div>
@@ -163,45 +187,36 @@
   </div>
 
   <div class="section">
-    <h2>Good to know</h2>
-    <div class="know-grid">
-      <div class="know-card"><div class="k-label">Screening</div>Background, credit, and rental history check for every applicant — including current housemates.</div>
-      <div class="know-card"><div class="k-label">Lease terms</div>Flexible length — tell us your timeline during the tour and we'll confirm what's possible.</div>
-      <div class="know-card"><div class="k-label">Payments</div>Rent collected securely online via Zelle, bank transfer, or card.</div>
-      <div class="know-card"><div class="k-label">Nearby</div>Aldi is a 2-minute walk; Giant Food, Costco, and two gyms are all within a 10-minute drive or less.</div>
-    </div>
-  </div>
-
-  <div class="section">
-    <h2>Who you'd be living with</h2>
-    <div class="housemates-box">
-      <p style="font-size:13.5px; line-height:1.5;">Every housemate has gone through the same screening you will. We'll walk you through who you'd be living with — schedules, what they do, the general vibe of the house — during your tour call, rather than posting it here.</p>
-    </div>
-  </div>
-
-  <div class="section">
-    <h2>How to apply</h2>
-    <div class="steps">
-      <div class="step"><span class="step-num">1</span><div class="step-body"><b>Pre-screen</b><span>Quick form — move-in date, budget, length of stay.</span></div></div>
-      <div class="step"><span class="step-num">2</span><div class="step-body"><b>Tour</b><span>In person or virtual.</span></div></div>
-      <div class="step"><span class="step-num">3</span><div class="step-body"><b>Apply &amp; screen</b><span>Formal application plus background, credit, and eviction check.</span></div></div>
-      <div class="step"><span class="step-num">4</span><div class="step-body"><b>Sign &amp; move in</b><span>Digital lease, deposit collected, the room is yours.</span></div></div>
-    </div>
-  </div>
-
-  <div class="cta-bottom">
-    <h3>Ready to see it for yourself?</h3>
-    <p>Pre-screen now to be first in line when this room opens September 1.</p>
-    <div class="cta-row" style="justify-content:center;">
-      <a class="btn btn-primary" href="https://calendly.com/mitsecurestay" target="_blank" rel="noopener">📅 Schedule a Tour</a>
-      <a class="btn btn-secondary" href="https://forms.gle/Km7K7EZvTzJMK62M9" target="_blank" rel="noopener">Start Pre-Screening</a>
-    </div>
-  </div>
-
-  <div class="disclaimer">
-    Commute times are estimates and vary by time of day. Questions? Email <a href="mailto:mitsecurestay@gmail.com">mitsecurestay@gmail.com</a>.
-  </div>
-
-</div>
-</body>
-</html>
+    <h2>Good to Know</h2>
+    <details class="accordion">
+      <summary>House Rules</summary>
+      <div class="accordion-body">
+        <ul>
+          <li>No smoking anywhere on the property — indoors or outdoors</li>
+          <li>Quiet hours: 11:00 PM–6:30 AM</li>
+          <li>Overnight guests require landlord permission in advance</li>
+          <li>No pets</li>
+          <li>No parties or events</li>
+          <li>Full house rules shared after your tour</li>
+        </ul>
+      </div>
+    </details>
+    <details class="accordion">
+      <summary>Screening</summary>
+      <div class="accordion-body">Background, credit, and rental history check for every applicant — including current housemates.</div>
+    </details>
+    <details class="accordion">
+      <summary>Lease Terms</summary>
+      <div class="accordion-body">Month-to-month, with 30 days' written notice to end the lease from either party.</div>
+    </details>
+    <details class="accordion">
+      <summary>Payments</summary>
+      <div class="accordion-body">Rent collected via Zelle, RentRedi, or cash — paper checks not accepted.</div>
+    </details>
+    <details class="accordion">
+      <summary>Entry &amp; Privacy</summary>
+      <div class="accordion-body">The landlord may enter common areas with 24 hours' notice. Your private room requires your consent to enter, except in an emergency.</div>
+    </details>
+    <details class="accordion">
+      <summary>Nearby</summary>
+      <div class="accordion-body">Aldi is a 2-minute walk; Giant Food, Costco, and
