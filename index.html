@@ -68,6 +68,12 @@
   .card.filtered { display: none; }
 
   .card-tag { font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--ink-light); margin-bottom: 8px; }
+  .card-thumb { width: calc(100% + 48px); margin: -24px -24px 16px; height: 180px; object-fit: cover; display: block; border-radius: var(--card-radius) var(--card-radius) 0 0; }
+  .card-thumb-placeholder { width: calc(100% + 48px); margin: -24px -24px 16px; height: 180px; background: var(--bg); border-radius: var(--card-radius) var(--card-radius) 0 0; display: flex; align-items: center; justify-content: center; color: var(--ink-light); font-size: 13px; }
+  .check-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; }
+  .check-item { display: flex; gap: 10px; align-items: flex-start; background: var(--surface); border: 1px solid var(--border);
+                border-radius: var(--card-radius); padding: 12px 14px; font-size: 13.5px; line-height: 1.4; }
+  .check-mark { color: var(--green); font-weight: 700; flex-shrink: 0; }
   .badge-row { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
   .badge { display: inline-block; font-size: 11px; font-weight: 700; padding: 3px 9px; border-radius: 20px; }
   .badge.available { background: var(--green-soft); color: var(--green); }
@@ -121,8 +127,8 @@
 <div class="page-wrap">
 
   <div class="hero">
-    <h1>MIT Secure Stay</h1>
-    <p>Furnished rooms &amp; private living spaces in Washington DC &amp; Maryland</p>
+    <h1>Move into a furnished room without the hassle.</h1>
+    <p>Screened housemates, utilities included, and flexible housing across DC &amp; Maryland.</p>
   </div>
 
   <div class="value-strip">
@@ -160,11 +166,13 @@
   <div class="listings">
 
     <div class="card" data-region="dc">
+      <img class="card-thumb" src="jay-st-photos/Common%20Areas/livingroom.jpg" alt="Jay St living room">
       <div class="card-tag">Property · Washington, DC</div>
       <div class="badge-row">
         <span class="badge available">2 Rooms Available Now</span>
         <span class="badge soon">1 Private Suite Oct 1</span>
       </div>
+      <div style="font-size:11px; color:var(--ink-light); margin-bottom:2px;">Deanwood</div>
       <h2>5521 Jay St NE</h2>
       <div class="card-price">Starting at $925/mo</div>
       <div class="card-meta">Deanwood location · Shared rooms &amp; private suites · Near 3 Metro stations · In-unit W/D</div>
@@ -176,22 +184,24 @@
       </div>
 
       <div class="card-actions">
-        <a href="jay-st-listing.html">View Available Rooms</a>
-        <a href="https://forms.gle/Km7K7EZvTzJMK62M9" class="primary">Start Pre-Screening</a>
+        <a href="jay-st-listing.html" class="primary">View Available Rooms</a>
+        <a href="https://forms.gle/Km7K7EZvTzJMK62M9">Start Pre-Screening</a>
       </div>
     </div>
 
     <div class="card" data-region="md">
+      <img class="card-thumb" src="59th-ave-photos/sitting-area.jpg" alt="59th Ave common lounge area">
       <div class="card-tag">Property · Riverdale, MD</div>
       <div class="badge-row">
         <span class="badge available">2 Rooms Available Now</span>
         <span class="badge soon">2 Rooms Aug 1</span>
         <span class="badge soon">1 Room Sep 1</span>
       </div>
+      <div style="font-size:11px; color:var(--ink-light); margin-bottom:2px;">Riverdale</div>
       <h2>5311 59th Ave</h2>
       <div class="card-price">Starting at $850/mo</div>
-      <div class="card-meta">All-inclusive shared house · Shared bath · In-unit washer/dryer</div>
-      <div class="card-tagline">Furnished, all-inclusive community house close to transit links.</div>
+      <div class="card-meta">3 separate, non-connected units · Shared bath · In-unit washer/dryer</div>
+      <div class="card-tagline">Three private households at one Riverdale address — your housemates are just the 2–3 people in your own unit.</div>
 
       <div class="card-details">
         <div class="card-fit"><b>Best for</b>Students, interns, budget-conscious professional relocators</div>
@@ -199,16 +209,18 @@
       </div>
 
       <div class="card-actions">
-        <a href="59th-ave-listing.html">View Available Rooms</a>
-        <a href="https://forms.gle/Km7K7EZvTzJMK62M9" class="primary">Start Pre-Screening</a>
+        <a href="59th-ave-listing.html" class="primary">View Available Rooms</a>
+        <a href="https://forms.gle/Km7K7EZvTzJMK62M9">Start Pre-Screening</a>
       </div>
     </div>
 
     <div class="card" data-region="dc">
+      <img class="card-thumb" src="knox-cir-photos/kitchen.jpg" alt="Knox Circle kitchen">
       <div class="card-tag">Private Living Space · Washington, DC</div>
       <div class="badge-row">
         <span class="badge soon">Available Aug 5</span>
       </div>
+      <div style="font-size:11px; color:var(--ink-light); margin-bottom:2px;">Congress Heights</div>
       <h2>12 Knox Cir SE</h2>
       <div class="card-price">$1,650/mo</div>
       <div class="card-meta">Private Suite · Private bath · In-unit washer/dryer · Strong federal commute</div>
@@ -220,12 +232,13 @@
       </div>
 
       <div class="card-actions">
-        <a href="knox-cir-listing.html">View Details</a>
-        <a href="https://forms.gle/Km7K7EZvTzJMK62M9" class="primary">Start Pre-Screening</a>
+        <a href="knox-cir-listing.html" class="primary">View Details</a>
+        <a href="https://forms.gle/Km7K7EZvTzJMK62M9">Start Pre-Screening</a>
       </div>
     </div>
 
     <div class="card" data-region="md">
+      <div class="card-thumb-placeholder">Photos coming soon</div>
       <div class="card-tag">Room Rental · Silver Spring, MD</div>
       <div class="badge-row">
         <span class="badge soon">Available Sep 1</span>
@@ -241,8 +254,8 @@
       </div>
 
       <div class="card-actions">
-        <a href="hammersmith-listing.html">View Details</a>
-        <a href="https://forms.gle/Km7K7EZvTzJMK62M9" class="primary">Start Pre-Screening</a>
+        <a href="hammersmith-listing.html" class="primary">View Details</a>
+        <a href="https://forms.gle/Km7K7EZvTzJMK62M9">Start Pre-Screening</a>
       </div>
     </div>
 
@@ -255,6 +268,16 @@
       <div class="step"><div class="step-num">2</div><span>Tour</span></div>
       <div class="step"><div class="step-num">3</div><span>Apply &amp; screen</span></div>
       <div class="step"><div class="step-num">4</div><span>Sign &amp; move in</span></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Why MIT Secure Stay?</h2>
+    <div class="check-grid">
+      <div class="check-item"><span class="check-mark">✓</span> Every resident passes background, credit, and rental history screening</div>
+      <div class="check-item"><span class="check-mark">✓</span> Utilities included in every room</div>
+      <div class="check-item"><span class="check-mark">✓</span> Fully furnished — move in with a suitcase</div>
+      <div class="check-item"><span class="check-mark">✓</span> Flexible lease terms, confirmed during your tour</div>
     </div>
   </div>
 
