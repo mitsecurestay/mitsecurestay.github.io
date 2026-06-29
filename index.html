@@ -68,8 +68,11 @@
   .card.filtered { display: none; }
 
   .card-tag { font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--ink-light); margin-bottom: 8px; }
-  .card-thumb { width: calc(100% + 48px); margin: -24px -24px 16px; height: 180px; object-fit: cover; display: block; border-radius: var(--card-radius) var(--card-radius) 0 0; }
-  .card-thumb-placeholder { width: calc(100% + 48px); margin: -24px -24px 16px; height: 180px; background: var(--bg); border-radius: var(--card-radius) var(--card-radius) 0 0; display: flex; align-items: center; justify-content: center; color: var(--ink-light); font-size: 13px; }
+  
+  .card-thumb-link { width: calc(100% + 48px); margin: -24px -24px 16px; height: 180px; display: block; overflow: hidden; border-radius: var(--card-radius) var(--card-radius) 0 0; }
+  .card-thumb { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .card-thumb-placeholder { width: calc(100% + 48px); margin: -24px -24px 16px; height: 180px; background: var(--bg); border-radius: var(--card-radius) var(--card-radius) 0 0; display: flex; align-items: center; justify-content: center; color: var(--ink-light); font-size: 13px; text-decoration: none; }
+  
   .check-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; }
   .check-item { display: flex; gap: 10px; align-items: flex-start; background: var(--surface); border: 1px solid var(--border);
                 border-radius: var(--card-radius); padding: 12px 14px; font-size: 13.5px; line-height: 1.4; }
@@ -166,7 +169,9 @@
   <div class="listings">
 
     <div class="card" data-region="dc">
-      <img class="card-thumb" src="jay-st-photos/Common%20Areas/livingroom.jpg" alt="Jay St living room">
+      <a href="jay-st-listing.html" class="card-thumb-link">
+        <img class="card-thumb" src="jay-st-photos/Common%20Areas/livingroom.jpg" alt="Jay St living room">
+      </a>
       <div class="card-tag">Property · Washington, DC</div>
       <div class="badge-row">
         <span class="badge available">2 Rooms Available Now</span>
@@ -190,7 +195,9 @@
     </div>
 
     <div class="card" data-region="md">
-      <img class="card-thumb" src="59th-ave-photos/sitting-area.jpg" alt="59th Ave common lounge area">
+      <a href="59th-ave-listing.html" class="card-thumb-link">
+        <img class="card-thumb" src="59th-ave-photos/rear-unit/Common%20Areas/LvgRm.jfif" alt="59th Ave common lounge area">
+      </a>
       <div class="card-tag">Property · Riverdale, MD</div>
       <div class="badge-row">
         <span class="badge available">2 Rooms Available Now</span>
@@ -215,7 +222,7 @@
     </div>
 
     <div class="card" data-region="dc">
-      <img class="card-thumb" src="knox-cir-photos/kitchen.jpg" alt="Knox Circle kitchen">
+      <a href="knox-cir-listing.html" class="card-thumb-placeholder">Photos coming soon</a>
       <div class="card-tag">Private Living Space · Washington, DC</div>
       <div class="badge-row">
         <span class="badge soon">Available Aug 5</span>
@@ -238,7 +245,7 @@
     </div>
 
     <div class="card" data-region="md">
-      <div class="card-thumb-placeholder">Photos coming soon</div>
+      <a href="hammersmith-listing.html" class="card-thumb-placeholder">Photos coming soon</a>
       <div class="card-tag">Room Rental · Silver Spring, MD</div>
       <div class="badge-row">
         <span class="badge soon">Available Sep 1</span>
