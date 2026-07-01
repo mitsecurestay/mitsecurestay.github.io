@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Platform Posting Rules — MIT Secure Stay</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#faf9f7;
+  --surface:#ffffff;
+  --border:#e5e2dc;
+  --border2:#d6d2ca;
+  --text:#1a1a1a;
+  --text2:#4a4a4a;
+  --hint:#8a8578;
+  --accent:#1a3c5e;
+  --accent2:#c8a84a;
+  --accent2-soft:#f2ead0;
+  --mono:'DM Mono',ui-monospace,Consolas,monospace;
+  --sans:'DM Sans',-apple-system,BlinkMacSystemFont,sans-serif;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--sans);
+  background:var(--bg);
+  color:var(--text);
+  margin:0;
+  line-height:1.6;
+  font-size:16px;
+}
+.wrap{
+  max-width:820px;
+  margin:0 auto;
+  padding:48px 32px 96px;
+}
+.topbar{
+  border-bottom:1px solid var(--border);
+  padding-bottom:24px;
+  margin-bottom:40px;
+}
+.eyebrow{
+  font-family:var(--mono);
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:0.14em;
+  color:var(--hint);
+  margin-bottom:12px;
+}
+.logo-row{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  margin-bottom:18px;
+}
+.logo-mark{
+  width:44px;
+  height:44px;
+  background:var(--accent);
+  color:#fff;
+  border-radius:8px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family:var(--mono);
+  font-weight:600;
+  font-size:14px;
+  letter-spacing:0.06em;
+}
+.brand{
+  font-family:var(--mono);
+  font-size:12px;
+  letter-spacing:0.10em;
+  color:var(--text2);
+  text-transform:uppercase;
+}
+h1{
+  font-size:36px;
+  font-weight:700;
+  letter-spacing:-0.02em;
+  color:var(--accent);
+  margin:0 0 8px;
+  line-height:1.15;
+}
+.subtitle{
+  font-family:var(--mono);
+  font-size:13px;
+  color:var(--hint);
+  letter-spacing:0.04em;
+}
+.version{
+  font-family:var(--mono);
+  font-size:11px;
+  color:var(--hint);
+  margin-top:14px;
+}
+h2{
+  font-size:22px;
+  font-weight:700;
+  color:var(--accent);
+  border-bottom:2px solid var(--accent2);
+  padding-bottom:10px;
+  margin:56px 0 20px;
+  scroll-margin-top:20px;
+}
+h3{
+  font-size:17px;
+  font-weight:600;
+  color:var(--text);
+  margin:32px 0 12px;
+}
+h4{
+  font-size:14px;
+  font-weight:600;
+  color:var(--text2);
+  text-transform:uppercase;
+  letter-spacing:0.06em;
+  margin:22px 0 10px;
+}
+p{margin:0 0 14px;color:var(--text2)}
+p.lead{color:var(--text)}
+ul,ol{margin:8px 0 18px;padding-left:22px;color:var(--text2)}
+li{margin-bottom:6px}
+.callout{
+  background:var(--accent2-soft);
+  border-left:4px solid var(--accent2);
+  padding:16px 20px;
+  margin:20px 0;
+  font-style:italic;
+  color:var(--text);
+  border-radius:0 6px 6px 0;
+}
+.callout strong{font-style:normal}
+.audience{
+  font-family:var(--mono);
+  font-size:12px;
+  color:var(--hint);
+  background:#f5f3ee;
+  padding:8px 12px;
+  border-radius:4px;
+  display:inline-block;
+  margin-bottom:12px;
+}
+table{
+  width:100%;
+  border-collapse:collapse;
+  margin:20px 0;
+  font-size:14px;
+}
+th,td{
+  text-align:left;
+  padding:12px 14px;
+  border-bottom:1px solid var(--border);
+}
+th{
+  background:var(--accent);
+  color:#fff;
+  font-weight:600;
+  font-size:12px;
+  text-transform:uppercase;
+  letter-spacing:0.04em;
+}
+tr:last-child td{border-bottom:none}
+tbody tr:hover{background:#faf8f3}
+.priority-high{color:#2d6a4f;font-weight:600}
+.priority-med{color:#8a7a2d;font-weight:600}
+.toc{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:20px 24px;
+  margin:32px 0 48px;
+}
+.toc-title{
+  font-family:var(--mono);
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:0.12em;
+  color:var(--hint);
+  margin-bottom:12px;
+}
+.toc ul{
+  list-style:none;
+  padding:0;
+  margin:0;
+  columns:2;
+  column-gap:32px;
+}
+.toc li{margin-bottom:8px}
+.toc a{
+  color:var(--accent);
+  text-decoration:none;
+  font-size:14px;
+  border-bottom:1px solid transparent;
+  transition:border-color 0.15s;
+}
+.toc a:hover{border-color:var(--accent)}
+.rule-list{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:14px 22px;
+  margin:14px 0;
+}
+.rule-list ul{margin:6px 0}
+.donot{
+  background:#fdf6f5;
+  border-left:4px solid #c85a5a;
+  padding:14px 20px;
+  margin:16px 0;
+  border-radius:0 6px 6px 0;
+}
+.donot h4{margin-top:0;color:#a04040}
+footer{
+  border-top:1px solid var(--border);
+  margin-top:80px;
+  padding-top:24px;
+  font-family:var(--mono);
+  font-size:11px;
+  color:var(--hint);
+  text-align:center;
+  letter-spacing:0.06em;
+}
+footer a{color:var(--hint);text-decoration:underline}
+@media (max-width:680px){
+  .wrap{padding:32px 20px 64px}
+  h1{font-size:28px}
+  h2{font-size:19px;margin:44px 0 16px}
+  .toc ul{columns:1}
+  table{font-size:13px}
+  th,td{padding:10px 8px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="topbar">
+  <div class="eyebrow">MIT Secure Stay — Landlord Playbook</div>
+  <div class="logo-row">
+    <div class="logo-mark">MSS</div>
+    <div class="brand">SOP-001</div>
+  </div>
+  <h1>Platform Posting Rules</h1>
+  <div class="subtitle">The habits, algorithms, and channel rules that keep your listings visible</div>
+  <div class="version">Version 1.1 &middot; Last updated April 2026 &middot; Review quarterly</div>
+</header>
+
+<nav class="toc">
+  <div class="toc-title">In this guide</div>
+  <ul>
+    <li><a href="#covers">What this document covers</a></li>
+    <li><a href="#principle">The core principle</a></li>
+    <li><a href="#before">Before you post &mdash; every time</a></li>
+    <li><a href="#channels">Channel isolation rules</a></li>
+    <li><a href="#platforms">Platform rules</a></li>
+    <li><a href="#marketplace">Facebook Marketplace</a></li>
+    <li><a href="#groups">Facebook Groups</a></li>
+    <li><a href="#groupme">GroupMe</a></li>
+    <li><a href="#roomies">Roomies.com</a></li>
+    <li><a href="#furnished">Furnished Finder</a></li>
+    <li><a href="#zillow">Zillow</a></li>
+    <li><a href="#craigslist">Craigslist</a></li>
+    <li><a href="#rhythm">Weekly posting rhythm</a></li>
+    <li><a href="#one-rule">The one rule that covers everything</a></li>
+  </ul>
+</nav>
+
+<section id="covers">
+<h2>What this document covers</h2>
+<p class="lead">How to post your vacancy listings across every major platform, what each platform's algorithm rewards, and the habits that keep your listings visible week over week. This SOP assumes you are using VacancyPost to generate your listing copy.</p>
+</section>
+
+<section id="principle">
+<h2>The core principle</h2>
+<p>Posting a listing is not a one-time event. Every platform deprioritizes listings that go stale. Consistent activity &mdash; reposting, updating prices, adding photos &mdash; is what keeps your vacancy in front of the right people. A listing posted once and left alone will stop generating leads within days.</p>
+<div class="callout">Fresh activity beats perfect copy every time. A mediocre listing reposted consistently outperforms a perfect listing posted once.</div>
+</section>
+
+<section id="before">
+<h2>Before you post &mdash; every time</h2>
+<ol>
+  <li>Open VacancyPost and select your vacancy</li>
+  <li>Confirm the availability status is current</li>
+  <li>Confirm the price is accurate</li>
+  <li>Have your photos ready in your Google Drive property folder</li>
+  <li>Use the copy generated by VacancyPost &mdash; do not freestyle your listings</li>
+</ol>
+</section>
+
+<section id="channels">
+<h2>Channel isolation rules</h2>
+<p class="lead">Facebook's algorithm heavily penalizes off-platform links. Keeping Facebook traffic on Facebook (Marketplace profile, groups) means better reach and engagement. Off-Facebook traffic (SMS, email, GroupMe, other platforms) gets your own domain.</p>
+
+<h3>Facebook platform &mdash; stays on Facebook</h3>
+<ul>
+  <li>Facebook Marketplace listings &rarr; point to Marketplace profile for browsing</li>
+  <li>Facebook Groups broadcasts (Student Housing, General Housing) &rarr; point to Marketplace profile</li>
+  <li>Facebook Marketplace comment and DM replies &rarr; point to Marketplace profile</li>
+</ul>
+
+<h3>Everywhere else &mdash; uses mitsecurestay.com</h3>
+<ul>
+  <li>SMS and text scripts &rarr; point to mitsecurestay.com</li>
+  <li>Email scripts &rarr; point to mitsecurestay.com</li>
+  <li>GroupMe broadcasts &rarr; point to mitsecurestay.com</li>
+  <li>Zillow, Roomies, Furnished Finder, Craigslist listings &rarr; point to mitsecurestay.com</li>
+</ul>
+
+<div class="callout"><strong>Why this matters:</strong> Facebook actively suppresses posts that drive traffic off-platform. Prospects who land on your Marketplace profile also see 100+ five-star reviews and every other active listing you have, which is stronger social proof than any single external link.</div>
+</section>
+
+<section id="platforms">
+<h2>Platform rules</h2>
+<p>Each platform has its own audience, algorithm, and rhythm. VacancyPost generates copy tailored for each &mdash; but knowing what each platform rewards helps you post at the right time, in the right style, and repost at the right cadence.</p>
+</section>
+
+<section id="marketplace">
+<h3>Facebook Marketplace</h3>
+<div class="audience">Audience: Local renters, students, young professionals. High volume, lower intent than Furnished Finder.</div>
+
+<h4>How to post</h4>
+<div class="rule-list"><ol>
+  <li>Create a new listing</li>
+  <li>Attach 5+ photos &mdash; bedroom first</li>
+  <li>Paste the Facebook Marketplace copy from VacancyPost</li>
+  <li>Set the price and location accurately</li>
+</ol></div>
+
+<h4>Algorithm hacks</h4>
+<ul>
+  <li>Repost every 7 days &mdash; delete the old listing and create a new one. Do not just edit.</li>
+  <li>Drop the price $5 when reposting, raise it back the following week. Price changes trigger a freshness signal.</li>
+  <li>Attach photos directly &mdash; never link to an external album. Facebook suppresses posts that drive traffic off-platform.</li>
+  <li>Post between 7&ndash;9am or 6&ndash;8pm for maximum visibility.</li>
+  <li>Comment on your own listing within the first hour ("Still available &mdash; DM for details"). This bumps it to the top of the feed.</li>
+</ul>
+
+<div class="donot"><h4>What not to do</h4>
+<ul><li>Never post the same description word for word across multiple relists &mdash; Facebook can flag it as duplicate content.</li></ul></div>
+</section>
+
+<section id="groups">
+<h3>Facebook Groups</h3>
+<div class="audience">Audience: Varies by group &mdash; students, nurses, contractors, local movers. High intent when the group is active.</div>
+
+<h4>How to post</h4>
+<div class="rule-list"><ol>
+  <li>Join the group first &mdash; you cannot post without membership</li>
+  <li>Use the Facebook Group copy from VacancyPost &mdash; each group has its own tailored message</li>
+  <li>Post the same vacancy across all relevant groups in one sitting</li>
+</ol></div>
+
+<h4>Algorithm hacks</h4>
+<ul>
+  <li>Post Tuesday through Thursday between 7&ndash;9am or 6&ndash;8pm.</li>
+  <li>Vary your copy slightly between groups and repost cycles &mdash; repeated identical posts get flagged as spam.</li>
+  <li>Comment on your post within the first hour to boost engagement signals.</li>
+  <li>Point prospects to the Facebook Marketplace profile, not to external links. See channel isolation rules above.</li>
+</ul>
+
+<div class="donot"><h4>What not to do</h4>
+<ul>
+  <li>Do not post in groups you are not a member of.</li>
+  <li>Do not swap GroupMe copy into Facebook groups &mdash; the formats are different by design.</li>
+  <li>Do not drive traffic to mitsecurestay.com from Facebook groups &mdash; Facebook penalizes off-platform links.</li>
+</ul></div>
+</section>
+
+<section id="groupme">
+<h3>GroupMe</h3>
+<div class="audience">Audience: Local housing networks, student groups, professional communities. High trust, text-message environment.</div>
+
+<h4>How to post</h4>
+<div class="rule-list"><ol>
+  <li>Use the GroupMe Broadcast copy from VacancyPost</li>
+  <li>Paste as a direct message into the group</li>
+</ol></div>
+
+<h4>Algorithm hacks</h4>
+<ul>
+  <li>GroupMe has no algorithm. Timing and frequency matter most.</li>
+  <li>Post during active hours &mdash; evenings and weekends perform best.</li>
+  <li>Repost every 5&ndash;7 days to stay visible.</li>
+  <li>GroupMe copy points to mitsecurestay.com &mdash; this is off-Facebook, so external links are fine.</li>
+</ul>
+
+<div class="donot"><h4>What not to do</h4>
+<ul>
+  <li>Do not paste full platform listings into GroupMe. Long formatted posts get ignored.</li>
+  <li>The copy VacancyPost generates for GroupMe is already the right length &mdash; do not add to it.</li>
+</ul></div>
+</section>
+
+<section id="roomies">
+<h3>Roomies.com</h3>
+<div class="audience">Audience: Active renters searching for shared housing. Higher intent than Facebook, lower volume than Zillow.</div>
+
+<h4>How to post</h4>
+<div class="rule-list"><ol>
+  <li>Create your listing with full details</li>
+  <li>For outbound outreach, use the Roomies Outbound copy from VacancyPost</li>
+  <li>Message active profiles &mdash; prioritize recently active users</li>
+</ol></div>
+
+<h4>Algorithm hacks</h4>
+<ul>
+  <li>Responding to messages quickly improves your visibility score on the platform.</li>
+  <li>Adding or updating photos resets your listing freshness.</li>
+  <li>Active outbound messaging signals platform engagement and improves your profile ranking.</li>
+</ul>
+
+<div class="donot"><h4>What not to do</h4>
+<ul><li>Do not send the same outbound message without personalizing the first name. VacancyPost marks the [Name] field &mdash; always replace it before sending.</li></ul></div>
+</section>
+
+<section id="furnished">
+<h3>Furnished Finder</h3>
+<div class="audience">Audience: Traveling nurses, healthcare professionals, corporate relocators. Highest intent of all platforms. Your best audience.</div>
+
+<h4>How to post</h4>
+<div class="rule-list"><ol>
+  <li>Complete your profile 100% &mdash; amenities, house rules, bio, photos</li>
+  <li>Use the Furnished Finder copy from VacancyPost</li>
+</ol></div>
+
+<h4>Algorithm hacks</h4>
+<ul>
+  <li>Profile completeness is the single biggest ranking factor. Fill every field.</li>
+  <li>Reviews move your listing more than any copy change. Ask every tenant for a review after a successful placement.</li>
+  <li>Update your availability calendar regularly &mdash; even minor adjustments trigger a freshness signal.</li>
+</ul>
+
+<div class="donot"><h4>What not to do</h4>
+<ul><li>Do not leave your profile incomplete. An incomplete profile on Furnished Finder is invisible in search.</li></ul></div>
+</section>
+
+<section id="zillow">
+<h3>Zillow</h3>
+<div class="audience">Audience: Serious renters doing research. Higher income, more cautious, more likely to read the full listing.</div>
+
+<h4>How to post</h4>
+<div class="rule-list"><ol>
+  <li>Create your listing with full address, accurate details, and 5+ photos</li>
+  <li>Use the Zillow copy from VacancyPost</li>
+</ol></div>
+
+<h4>Algorithm hacks</h4>
+<ul>
+  <li>Relist monthly &mdash; Zillow deprioritizes listings older than 30 days.</li>
+  <li>Price drops trigger a "Price Reduced" badge in search results. A $5 drop qualifies.</li>
+  <li>Response rate affects your ranking. Respond to every Zillow inquiry within 1 hour.</li>
+</ul>
+
+<div class="donot"><h4>What not to do</h4>
+<ul><li>Do not ignore inquiries. Zillow tracks your response rate and adjusts your search placement accordingly.</li></ul></div>
+</section>
+
+<section id="craigslist">
+<h3>Craigslist</h3>
+<div class="audience">Audience: Budget-conscious renters, local movers. Lower trust environment but high volume.</div>
+
+<h4>How to post</h4>
+<div class="rule-list"><ol>
+  <li>Use the Craigslist copy from VacancyPost</li>
+  <li>Post with photos</li>
+  <li>Keep the title under 70 characters &mdash; anything longer gets cut off in search results</li>
+</ol></div>
+
+<h4>Algorithm hacks</h4>
+<ul>
+  <li>Listings fall to the bottom after 48 hours. Delete and repost every 48 hours &mdash; do not renew.</li>
+  <li>Post between 7&ndash;9am or 5&ndash;7pm local time for the highest visibility windows.</li>
+  <li>Vary your title slightly with each repost to avoid being flagged as duplicate content.</li>
+</ul>
+
+<div class="donot"><h4>What not to do</h4>
+<ul><li>Do not let a Craigslist listing sit longer than 48 hours without reposting. It will stop generating leads entirely.</li></ul></div>
+</section>
+
+<section id="rhythm">
+<h2>Weekly posting rhythm</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Platform</th>
+      <th>Action</th>
+      <th>Frequency</th>
+      <th>Priority</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>Facebook Marketplace</td><td>Delete &amp; repost</td><td>Every 7 days</td><td class="priority-high">High</td></tr>
+    <tr><td>Facebook Groups</td><td>New post</td><td>Every 5&ndash;7 days</td><td class="priority-high">High</td></tr>
+    <tr><td>GroupMe</td><td>New broadcast</td><td>Every 5&ndash;7 days</td><td class="priority-high">High</td></tr>
+    <tr><td>Roomies.com</td><td>Outbound + photo update</td><td>Weekly</td><td class="priority-med">Medium</td></tr>
+    <tr><td>Furnished Finder</td><td>Calendar update</td><td>Weekly</td><td class="priority-high">High</td></tr>
+    <tr><td>Zillow</td><td>Relist or price update</td><td>Monthly</td><td class="priority-med">Medium</td></tr>
+    <tr><td>Craigslist</td><td>Delete &amp; repost</td><td>Every 48 hours</td><td class="priority-med">Medium</td></tr>
+  </tbody>
+</table>
+</section>
+
+<section id="one-rule">
+<h2>The one rule that covers everything</h2>
+<div class="callout">Fresh activity beats perfect copy every time. Build the habit first, then refine the copy.</div>
+</section>
+
+<footer>
+SOP-001 &middot; MIT Secure Stay Landlord Playbook &middot; Review quarterly<br>
+<a href="https://mitsecurestay.com">mitsecurestay.com</a>
+</footer>
+
+</div>
+</body>
+</html>
