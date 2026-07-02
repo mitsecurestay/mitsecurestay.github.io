@@ -19,6 +19,7 @@
     --amber-soft: #FBF3E1;
     --pill-radius:6px;
     --card-radius:10px;
+    --shadow:     0 1px 4px rgba(0,0,0,.08);
     --font-head:  'Georgia', serif;
     --font-body:  -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   }
@@ -93,18 +94,9 @@
   .room-detail-label { font-size: 10.5px; text-transform: uppercase; letter-spacing: .06em; color: var(--ink-light); margin-bottom: 3px; }
   .room-detail-val { font-size: 13.5px; font-weight: 600; }
 
-  /* AUDIT-PROOFED: Responsive grid layout normalized to cleanly map variable source ratios */
-  .photo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 8px; margin-top: 8px; align-items: start; }
-  .gallery-img { width: 100%; border-radius: 6px; display: block; cursor: pointer; transition: opacity .15s, filter .2s ease; }
+  .photo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 8px; margin-top: 8px; align-items: start; }
+  .gallery-img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; object-position: center; border-radius: 6px; display: block; cursor: pointer; transition: opacity .15s, filter .2s ease; }
   .gallery-img:hover { opacity: .85; }
-  
-  /* Unified aspect parameters to resolve landscape/portrait alignment breaks */
-  .gallery-img.is-landscape, 
-  .gallery-img.is-portrait { 
-    aspect-ratio: 1 / 1; 
-    object-fit: cover; 
-    object-position: center; 
-  }
 
   /* Post-Processing Native Web Filter Integration */
   .brightened-gallery-img {
@@ -159,7 +151,8 @@
   .back-link { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; color: var(--ink-light); text-decoration: none; margin-bottom: 16px; }
   .back-link:hover { color: var(--accent); }
   .tour-policy { font-size: 12.5px; color: var(--ink-light); margin-top: 10px; font-style: italic; }
-  details.accordion { background: var(--surface); border: 1px solid var(--border); border-radius: var(--card-radius); margin-bottom: 10px; }
+  details.accordion { background: var(--surface); border: 1px solid var(--border); border-radius: var(--card-radius); margin-bottom: 10px; transition: box-shadow .15s; }
+  details.accordion:hover { box-shadow: var(--shadow); }
   details.accordion summary { padding: 13px 16px; font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: .04em; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; }
   details.accordion summary::-webkit-details-marker { display: none; }
   details.accordion summary::after { content: '+'; font-size: 18px; color: var(--accent); }
@@ -232,9 +225,9 @@
     <div class="avail-row is-now"><span class="avail-name">Front Unit — Room C</span><span class="avail-price">$900/mo</span></div>
     <div class="avail-row is-now"><span class="avail-name">Lower Level — Room F</span><span class="avail-price">$850/mo</span></div>
     <div class="avail-label soon">Coming Soon</div>
-    <div class="avail-row is-soon"><span class="avail-name">Front Unit — Room A — Aug 1</span><span class="avail-price">$850/mo</span></div>
-    <div class="avail-row is-soon"><span class="avail-name">Patio Unit — Room D — Sep 1</span><span class="avail-price">$950/mo</span></div>
-    <div class="avail-row is-soon"><span class="avail-name">Patio Unit — Room E — Aug 1</span><span class="avail-price">$950/mo</span></div>
+    <div class="avail-row is-soon"><span class="avail-name">Front Unit — Room A</span><span class="avail-price">$850/mo</span></div>
+    <div class="avail-row is-soon"><span class="avail-name">Patio Unit — Room D</span><span class="avail-price">$950/mo</span></div>
+    <div class="avail-row is-soon"><span class="avail-name">Patio Unit — Room E</span><span class="avail-price">$950/mo</span></div>
   </div>
 
   <div class="section">
@@ -257,15 +250,15 @@
 
     <div class="subsection-label">Common Areas</div>
     <div class="photo-grid">
-      <img class="gallery-img is-landscape" src="59th-ave-photos/front-unit/Common%20Areas/bathroom.jpg" alt="Front Unit bathroom" onclick="openLightbox(this)">
-      <img class="gallery-img is-landscape" src="59th-ave-photos/front-unit/Common%20Areas/cornerplanter.jpg" alt="Front Unit corner plant accent" onclick="openLightbox(this)">
-      <img class="gallery-img is-landscape" src="59th-ave-photos/front-unit/Common%20Areas/diningroom.jpg" alt="Front Unit dining area" onclick="openLightbox(this)">
-      <img class="gallery-img is-landscape" src="59th-ave-photos/front-unit/Common%20Areas/entryway.jpg" alt="Front Unit entryway" onclick="openLightbox(this)">
-      <img class="gallery-img is-landscape" src="59th-ave-photos/front-unit/Common%20Areas/fireplace.jpg" alt="Front Unit fireplace and accent wall" onclick="openLightbox(this)">
-      <img class="gallery-img is-landscape" src="59th-ave-photos/front-unit/Common%20Areas/kitchen.jpg" alt="Front Unit kitchen" onclick="openLightbox(this)">
-      <img class="gallery-img is-landscape" src="59th-ave-photos/front-unit/Common%20Areas/livingroom.jpg" alt="Front Unit living room" onclick="openLightbox(this)">
-      <img class="gallery-img is-landscape" src="59th-ave-photos/front-unit/Common%20Areas/livingroom2.jpg" alt="Front Unit living room, alternate angle" onclick="openLightbox(this)">
-      <img class="gallery-img is-landscape" src="59th-ave-photos/front-unit/Common%20Areas/livingroom3.jpg" alt="Front Unit living room, third angle" onclick="openLightbox(this)">
+      <img class="gallery-img" src="59th-ave-photos/front-unit/Common%20Areas/bathroom.jpg" alt="Front Unit bathroom" onclick="openLightbox(this)">
+      <img class="gallery-img" src="59th-ave-photos/front-unit/Common%20Areas/cornerplanter.jpg" alt="Front Unit corner plant accent" onclick="openLightbox(this)">
+      <img class="gallery-img" src="59th-ave-photos/front-unit/Common%20Areas/diningroom.jpg" alt="Front Unit dining area" onclick="openLightbox(this)">
+      <img class="gallery-img" src="59th-ave-photos/front-unit/Common%20Areas/entryway.jpg" alt="Front Unit entryway" onclick="openLightbox(this)">
+      <img class="gallery-img" src="59th-ave-photos/front-unit/Common%20Areas/fireplace.jpg" alt="Front Unit fireplace and accent wall" onclick="openLightbox(this)">
+      <img class="gallery-img" src="59th-ave-photos/front-unit/Common%20Areas/kitchen.jpg" alt="Front Unit kitchen" onclick="openLightbox(this)">
+      <img class="gallery-img" src="59th-ave-photos/front-unit/Common%20Areas/livingroom.jpg" alt="Front Unit living room" onclick="openLightbox(this)">
+      <img class="gallery-img" src="59th-ave-photos/front-unit/Common%20Areas/livingroom2.jpg" alt="Front Unit living room, alternate angle" onclick="openLightbox(this)">
+      <img class="gallery-img" src="59th-ave-photos/front-unit/Common%20Areas/livingroom3.jpg" alt="Front Unit living room, third angle" onclick="openLightbox(this)">
     </div>
 
     <div class="subsection-label">Rooms</div>
@@ -277,14 +270,14 @@
     <div class="room-panel active" id="panelFront-A">
       <div class="room-detail-grid">
         <div class="room-detail"><div class="room-detail-label">Rent</div><div class="room-detail-val">$850/mo</div></div>
-        <div class="room-detail"><div class="room-detail-label">Available</div><div class="room-detail-val">Aug 1</div></div>
+        <div class="room-detail"><div class="room-detail-label">Available</div><div class="room-detail-val">Soon</div></div>
         <div class="room-detail"><div class="room-detail-label">Bathroom</div><div class="room-detail-val">Shared</div></div>
       </div>
       <div class="photo-grid">
-        <img class="gallery-img is-portrait" src="59th-ave-photos/front-unit/Room%20A/RL-R-01-A%20Desk.jpg" alt="Room A desk workspace" onclick="openLightbox(this)">
-        <img class="gallery-img is-portrait" src="59th-ave-photos/front-unit/Room%20A/RL-R-01-A%20TV.jpg" alt="Room A wall-mounted TV" onclick="openLightbox(this)">
-        <img class="gallery-img is-portrait brightened-gallery-img" src="59th-ave-photos/front-unit/Room%20A/rooma-pic.jpg" alt="Room A workspace view" onclick="openLightbox(this)">
-        <img class="gallery-img is-portrait brightened-gallery-img" src="59th-ave-photos/front-unit/Room%20A/rooma-pic1.jpg" alt="Room A comfort styled bed view" onclick="openLightbox(this)">
+        <img class="gallery-img" src="59th-ave-photos/front-unit/Room%20A/RL-R-01-A%20Desk.jpg" alt="Room A desk workspace" onclick="openLightbox(this)">
+        <img class="gallery-img" src="59th-ave-photos/front-unit/Room%20A/RL-R-01-A%20TV.jpg" alt="Room A wall-mounted TV" onclick="openLightbox(this)">
+        <img class="gallery-img brightened-gallery-img" src="59th-ave-photos/front-unit/Room%20A/rooma-pic.jpg" alt="Room A workspace view" onclick="openLightbox(this)">
+        <img class="gallery-img brightened-gallery-img" src="59th-ave-photos/front-unit/Room%20A/rooma-pic1.jpg" alt="Room A comfort styled bed view" onclick="openLightbox(this)">
       </div>
     </div>
     <div class="room-panel" id="panelFront-C">
@@ -294,8 +287,8 @@
         <div class="room-detail"><div class="room-detail-label">Bathroom</div><div class="room-detail-val">Shared</div></div>
       </div>
       <div class="photo-grid">
-        <img class="gallery-img is-portrait" src="59th-ave-photos/front-unit/Room%20C/IMG-20220812-WA0054.jpg" alt="Room C bedroom" onclick="openLightbox(this)">
-        <img class="gallery-img is-portrait" src="59th-ave-photos/front-unit/Room%20C/IMG-20220812-WA0055.jpg" alt="Room C bedroom, alternate angle" onclick="openLightbox(this)">
+        <img class="gallery-img" src="59th-ave-photos/front-unit/Room%20C/IMG-20220812-WA0054.jpg" alt="Room C bedroom" onclick="openLightbox(this)">
+        <img class="gallery-img" src="59th-ave-photos/front-unit/Room%20C/IMG-20220812-WA0055.jpg" alt="Room C bedroom, alternate angle" onclick="openLightbox(this)">
       </div>
     </div>
 
@@ -313,14 +306,14 @@
 
     <div class="subsection-label">Common Areas</div>
     <div class="photo-grid">
-      <img class="gallery-img is-landscape" src="59th-ave-photos/rear-unit/Common%20Areas/BathRm.jfif" alt="Patio Unit bathroom" onclick="openLightbox(this)">
-      <img class="gallery-img is-landscape" src="59th-ave-photos/rear-unit/Common%20Areas/DiningRm.jfif" alt="Patio Unit dining area" onclick="openLightbox(this)">
-      <img class="gallery-img is-landscape" src="59th-ave-photos/rear-unit/Common%20Areas/Kitchen.jfif" alt="Patio Unit kitchen" onclick="openLightbox(this)">
-      <img class="gallery-img is-landscape" src="59th-ave-photos/rear-unit/Common%20Areas/Living%20Room.jpg" alt="Patio Unit living room with fireplace" onclick="openLightbox(this)">
-      <img class="gallery-img is-landscape" src="59th-ave-photos/rear-unit/Common%20Areas/LvgRm.jfif" alt="Patio Unit living room, alternate angle" onclick="openLightbox(this)">
-      <img class="gallery-img is-landscape" src="59th-ave-photos/rear-unit/Common%20Areas/LvgRm1.jfif" alt="Patio Unit living room, third angle" onclick="openLightbox(this)">
-      <img class="gallery-img is-landscape" src="59th-ave-photos/rear-unit/Common%20Areas/patio.jpg" alt="Private patio" onclick="openLightbox(this)">
-      <img class="gallery-img is-landscape" src="59th-ave-photos/rear-unit/Common%20Areas/patio2.jpg" alt="Private patio, alternate angle" onclick="openLightbox(this)">
+      <img class="gallery-img" src="59th-ave-photos/rear-unit/Common%20Areas/BathRm.jfif" alt="Patio Unit bathroom" onclick="openLightbox(this)">
+      <img class="gallery-img" src="59th-ave-photos/rear-unit/Common%20Areas/DiningRm.jfif" alt="Patio Unit dining area" onclick="openLightbox(this)">
+      <img class="gallery-img" src="59th-ave-photos/rear-unit/Common%20Areas/Kitchen.jfif" alt="Patio Unit kitchen" onclick="openLightbox(this)">
+      <img class="gallery-img" src="59th-ave-photos/rear-unit/Common%20Areas/Living%20Room.jpg" alt="Patio Unit living room with fireplace" onclick="openLightbox(this)">
+      <img class="gallery-img" src="59th-ave-photos/rear-unit/Common%20Areas/LvgRm.jfif" alt="Patio Unit living room, alternate angle" onclick="openLightbox(this)">
+      <img class="gallery-img" src="59th-ave-photos/rear-unit/Common%20Areas/LvgRm1.jfif" alt="Patio Unit living room, third angle" onclick="openLightbox(this)">
+      <img class="gallery-img" src="59th-ave-photos/rear-unit/Common%20Areas/patio.jpg" alt="Private patio" onclick="openLightbox(this)">
+      <img class="gallery-img" src="59th-ave-photos/rear-unit/Common%20Areas/patio2.jpg" alt="Private patio, alternate angle" onclick="openLightbox(this)">
     </div>
 
     <div class="subsection-label">Rooms</div>
@@ -332,22 +325,23 @@
     <div class="room-panel active" id="panelPatio-D">
       <div class="room-detail-grid">
         <div class="room-detail"><div class="room-detail-label">Rent</div><div class="room-detail-val">$950/mo</div></div>
-        <div class="room-detail"><div class="room-detail-label">Available</div><div class="room-detail-val">Sep 1</div></div>
+        <div class="room-detail"><div class="room-detail-label">Available</div><div class="room-detail-val">Soon</div></div>
         <div class="room-detail"><div class="room-detail-label">Bathroom</div><div class="room-detail-val">Shared</div></div>
         <div class="room-detail"><div class="room-detail-label">Bed size</div><div class="room-detail-val">Queen bed + desk</div></div>
       </div>
       <p style="font-size:13px; color:var(--ink-light); margin-top:10px;"><strong>Room description:</strong> Confirmed from the existing flyer — queen bed, Smart TV, desk, and a large closet.</p>
       <div class="photo-grid">
-        <img class="gallery-img is-portrait" src="59th-ave-photos/rear-unit/Room%20D/Room%20RL-R-01-D%20Photo.jfif" alt="Room D bed" onclick="openLightbox(this)">
-        <img class="gallery-img is-portrait" src="59th-ave-photos/rear-unit/Room%20D/Room%20RL-R-01-D%20Photo2.jfif" alt="Room D desk and patio door view" onclick="openLightbox(this)">
+        <img class="gallery-img" src="59th-ave-photos/rear-unit/Room%20D/Room%20RL-R-01-D%20Photo.jfif" alt="Room D bed" onclick="openLightbox(this)">
+        <img class="gallery-img" src="59th-ave-photos/rear-unit/Room%20D/Room%20RL-R-01-D%20Photo2.jfif" alt="Room D desk and patio door view" onclick="openLightbox(this)">
       </div>
     </div>
     <div class="room-panel" id="panelPatio-E">
       <div class="room-detail-grid">
         <div class="room-detail"><div class="room-detail-label">Rent</div><div class="room-detail-val">$950/mo</div></div>
-        <div class="room-detail"><div class="room-detail-label">Available</div><div class="room-detail-val">Aug 1</div></div>
+        <div class="room-detail"><div class="room-detail-label">Available</div><div class="room-detail-val">Soon</div></div>
         <div class="room-detail"><div class="room-detail-label">Bathroom</div><div class="room-detail-val">Shared</div></div>
       </div>
+      <p style="font-size:13px; color:var(--ink-light); margin-top:10px; font-style:italic;">Photos and full room description for Room E coming soon.</p>
     </div>
     <p class="unit-descriptive-tag">Includes a fully-furnished walk-out rear deck lounge surrounded by mature trees, modern updated appliances, under-bed storage options, and a private sliding patio exit.</p>
   </div>
@@ -358,16 +352,16 @@
 
     <div class="subsection-label">Common Areas</div>
     <div class="photo-grid">
-      <img class="gallery-img is-landscape" src="59th-ave-photos/basement-unit/Common%20Areas/bathroom.jpg" alt="Lower Level bathroom" onclick="openLightbox(this)">
-      <img class="gallery-img is-landscape" src="59th-ave-photos/basement-unit/Common%20Areas/kitchen.jpg" alt="Lower Level kitchen" onclick="openLightbox(this)">
-      <img class="gallery-img is-landscape" src="59th-ave-photos/basement-unit/Common%20Areas/orange-mirror.jpg" alt="Lower Level entryway mirror accent" onclick="openLightbox(this)">
-      <img class="gallery-img is-landscape" src="59th-ave-photos/basement-unit/Common%20Areas/planter-art.jpg" alt="Lower Level planter and wall art" onclick="openLightbox(this)">
-      <img class="gallery-img is-landscape" src="59th-ave-photos/basement-unit/Common%20Areas/planter-siiting-area.jpg" alt="Lower Level sitting area with plants" onclick="openLightbox(this)">
-      <img class="gallery-img is-landscape" src="59th-ave-photos/basement-unit/Common%20Areas/shower.jpg" alt="Lower Level shower" onclick="openLightbox(this)">
-      <img class="gallery-img is-landscape" src="59th-ave-photos/basement-unit/Common%20Areas/side-view.jpg" alt="Lower Level common area, side view" onclick="openLightbox(this)">
-      <img class="gallery-img is-landscape" src="59th-ave-photos/basement-unit/Common%20Areas/sitting-area.jpg" alt="Lower Level sitting area" onclick="openLightbox(this)">
-      <img class="gallery-img is-landscape" src="59th-ave-photos/basement-unit/Common%20Areas/sitting-area-closeup.jpg" alt="Lower Level sitting area, close-up" onclick="openLightbox(this)">
-      <img class="gallery-img is-landscape" src="59th-ave-photos/basement-unit/Common%20Areas/table-ktichen.jpg" alt="Lower Level dining nook" onclick="openLightbox(this)">
+      <img class="gallery-img" src="59th-ave-photos/basement-unit/Common%20Areas/bathroom.jpg" alt="Lower Level bathroom" onclick="openLightbox(this)">
+      <img class="gallery-img" src="59th-ave-photos/basement-unit/Common%20Areas/kitchen.jpg" alt="Lower Level kitchen" onclick="openLightbox(this)">
+      <img class="gallery-img" src="59th-ave-photos/basement-unit/Common%20Areas/orange-mirror.jpg" alt="Lower Level entryway mirror accent" onclick="openLightbox(this)">
+      <img class="gallery-img" src="59th-ave-photos/basement-unit/Common%20Areas/planter-art.jpg" alt="Lower Level planter and wall art" onclick="openLightbox(this)">
+      <img class="gallery-img" src="59th-ave-photos/basement-unit/Common%20Areas/planter-siiting-area.jpg" alt="Lower Level sitting area with plants" onclick="openLightbox(this)">
+      <img class="gallery-img" src="59th-ave-photos/basement-unit/Common%20Areas/shower.jpg" alt="Lower Level shower" onclick="openLightbox(this)">
+      <img class="gallery-img" src="59th-ave-photos/basement-unit/Common%20Areas/side-view.jpg" alt="Lower Level common area, side view" onclick="openLightbox(this)">
+      <img class="gallery-img" src="59th-ave-photos/basement-unit/Common%20Areas/sitting-area.jpg" alt="Lower Level sitting area" onclick="openLightbox(this)">
+      <img class="gallery-img" src="59th-ave-photos/basement-unit/Common%20Areas/sitting-area-closeup.jpg" alt="Lower Level sitting area, close-up" onclick="openLightbox(this)">
+      <img class="gallery-img" src="59th-ave-photos/basement-unit/Common%20Areas/table-ktichen.jpg" alt="Lower Level dining nook" onclick="openLightbox(this)">
     </div>
 
     <div class="subsection-label">Rooms</div>
@@ -382,10 +376,10 @@
         <div class="room-detail"><div class="room-detail-label">Bathroom</div><div class="room-detail-val">Shared</div></div>
       </div>
       <div class="photo-grid">
-        <img class="gallery-img is-landscape" src="59th-ave-photos/basement-unit/Room%20F/PSX_20221031_192952.jpg" alt="Room F desk and TV setup" onclick="openLightbox(this)">
-        <img class="gallery-img is-landscape" src="59th-ave-photos/basement-unit/Room%20F/PSX_20221031_193014.jpg" alt="Room F, alternate angle" onclick="openLightbox(this)">
-        <img class="gallery-img is-portrait" src="59th-ave-photos/basement-unit/Room%20F/bed-closet.jpg" alt="Room F closet" onclick="openLightbox(this)">
-        <img class="gallery-img is-portrait" src="59th-ave-photos/basement-unit/Room%20F/bed.jpg" alt="Room F bed" onclick="openLightbox(this)">
+        <img class="gallery-img" src="59th-ave-photos/basement-unit/Room%20F/PSX_20221031_192952.jpg" alt="Room F desk and TV setup" onclick="openLightbox(this)">
+        <img class="gallery-img" src="59th-ave-photos/basement-unit/Room%20F/PSX_20221031_193014.jpg" alt="Room F, alternate angle" onclick="openLightbox(this)">
+        <img class="gallery-img" src="59th-ave-photos/basement-unit/Room%20F/bed-closet.jpg" alt="Room F closet" onclick="openLightbox(this)">
+        <img class="gallery-img" src="59th-ave-photos/basement-unit/Room%20F/bed.jpg" alt="Room F bed" onclick="openLightbox(this)">
       </div>
     </div>
 
