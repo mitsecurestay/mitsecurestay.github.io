@@ -97,7 +97,9 @@
   .gallery-img { width: 100%; border-radius: 6px; display: block; cursor: pointer; transition: opacity .15s, filter .2s ease; }
   .gallery-img:hover { opacity: .85; }
   .gallery-img.is-landscape { aspect-ratio: 4 / 3; object-fit: cover; object-position: center; }
-  .gallery-img.is-portrait { aspect-ratio: 3 / 4; object-fit: contain; background: var(--bg); padding: 4px; }
+  
+  /* UPDATED: Changed from object-fit: contain to cover to eliminate un-uniform sizes */
+  .gallery-img.is-portrait { aspect-ratio: 3 / 4; object-fit: cover; object-position: center; }
 
   /* Post-Processing Native Web Filter Integration */
   .brightened-gallery-img {
@@ -517,7 +519,6 @@
 <script>
   var unitRooms = { Front: ['A','C'], Patio: ['D','E'], Lower: ['F'] };
 
-  // ... [Keep script logic intact exactly as originally built] ...
   function showRoom(unit, letter) {
     unitRooms[unit].forEach(function (l) {
       document.getElementById('btn' + unit + '-' + l).classList.toggle('active', l === letter);
