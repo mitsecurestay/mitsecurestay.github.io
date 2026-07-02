@@ -94,10 +94,18 @@
   .room-detail-val { font-size: 13.5px; font-weight: 600; }
 
   .photo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 8px; margin-top: 8px; align-items: start; }
-  .gallery-img { width: 100%; border-radius: 6px; display: block; cursor: pointer; transition: opacity .15s; }
+  .gallery-img { width: 100%; border-radius: 6px; display: block; cursor: pointer; transition: opacity .15s, filter .2s ease; }
   .gallery-img:hover { opacity: .85; }
   .gallery-img.is-landscape { aspect-ratio: 4 / 3; object-fit: cover; object-position: center; }
   .gallery-img.is-portrait { aspect-ratio: 3 / 4; object-fit: contain; background: var(--bg); padding: 4px; }
+
+  /* Post-Processing Native Web Filter Integration */
+  .brightened-gallery-img {
+    filter: brightness(1.18) contrast(1.03) saturate(1.05);
+  }
+  .brightened-gallery-img:hover {
+    filter: brightness(1.24) contrast(1.04) saturate(1.08) opacity(0.85);
+  }
 
   .lightbox-overlay {
     display: none; position: fixed; inset: 0; background: rgba(18,17,15,.94);
@@ -236,7 +244,6 @@
     <p class="policy-note">Single occupancy per room across all units — one tenant, one room, no exceptions.</p>
   </div>
 
-  <!-- FRONT UNIT -->
   <div class="unit-block">
     <div class="unit-heading">Front Unit — 3BR / 1BA</div>
     <div class="unit-sub">Rooms A, B, C · its own small household, not shared with the other two units · Up to 3 residents</div>
@@ -269,8 +276,8 @@
       <div class="photo-grid">
         <img class="gallery-img is-portrait" src="59th-ave-photos/front-unit/Room%20A/RL-R-01-A%20Desk.jpg" alt="Room A desk workspace" onclick="openLightbox(this)">
         <img class="gallery-img is-portrait" src="59th-ave-photos/front-unit/Room%20A/RL-R-01-A%20TV.jpg" alt="Room A wall-mounted TV" onclick="openLightbox(this)">
-        <img class="gallery-img is-portrait" src="59th-ave-photos/front-unit/Room%20A/rooma-pic.jpg" alt="Room A, additional view" onclick="openLightbox(this)">
-        <img class="gallery-img is-portrait" src="59th-ave-photos/front-unit/Room%20A/rooma-pic1.jpg" alt="Room A, additional view" onclick="openLightbox(this)">
+        <img class="gallery-img is-portrait brightened-gallery-img" src="59th-ave-photos/front-unit/Room%20A/rooma-pic.jpg" alt="Room A workspace view" onclick="openLightbox(this)">
+        <img class="gallery-img is-portrait brightened-gallery-img" src="59th-ave-photos/front-unit/Room%20A/rooma-pic1.jpg" alt="Room A comfort styled bed view" onclick="openLightbox(this)">
       </div>
     </div>
     <div class="room-panel" id="panelFront-C">
@@ -293,7 +300,6 @@
     <p class="unit-descriptive-tag">Featuring elegant high-end architectural elements, warm brick accented lounge spaces, full chef-ready kitchen utility, and bedrooms carefully optimized with minimal workspace desks for student and traveling professional focus profiles.</p>
   </div>
 
-  <!-- PATIO UNIT -->
   <div class="unit-block">
     <div class="unit-heading">Patio Unit — 2BR / 1BA</div>
     <div class="unit-sub">Rooms D, E · private patio · its own small household · Up to 2 residents</div>
@@ -339,7 +345,6 @@
     <p class="unit-descriptive-tag">Includes a fully-furnished walk-out rear deck lounge surrounded by mature trees, modern updated appliances, under-bed storage options, and a private sliding patio exit.</p>
   </div>
 
-  <!-- LOWER LEVEL -->
   <div class="unit-block">
     <div class="unit-heading">Lower Level — 3BR / 1BA</div>
     <div class="unit-sub">Rooms F, G, H · its own small household · Up to 3 residents</div>
@@ -512,6 +517,7 @@
 <script>
   var unitRooms = { Front: ['A','C'], Patio: ['D','E'], Lower: ['F'] };
 
+  // ... [Keep script logic intact exactly as originally built] ...
   function showRoom(unit, letter) {
     unitRooms[unit].forEach(function (l) {
       document.getElementById('btn' + unit + '-' + l).classList.toggle('active', l === letter);
