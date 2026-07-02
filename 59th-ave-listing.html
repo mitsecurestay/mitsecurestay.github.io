@@ -67,7 +67,8 @@
   .avail-label.now { color: var(--green); }
   .avail-label.soon { color: var(--ink-light); }
   .avail-row { display: flex; justify-content: space-between; align-items: center; background: var(--surface); border: 1px solid var(--border);
-               border-radius: var(--card-radius); padding: 12px 14px; font-size: 13.5px; margin-bottom: 8px; }
+               border-radius: var(--card-radius); padding: 12px 14px; font-size: 13.5px; margin-bottom: 8px; cursor: pointer; transition: box-shadow .15s; }
+  .avail-row:hover { box-shadow: var(--shadow); }
   .avail-row .avail-name { font-weight: 700; }
   .avail-row .avail-price { color: var(--accent); font-weight: 700; white-space: nowrap; margin-left: 10px; }
   .avail-row.is-now { border-left: 3px solid var(--green); }
@@ -222,12 +223,12 @@
   <div class="section">
     <h2>Current Availability</h2>
     <div class="avail-label now">Available Today</div>
-    <div class="avail-row is-now"><span class="avail-name">Front Unit — Room C</span><span class="avail-price">$900/mo</span></div>
-    <div class="avail-row is-now"><span class="avail-name">Lower Level — Room F</span><span class="avail-price">$850/mo</span></div>
+    <div class="avail-row is-now" onclick="jumpToRoom('Front','C')"><span class="avail-name">Front Unit — Room C</span><span class="avail-price">$900/mo</span></div>
+    <div class="avail-row is-now" onclick="jumpToRoom('Lower','F')"><span class="avail-name">Lower Level — Room F</span><span class="avail-price">$850/mo</span></div>
     <div class="avail-label soon">Coming Soon</div>
-    <div class="avail-row is-soon"><span class="avail-name">Front Unit — Room A</span><span class="avail-price">$850/mo</span></div>
-    <div class="avail-row is-soon"><span class="avail-name">Patio Unit — Room D</span><span class="avail-price">$950/mo</span></div>
-    <div class="avail-row is-soon"><span class="avail-name">Patio Unit — Room E</span><span class="avail-price">$950/mo</span></div>
+    <div class="avail-row is-soon" onclick="jumpToRoom('Front','A')"><span class="avail-name">Front Unit — Room A</span><span class="avail-price">$850/mo</span></div>
+    <div class="avail-row is-soon" onclick="jumpToRoom('Patio','D')"><span class="avail-name">Patio Unit — Room D</span><span class="avail-price">$950/mo</span></div>
+    <div class="avail-row is-soon" onclick="jumpToRoom('Patio','E')"><span class="avail-name">Patio Unit — Room E</span><span class="avail-price">$950/mo</span></div>
   </div>
 
   <div class="section">
@@ -523,6 +524,11 @@
       document.getElementById('btn' + unit + '-' + l).classList.toggle('active', l === letter);
       document.getElementById('panel' + unit + '-' + l).classList.toggle('active', l === letter);
     });
+  }
+
+  function jumpToRoom(unit, letter) {
+    showRoom(unit, letter);
+    document.getElementById('panel' + unit + '-' + letter).scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
   var currentGallery = [];
