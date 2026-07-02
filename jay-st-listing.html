@@ -19,6 +19,7 @@
     --amber-soft: #FBF3E1;
     --pill-radius:6px;
     --card-radius:10px;
+    --shadow:     0 1px 4px rgba(0,0,0,.08);
     --font-head:  'Georgia', serif;
     --font-body:  -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   }
@@ -66,7 +67,8 @@
   .avail-label.now { color: var(--green); }
   .avail-label.soon { color: var(--ink-light); }
   .avail-row { display: flex; justify-content: space-between; align-items: center; background: var(--surface); border: 1px solid var(--border);
-               border-radius: var(--card-radius); padding: 12px 14px; font-size: 13.5px; margin-bottom: 8px; }
+               border-radius: var(--card-radius); padding: 12px 14px; font-size: 13.5px; margin-bottom: 8px; cursor: pointer; transition: box-shadow .15s; }
+  .avail-row:hover { box-shadow: var(--shadow); }
   .avail-row .avail-name { font-weight: 700; }
   .avail-row .avail-price { color: var(--accent); font-weight: 700; white-space: nowrap; margin-left: 10px; }
   .avail-row.is-now { border-left: 3px solid var(--green); }
@@ -87,10 +89,8 @@
   .room-detail-val { font-size: 13.5px; font-weight: 600; }
 
   .photo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 8px; margin-top: 12px; align-items: start; }
-  .gallery-img { width: 100%; border-radius: 6px; display: block; cursor: pointer; transition: opacity .15s; }
+  .gallery-img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; object-position: center; border-radius: 6px; display: block; cursor: pointer; transition: opacity .15s; }
   .gallery-img:hover { opacity: .85; }
-  .gallery-img.is-landscape { aspect-ratio: 4 / 3; object-fit: cover; object-position: center; }
-  .gallery-img.is-portrait { aspect-ratio: 3 / 4; object-fit: contain; background: var(--bg); padding: 4px; }
 
   .lightbox-overlay {
     display: none; position: fixed; inset: 0; background: rgba(18,17,15,.94);
@@ -139,7 +139,8 @@
   .back-link { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; color: var(--ink-light); text-decoration: none; margin-bottom: 16px; }
   .back-link:hover { color: var(--accent); }
   .tour-policy { font-size: 12.5px; color: var(--ink-light); margin-top: 10px; font-style: italic; }
-  details.accordion { background: var(--surface); border: 1px solid var(--border); border-radius: var(--card-radius); margin-bottom: 10px; }
+  details.accordion { background: var(--surface); border: 1px solid var(--border); border-radius: var(--card-radius); margin-bottom: 10px; transition: box-shadow .15s; }
+  details.accordion:hover { box-shadow: var(--shadow); }
   details.accordion summary { padding: 13px 16px; font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: .04em; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; }
   details.accordion summary::-webkit-details-marker { display: none; }
   details.accordion summary::after { content: '+'; font-size: 18px; color: var(--accent); }
@@ -205,11 +206,11 @@
   <div class="section">
     <h2>Current Availability</h2>
     <div class="avail-label now">Available Today</div>
-    <div class="avail-row is-now"><span class="avail-name">Room B</span><span class="avail-price">$925/mo</span></div>
-    <div class="avail-row is-now"><span class="avail-name">Room C</span><span class="avail-price">$925/mo</span></div>
+    <div class="avail-row is-now" onclick="jumpToRoom('B')"><span class="avail-name">Room B</span><span class="avail-price">$925/mo</span></div>
+    <div class="avail-row is-now" onclick="jumpToRoom('C')"><span class="avail-name">Room C</span><span class="avail-price">$925/mo</span></div>
     <div class="avail-label soon">Coming Soon</div>
-    <div class="avail-row is-soon"><span class="avail-name">Room A — Aug 1</span><span class="avail-price">$925/mo</span></div>
-    <div class="avail-row is-soon"><span class="avail-name">Private Suite — Oct 1</span><span class="avail-price">$1,600/mo</span></div>
+    <div class="avail-row is-soon" onclick="jumpToRoom('A')"><span class="avail-name">Room A</span><span class="avail-price">$925/mo</span></div>
+    <div class="avail-row is-soon" onclick="jumpToSuite()"><span class="avail-name">Private Suite</span><span class="avail-price">$1,600/mo</span></div>
   </div>
 
   <div class="section">
@@ -239,11 +240,11 @@
   <div class="section">
     <h2>Living Room &amp; Common Areas</h2>
     <div class="photo-grid">
-      <img class="gallery-img is-portrait" src="jay-st-photos/Common%20Areas/living-room.jpg" alt="Living room with fireplace, accent wall, and chandelier" onclick="openLightbox(this)">
-      <img class="gallery-img is-portrait" src="jay-st-photos/Common%20Areas/livingroom.jpg" alt="Living room facing the fireplace and wall-mounted TV" onclick="openLightbox(this)">
-      <img class="gallery-img is-portrait" src="jay-st-photos/Common%20Areas/kitchen.jpg" alt="Kitchen with storage and island seating" onclick="openLightbox(this)">
-      <img class="gallery-img is-portrait" src="jay-st-photos/Common%20Areas/kitchen2.jpg" alt="Kitchen island and storage, angled view" onclick="openLightbox(this)">
-      <img class="gallery-img is-portrait" src="jay-st-photos/Common%20Areas/bathroom.jpg" alt="Shared bathroom with vanity and shower" onclick="openLightbox(this)">
+      <img class="gallery-img" src="jay-st-photos/Common%20Areas/living-room.jpg" alt="Living room with fireplace, accent wall, and chandelier" onclick="openLightbox(this)">
+      <img class="gallery-img" src="jay-st-photos/Common%20Areas/livingroom.jpg" alt="Living room facing the fireplace and wall-mounted TV" onclick="openLightbox(this)">
+      <img class="gallery-img" src="jay-st-photos/Common%20Areas/kitchen.jpg" alt="Kitchen with storage and island seating" onclick="openLightbox(this)">
+      <img class="gallery-img" src="jay-st-photos/Common%20Areas/kitchen2.jpg" alt="Kitchen island and storage, angled view" onclick="openLightbox(this)">
+      <img class="gallery-img" src="jay-st-photos/Common%20Areas/bathroom.jpg" alt="Shared bathroom with vanity and shower" onclick="openLightbox(this)">
     </div>
   </div>
 
@@ -259,16 +260,16 @@
     <div class="room-panel" id="panelA">
       <div class="room-detail-grid">
         <div class="room-detail"><div class="room-detail-label">Rent</div><div class="room-detail-val">$925/mo</div></div>
-        <div class="room-detail"><div class="room-detail-label">Available</div><div class="room-detail-val">Aug 1</div></div>
+        <div class="room-detail"><div class="room-detail-label">Available</div><div class="room-detail-val">Soon</div></div>
         <div class="room-detail"><div class="room-detail-label">Bathroom</div><div class="room-detail-val">Shared (1 bath / 3 bedrooms)</div></div>
         <div class="room-detail"><div class="room-detail-label">Bed size</div><div class="room-detail-val">Full-size bed + desk</div></div>
       </div>
       <div class="photo-grid">
-        <img class="gallery-img is-portrait" src="jay-st-photos/Room%20A/DCN-R-01-A%20bed-desk.jpg" alt="Room A bed and desk workspace" onclick="openLightbox(this)">
-        <img class="gallery-img is-portrait" src="jay-st-photos/Room%20A/DCN-R-01-A%20bed-desk-tv.jpg" alt="Room A desk and wall-mounted Smart TV" onclick="openLightbox(this)">
-        <img class="gallery-img is-portrait" src="jay-st-photos/Room%20A/DCN-R-01-A%20bed.jpg" alt="Room A bed" onclick="openLightbox(this)">
-        <img class="gallery-img is-portrait" src="jay-st-photos/Room%20A/DCN-R-01-A%20bed2.jpg" alt="Room A bed, alternate angle" onclick="openLightbox(this)">
-        <img class="gallery-img is-portrait" src="jay-st-photos/Room%20A/DCN-R-01-A%20bed-closet.jpg" alt="Room A double-door closet" onclick="openLightbox(this)">
+        <img class="gallery-img" src="jay-st-photos/Room%20A/DCN-R-01-A%20bed-desk.jpg" alt="Room A bed and desk workspace" onclick="openLightbox(this)">
+        <img class="gallery-img" src="jay-st-photos/Room%20A/DCN-R-01-A%20bed-desk-tv.jpg" alt="Room A desk and wall-mounted Smart TV" onclick="openLightbox(this)">
+        <img class="gallery-img" src="jay-st-photos/Room%20A/DCN-R-01-A%20bed.jpg" alt="Room A bed" onclick="openLightbox(this)">
+        <img class="gallery-img" src="jay-st-photos/Room%20A/DCN-R-01-A%20bed2.jpg" alt="Room A bed, alternate angle" onclick="openLightbox(this)">
+        <img class="gallery-img" src="jay-st-photos/Room%20A/DCN-R-01-A%20bed-closet.jpg" alt="Room A double-door closet" onclick="openLightbox(this)">
       </div>
     </div>
 
@@ -281,12 +282,12 @@
       </div>
       <p style="font-size:13px; color:var(--ink-light); margin-top:10px;"><strong>Room description:</strong> Full-size bed, desk, and Smart TV are confirmed. Natural light, exact layout, and closet/storage size aren't documented yet.</p>
       <div class="photo-grid">
-        <img class="gallery-img is-portrait" src="jay-st-photos/Room%20B/DCN-R-01-B%20Bed-Desk-TV2.jpg" alt="Room B bed, desk, and TV" onclick="openLightbox(this)">
-        <img class="gallery-img is-portrait" src="jay-st-photos/Room%20B/DCN-R-01-B%20Bed-Desk-TV.jpg" alt="Room B desk and TV setup" onclick="openLightbox(this)">
-        <img class="gallery-img is-portrait" src="jay-st-photos/Room%20B/DCN-R-01-B%20Bed-Desk.jpg" alt="Room B desk near the window" onclick="openLightbox(this)">
-        <img class="gallery-img is-portrait" src="jay-st-photos/Room%20B/DCN-R-01-B%20Drawer.jpg" alt="Room B dresser and shelving" onclick="openLightbox(this)">
-        <img class="gallery-img is-portrait" src="jay-st-photos/Room%20B/DCN-R-01-B%20Bed-Desk-Closet.jpg" alt="Room B closet entrance" onclick="openLightbox(this)">
-        <img class="gallery-img is-portrait" src="jay-st-photos/Room%20B/DCN-R-01-B%20bed.jpg" alt="Room B bed, profile shot" onclick="openLightbox(this)">
+        <img class="gallery-img" src="jay-st-photos/Room%20B/DCN-R-01-B%20Bed-Desk-TV2.jpg" alt="Room B bed, desk, and TV" onclick="openLightbox(this)">
+        <img class="gallery-img" src="jay-st-photos/Room%20B/DCN-R-01-B%20Bed-Desk-TV.jpg" alt="Room B desk and TV setup" onclick="openLightbox(this)">
+        <img class="gallery-img" src="jay-st-photos/Room%20B/DCN-R-01-B%20Bed-Desk.jpg" alt="Room B desk near the window" onclick="openLightbox(this)">
+        <img class="gallery-img" src="jay-st-photos/Room%20B/DCN-R-01-B%20Drawer.jpg" alt="Room B dresser and shelving" onclick="openLightbox(this)">
+        <img class="gallery-img" src="jay-st-photos/Room%20B/DCN-R-01-B%20Bed-Desk-Closet.jpg" alt="Room B closet entrance" onclick="openLightbox(this)">
+        <img class="gallery-img" src="jay-st-photos/Room%20B/DCN-R-01-B%20bed.jpg" alt="Room B bed, profile shot" onclick="openLightbox(this)">
       </div>
     </div>
     <div class="room-panel" id="panelC">
@@ -298,18 +299,18 @@
       </div>
       <p style="font-size:13px; color:var(--ink-light); margin-top:10px;"><strong>Room description:</strong> Full-size bed, desk, and Smart TV are confirmed. Natural light, exact layout, and closet/storage size aren't documented yet.</p>
       <div class="photo-grid">
-        <img class="gallery-img is-portrait" src="jay-st-photos/Room%20C/DCN-R-01-C%20bed-desk-drawer.jpg" alt="Room C bed, desk, and drawer storage" onclick="openLightbox(this)">
-        <img class="gallery-img is-portrait" src="jay-st-photos/Room%20C/DCN-R-01-C%20bed-desk.jpg" alt="Room C bed and desk setup" onclick="openLightbox(this)">
+        <img class="gallery-img" src="jay-st-photos/Room%20C/DCN-R-01-C%20bed-desk-drawer.jpg" alt="Room C bed, desk, and drawer storage" onclick="openLightbox(this)">
+        <img class="gallery-img" src="jay-st-photos/Room%20C/DCN-R-01-C%20bed-desk.jpg" alt="Room C bed and desk setup" onclick="openLightbox(this)">
       </div>
     </div>
   </div>
 
-  <div class="section">
+  <div class="section" id="suite-section">
     <h2>Also at This Property: A Private Suite</h2>
     <div class="room-panel active">
       <div class="room-detail-grid">
         <div class="room-detail"><div class="room-detail-label">Rent</div><div class="room-detail-val">$1,600/mo</div></div>
-        <div class="room-detail"><div class="room-detail-label">Available</div><div class="room-detail-val">Oct 1</div></div>
+        <div class="room-detail"><div class="room-detail-label">Available</div><div class="room-detail-val">Soon</div></div>
         <div class="room-detail"><div class="room-detail-label">Bathroom</div><div class="room-detail-val">Private</div></div>
         <div class="room-detail"><div class="room-detail-label">Space Type</div><div class="room-detail-val">Private Suite</div></div>
       </div>
@@ -449,6 +450,15 @@
     document.getElementById('panelA').classList.toggle('active', room === 'A');
     document.getElementById('panelB').classList.toggle('active', room === 'B');
     document.getElementById('panelC').classList.toggle('active', room === 'C');
+  }
+
+  function jumpToRoom(room) {
+    showRoom(room);
+    document.getElementById('panel' + room).scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function jumpToSuite() {
+    document.getElementById('suite-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
   var currentGallery = [];
