@@ -30,7 +30,10 @@
   .page-wrap { max-width: 780px; margin: 0 auto; padding: 0 16px 64px; }
 
   .hero { padding: 40px 0 24px; border-bottom: 1px solid var(--border); margin-bottom: 24px; }
-  .hero-logo { height: 44px; width: auto; margin-bottom: 14px; display: block; }
+  .top-logo { height: 36px; width: auto; display: block; }
+  .top-row { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; margin-bottom: 20px; }
+  .top-row .back-link { justify-self: start; }
+  .top-row .share-btn { justify-self: end; }
   .hero-eyebrow { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-light); margin-bottom: 10px; }
   .hero h1 { font-family: var(--font-head); font-size: clamp(24px, 5.5vw, 34px); font-weight: 700; line-height: 1.18; margin-bottom: 10px; }
   .hero-sub { font-size: 15px; color: var(--ink-light); margin-bottom: 14px; line-height: 1.5; max-width: 540px; }
@@ -49,6 +52,26 @@
   .btn-secondary:hover { background: var(--accent-soft); }
 
   .facts-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 28px; }
+
+  .trust-bar { display: flex; flex-wrap: wrap; gap: 10px 22px; padding: 14px 0; margin-bottom: 24px;
+               border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .trust-item { font-size: 12.5px; font-weight: 600; color: var(--ink-light); display: inline-flex; align-items: center; gap: 5px; }
+  .trust-item .check-mark { color: var(--green); font-weight: 700; }
+
+  .sticky-cta { position: fixed; bottom: 0; left: 0; right: 0; background: var(--surface); border-top: 1px solid var(--border);
+                padding: 10px 16px; display: flex; gap: 8px; justify-content: center; box-shadow: 0 -2px 8px rgba(0,0,0,.06);
+                transform: translateY(100%); transition: transform .25s ease; z-index: 998; }
+  .sticky-cta.show { transform: translateY(0); }
+  .sticky-cta .btn { flex: 1; justify-content: center; padding: 11px 10px; font-size: 13px; }
+  @media (min-width: 640px) { .sticky-cta .btn { flex: none; padding: 11px 22px; } }
+
+  .site-footer { margin-top: 32px; padding-top: 18px; border-top: 1px solid var(--border); text-align: center;
+                 font-size: 12px; color: var(--ink-light); }
+  .site-footer .back-link { justify-content: center; margin-bottom: 6px; }
+  .site-footer p { margin-top: 4px; }
+  .site-footer a { color: var(--ink-light); }
+  .site-footer a:hover { color: var(--accent); }
+  .footer-nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 14px; margin-bottom: 8px; font-size: 12.5px; }
   .fact-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--card-radius); padding: 14px 12px; text-align: center; }
   .fact-label { font-size: 10.5px; text-transform: uppercase; letter-spacing: .06em; color: var(--ink-light); margin-bottom: 6px; }
   .fact-val { font-size: 16px; font-weight: 700; }
@@ -188,11 +211,11 @@
 
   <div class="top-row">
     <a class="back-link" href="index.html">← Back to Listings</a>
+    <a href="index.html" aria-label="MIT Secure Stay home"><img src="assets/logo.jpg" alt="MIT Secure Stay logo" class="top-logo"></a>
     <button class="share-btn" onclick="shareListing()" aria-label="Share this listing">🔗 Share</button>
   </div>
 
   <div class="hero">
-    <img src="assets/mit-logo.png" alt="MIT Secure Stay logo" class="hero-logo">
     <div class="hero-eyebrow">MIT Secure Stay · 5521 Jay St NE · Washington, DC 20019</div>
     <h1>A private room, fully furnished — ready when you are.</h1>
     <p class="hero-sub">Two rooms available now, plus a private suite opening soon — a screened, all-inclusive shared home in DC's Deanwood neighborhood, with three Metro stations within walking distance. Built for traveling nurses, contractors, relocators, and anyone landing in DC on a deadline.</p>
@@ -206,6 +229,13 @@
       <a class="btn btn-secondary" href="https://forms.gle/Km7K7EZvTzJMK62M9" target="_blank" rel="noopener">Start Pre-Screening</a>
     </div>
     <p class="tour-policy">Tours are scheduled after the Tenant Pre-Screening Questionnaire is completed — start there first.</p>
+  </div>
+
+  <div class="trust-bar">
+    <div class="trust-item"><span class="check-mark">✓</span> Utilities Included</div>
+    <div class="trust-item"><span class="check-mark">✓</span> Fast Approval</div>
+    <div class="trust-item"><span class="check-mark">✓</span> Professional Management</div>
+    <div class="trust-item"><span class="check-mark">✓</span> Secure Online Application</div>
   </div>
 
   <div class="facts-strip">
@@ -444,6 +474,17 @@
     Walk Score® and Transit Score® are registered trademarks of Walk Score, sourced from <a href="https://www.walkscore.com" target="_blank" rel="noopener">walkscore.com</a>. Commute times are estimates and vary by time of day. Questions? Email <a href="mailto:mitsecurestay@gmail.com">mitsecurestay@gmail.com</a>.
   </div>
 
+  <footer class="site-footer">
+    <div class="footer-nav">
+      <a href="index.html">Available Housing</a>
+      <a href="about.html">About</a>
+      <a href="faq.html">FAQ</a>
+      <a href="tenant-qualification-standards.html">Qualification Standards</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <p>&copy; 2026 MIT Secure Stay. All rights reserved.</p>
+  </footer>
+
   <div class="lightbox-overlay" id="lightbox">
     <button class="lightbox-close" onclick="closeLightbox(event)">×</button>
     <button class="lightbox-nav lightbox-prev" onclick="prevImage(event)">‹</button>
@@ -454,9 +495,26 @@
 
   <div class="toast" id="toast"></div>
 
+  <div class="sticky-cta" id="stickyCta">
+    <a class="btn btn-primary" href="https://calendly.com/mitsecurestay" target="_blank" rel="noopener">📅 Schedule a Tour</a>
+    <a class="btn btn-secondary" href="https://forms.gle/Km7K7EZvTzJMK62M9" target="_blank" rel="noopener">Start Pre-Screening</a>
+  </div>
+
 </div>
 
 <script>
+  (function () {
+    var heroCta = document.querySelector('.hero .cta-row');
+    var sticky = document.getElementById('stickyCta');
+    if (!heroCta || !sticky) return;
+    function onScroll() {
+      var pastHero = heroCta.getBoundingClientRect().bottom < 0;
+      sticky.classList.toggle('show', pastHero);
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  })();
+
   function shareListing() {
     var shareData = { title: document.title, text: 'Check out this listing from MIT Secure Stay', url: window.location.href };
     if (navigator.share) {
