@@ -269,7 +269,7 @@
     <div class="avail-label now">Available Today</div>
     <div class="avail-row is-now" onclick="jumpToRoom('Front','C')"><span class="avail-name">Front Unit — Room C</span><span class="avail-price">$900/mo</span></div>
     <div class="avail-row is-now" onclick="jumpToRoom('Lower','F')"><span class="avail-name">Lower Level — Room F</span><span class="avail-price">$900/mo</span></div>
-    <div class="avail-row is-now" onclick="jumpToRoom('Lower','H')"><span class="avail-name">Lower Level — Room H</span><span class="avail-price">$850/mo</span></div>
+    <div class="avail-row is-now" onclick="jumpToRoom('Lower','H')"><span class="avail-name">Lower Level — Room H</span><span class="avail-price">$800/mo</span></div>
     <div class="avail-label soon">Coming Soon</div>
     <div class="avail-row is-soon" onclick="jumpToRoom('Front','A')"><span class="avail-name">Front Unit — Room A</span><span class="avail-price">$850/mo</span></div>
     <div class="avail-row is-soon" onclick="jumpToRoom('Patio','D')"><span class="avail-name">Patio Unit — Room D</span><span class="avail-price">$950/mo</span></div>
@@ -432,11 +432,14 @@
 
     <div class="room-panel" id="panelLower-H">
       <div class="room-detail-grid">
-        <div class="room-detail"><div class="room-detail-label">Rent</div><div class="room-detail-val">$850/mo</div></div>
+        <div class="room-detail"><div class="room-detail-label">Rent</div><div class="room-detail-val">$800/mo</div></div>
         <div class="room-detail"><div class="room-detail-label">Available</div><div class="room-detail-val">Now</div></div>
         <div class="room-detail"><div class="room-detail-label">Bathroom</div><div class="room-detail-val">Shared</div></div>
       </div>
-      <p style="font-size:13px; color:var(--ink-light); margin-top:10px; font-style:italic;">Photos and full room description for Room H coming soon.</p>
+      <div class="photo-grid">
+        <img class="gallery-img" src="59th-ave-photos/basement-unit/Room%20H/bed-desk.jpg" alt="Room H bed and desk setup" onclick="openLightbox(this)">
+        <img class="gallery-img" src="59th-ave-photos/basement-unit/Room%20H/bed.jpg" alt="Room H bed" onclick="openLightbox(this)">
+      </div>
     </div>
 
     <details class="future-accordion">
