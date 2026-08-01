@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>House Rules | MIT Secure Stay</title>
+<style>
+  :root {
+    --ink: #12110F; --ink-light: #5A5751; --bg: #F7F6F3; --surface: #FFFFFF; --border: #E2DFD8;
+    --accent: #1B4FD8; --accent-soft: #EEF2FC; --green: #1A7A4A; --green-soft: #EAF4EE;
+    --amber: #C48A00; --amber-soft: #FBF3E1; --pill-radius: 6px; --card-radius: 10px;
+    --shadow: 0 1px 4px rgba(0,0,0,.08); --font-head: 'Georgia', serif;
+    --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 16px; scroll-behavior: smooth; }
+  body { font-family: var(--font-body); background: var(--bg); color: var(--ink); min-height: 100vh; }
+  a { color: var(--accent); }
+  .page-wrap { max-width: 720px; margin: 0 auto; padding: 0 16px 64px; }
+  .back-link { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; color: var(--ink-light); text-decoration: none; }
+  .back-link:hover { color: var(--accent); }
+  .top-row { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; margin: 20px 0; }
+  .top-row .back-link { justify-self: start; }
+  .top-logo { height: 36px; width: auto; display: block; justify-self: center; }
+  .page-header { margin-bottom: 24px; }
+  .page-header h1 { font-family: var(--font-head); font-size: clamp(26px, 5vw, 34px); font-weight: 700; }
+  .page-header p { color: var(--ink-light); font-size: 14px; margin-top: 8px; line-height: 1.5; }
+  .criteria-item { background: var(--surface); border: 1px solid var(--border); border-radius: var(--card-radius);
+                    padding: 16px 18px; margin-bottom: 12px; display: flex; gap: 14px; align-items: flex-start; }
+  .criteria-item .num { font-family: var(--font-head); font-size: 18px; font-weight: 700; color: var(--accent); flex-shrink: 0; width: 22px; }
+  .criteria-item h2 { font-size: 15px; font-weight: 700; margin-bottom: 6px; }
+  .criteria-item ul { padding-left: 18px; }
+  .criteria-item li { font-size: 14px; line-height: 1.6; color: var(--ink-light); margin-bottom: 2px; }
+  .note-card { background: var(--accent-soft); border: 1px solid var(--border); border-radius: var(--card-radius);
+               padding: 16px 18px; margin: 20px 0; font-size: 13.5px; line-height: 1.6; }
+  .note-card strong { display: block; margin-bottom: 4px; font-size: 14px; }
+  .section { margin: 28px 0; }
+  .section h2 { font-family: var(--font-head); font-size: 18px; font-weight: 700; margin-bottom: 10px; }
+  .section p { font-size: 14px; line-height: 1.65; color: var(--ink); }
+  .site-footer { margin-top: 32px; padding-top: 18px; border-top: 1px solid var(--border); text-align: center; font-size: 12px; color: var(--ink-light); }
+  .site-footer p { margin-top: 4px; }
+  .site-footer a { color: var(--ink-light); }
+  .site-footer a:hover { color: var(--accent); }
+  .footer-nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 14px; margin-bottom: 8px; font-size: 12.5px; }
+</style>
+</head>
+<body>
+<div class="page-wrap">
+
+  <div class="top-row">
+    <a class="back-link" href="index.html">← Back to Listings</a>
+    <a href="index.html" aria-label="MIT Secure Stay home"><img src="assets/logo.jpg" alt="MIT Secure Stay logo" class="top-logo"></a>
+    <span></span>
+  </div>
+
+  <div class="page-header">
+    <h1>House Rules</h1>
+    <p>What every tenant agrees to when they move in. These keep shared homes clean, quiet, and respectful for everyone.</p>
+  </div>
+
+  <div class="criteria-item">
+    <span class="num">1</span>
+    <div><h2>Kitchen</h2>
+      <ul>
+        <li>Wash dishes immediately after use</li>
+        <li>Wipe down counters, stovetop, fridge, and appliances after each use</li>
+        <li>Use cutting boards — never cut directly on countertops</li>
+        <li>Use the sink strainer; dump food particles in the garbage</li>
+        <li>No leftover food in the fridge after a week</li>
+        <li>Respect roommates' assigned kitchen space</li>
+        <li>Use the range fan and open windows when cooking heavy meals</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="criteria-item">
+    <span class="num">2</span>
+    <div><h2>Trash & Recycling</h2>
+      <ul>
+        <li>Tenants alternate weeks for trash/recycling and cleaning duties</li>
+        <li>Trash/recycling day is Friday morning</li>
+        <li>Keep outdoor areas clean</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="criteria-item">
+    <span class="num">3</span>
+    <div><h2>Bathroom</h2>
+      <ul>
+        <li>Keep the bathroom clean and tidy after use</li>
+        <li>Tenants alternate weeks for bathroom cleaning</li>
+        <li>Be mindful of others' privacy and time during peak hours</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="criteria-item">
+    <span class="num">4</span>
+    <div><h2>Laundry</h2>
+      <ul>
+        <li>Remove your laundry promptly so machines are free for others</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="criteria-item">
+    <span class="num">5</span>
+    <div><h2>Common Areas</h2>
+      <ul>
+        <li>Keep shared spaces neat and presentable</li>
+        <li>No sleeping overnight in the living room</li>
+        <li>No gaming in living rooms</li>
+        <li>Don't monopolize common areas for extended personal use</li>
+        <li>Common and outdoor areas may not be used for storage</li>
+        <li>No decorative changes to common areas</li>
+        <li>Limit guests' use of common areas</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="criteria-item">
+    <span class="num">6</span>
+    <div><h2>Bedrooms</h2>
+      <ul>
+        <li>No food or drinks left in bedrooms</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="criteria-item">
+    <span class="num">7</span>
+    <div><h2>Safety & Security</h2>
+      <ul>
+        <li>Lock doors and turn off lights/electronics when leaving the house</li>
+        <li>Report maintenance issues promptly</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="criteria-item">
+    <span class="num">8</span>
+    <div><h2>General Conduct — applies to all properties</h2>
+      <ul>
+        <li>No smoking, indoors or outdoors</li>
+        <li>No pets</li>
+        <li>No parties or events</li>
+        <li>Quiet hours: 11:00 PM – 6:30 AM</li>
+        <li>No overnight guests without advance permission</li>
+        <li>Follow the assigned cleaning/trash schedule</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="note-card">
+    <strong>Private living spaces</strong>
+    Units with a private, self-contained entrance follow only the general conduct and safety rules above — there's no shared kitchen/bathroom rotation since the space isn't shared.
+  </div>
+
+  <div class="section">
+    <h2>Why We Publish This</h2>
+    <p>Every tenant agrees to the same standard, so expectations are clear from day one — no surprises after move-in. Rules exist to keep the home clean, quiet, and respectful for everyone living there.</p>
+  </div>
+
+  <div class="section">
+    <h2>Questions?</h2>
+    <p>If you have questions about how these apply to a specific property, email us at <a href="mailto:mitsecurestay@gmail.com">mitsecurestay@gmail.com</a>.</p>
+  </div>
+
+  <footer class="site-footer">
+    <div class="footer-nav">
+      <a href="index.html">Available Housing</a>
+      <a href="about.html">About</a>
+      <a href="faq.html">FAQ</a>
+      <a href="tenant-qualification-standards.html">Qualification Standards</a>
+      <a href="house-rules.html">House Rules</a>
+      <a href="contact.html">Contact</a>
+      <a href="privacy-policy.html">Privacy Policy</a>
+      <a href="terms-of-use.html">Terms of Use</a>
+    </div>
+    <p>&copy; 2026 MIT Secure Stay. All rights reserved.</p>
+  </footer>
+
+</div>
+</body>
+</html>
