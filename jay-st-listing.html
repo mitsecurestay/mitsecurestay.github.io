@@ -220,8 +220,8 @@
   <div class="hero">
     <div class="hero-eyebrow">MIT Secure Stay · 5521 Jay St NE · Washington, DC 20019</div>
     <h1>A private room, fully furnished — ready when you are.</h1>
-    <p class="hero-sub">Two rooms available now, plus a private suite opening soon — a screened, all-inclusive shared home in DC's Deanwood neighborhood, with three Metro stations within walking distance. Built for traveling nurses, contractors, relocators, and anyone landing in DC on a deadline.</p>
-    <p class="last-updated">Last updated: June 2026</p>
+    <p class="hero-sub">Two furnished rooms plus a private lower-level suite — with its own kitchen, bathroom, laundry, and entrances — available now in a screened, all-inclusive shared home in DC's Deanwood neighborhood, with three Metro stations within walking distance. Built for traveling nurses, contractors, relocators, and anyone landing in DC on a deadline.</p>
+    <p class="last-updated">Last updated: October 2026</p>
     <div class="price-row">
       <span class="price-num">$925</span>
       <span class="price-sub">/ month, per room — utilities included</span>
@@ -242,7 +242,7 @@
 
   <div class="facts-strip">
     <div class="fact-card"><div class="fact-label">Rent</div><div class="fact-val">$925/mo</div></div>
-    <div class="fact-card"><div class="fact-label">Rooms Open</div><div class="fact-val">B &amp; C</div></div>
+    <div class="fact-card"><div class="fact-label">Open Now</div><div class="fact-val">B, C &amp; Suite</div></div>
     <div class="fact-card"><div class="fact-label">Move-in</div><div class="fact-val accent">Now</div></div>
     <div class="fact-card"><div class="fact-label">Transit Score</div><div class="fact-val accent">55</div></div>
   </div>
@@ -252,9 +252,9 @@
     <div class="avail-label now">Available Today</div>
     <div class="avail-row is-now" onclick="jumpToRoom('B')"><span class="avail-name">Room B</span><span class="avail-price">$925/mo</span></div>
     <div class="avail-row is-now" onclick="jumpToRoom('C')"><span class="avail-name">Room C</span><span class="avail-price">$925/mo</span></div>
+    <div class="avail-row is-now" onclick="jumpToSuite()"><span class="avail-name">Private Lower-Level Suite</span><span class="avail-price">$1,800/mo</span></div>
     <div class="avail-label soon">Coming Soon</div>
     <div class="avail-row is-soon" onclick="jumpToRoom('A')"><span class="avail-name">Room A</span><span class="avail-price">$925/mo</span></div>
-    <div class="avail-row is-soon" onclick="jumpToSuite()"><span class="avail-name">Private Suite</span><span class="avail-price">$1,600/mo</span></div>
   </div>
 
   <div class="section">
@@ -278,6 +278,7 @@
       <div class="know-card"><div class="k-label">Occupancy</div>Single occupancy per room — one tenant, one room, no exceptions</div>
       <div class="know-card"><div class="k-label">Shared spaces</div>Kitchen, living room — see "What's included" above</div>
       <div class="know-card"><div class="k-label">Household size</div>Up to 3 residents across the shared rooms</div>
+      <div class="know-card"><div class="k-label">Lower-level suite</div>A separate private space — its own kitchen, bathroom, laundry, and front and rear entrances. Not shared with the upstairs rooms.</div>
     </div>
   </div>
 
@@ -350,13 +351,29 @@
   </div>
 
   <div class="section" id="suite-section">
-    <h2>Also at This Property: A Private Suite</h2>
-    <div class="room-panel active">
+    <h2>Also at This Property: Private Lower-Level Suite</h2>
+    <p class="section-note">The entire lower level of the home — open concept, fully furnished, and move-in ready. Come and go through your own entrance: no shared kitchen, no shared bathroom, no laundry schedule. Utilities are included.</p>
+    <div class="room-panel active" id="panelSuite">
       <div class="room-detail-grid">
-        <div class="room-detail"><div class="room-detail-label">Rent</div><div class="room-detail-val">$1,600/mo</div></div>
-        <div class="room-detail"><div class="room-detail-label">Available</div><div class="room-detail-val">Soon</div></div>
+        <div class="room-detail"><div class="room-detail-label">Rent</div><div class="room-detail-val">$1,800/mo</div></div>
+        <div class="room-detail"><div class="room-detail-label">Available</div><div class="room-detail-val">Now</div></div>
+        <div class="room-detail"><div class="room-detail-label">Space Type</div><div class="room-detail-val">Private Suite · Lower Level</div></div>
+        <div class="room-detail"><div class="room-detail-label">Layout</div><div class="room-detail-val">Open concept</div></div>
+        <div class="room-detail"><div class="room-detail-label">Bed size</div><div class="room-detail-val">Queen-size bed</div></div>
+        <div class="room-detail"><div class="room-detail-label">Furnishing</div><div class="room-detail-val">Fully furnished</div></div>
+        <div class="room-detail"><div class="room-detail-label">Utilities</div><div class="room-detail-val">Included</div></div>
         <div class="room-detail"><div class="room-detail-label">Bathroom</div><div class="room-detail-val">Private</div></div>
-        <div class="room-detail"><div class="room-detail-label">Space Type</div><div class="room-detail-val">Private Suite</div></div>
+        <div class="room-detail"><div class="room-detail-label">Kitchen</div><div class="room-detail-val">Private</div></div>
+        <div class="room-detail"><div class="room-detail-label">Laundry</div><div class="room-detail-val">Private</div></div>
+        <div class="room-detail" style="grid-column:1 / -1;"><div class="room-detail-label">Entrances</div><div class="room-detail-val">Private — front &amp; rear</div></div>
+      </div>
+      <div class="photo-grid" style="margin-top:14px;">
+        <img class="gallery-img" src="jay-st-photos/271375403_6705166209555006_6775832027841103696_n.jpg" alt="Open-concept suite with sectional sofa, coffee table, and full kitchen behind" onclick="openLightbox(this)">
+        <img class="gallery-img" src="jay-st-photos/271264080_4447050098751263_4545665601643366706_n.jpg" alt="Open layout showing the queen bed, kitchen island with stools, and living area" onclick="openLightbox(this)">
+        <img class="gallery-img" src="jay-st-photos/271280796_5072169196140705_3042002142528992063_n.jpg" alt="Private kitchen with stainless steel appliances and gray cabinets" onclick="openLightbox(this)">
+        <img class="gallery-img" src="jay-st-photos/271373315_4522695741175225_8465299293558394954_n.jpg" alt="Queen bed with white bedding beside a window" onclick="openLightbox(this)">
+        <img class="gallery-img" src="jay-st-photos/271240594_4898488313549467_5897753938445783478_n.jpg" alt="Private bathroom with walk-in shower and marble-look tile" onclick="openLightbox(this)">
+        <img class="gallery-img" src="jay-st-photos/271249216_4728982823848040_5785768171780066298_n.jpg" alt="Private stacked washer and dryer in the suite" onclick="openLightbox(this)">
       </div>
     </div>
   </div>
@@ -437,7 +454,7 @@
     </details>
     <details class="accordion">
       <summary>Entry &amp; Privacy</summary>
-      <div class="accordion-body">The landlord may enter common areas with 24 hours' notice. Your private room requires your consent to enter, except in an emergency.</div>
+      <div class="accordion-body">The landlord may enter common areas with 24 hours' notice. Your private room or suite requires your consent to enter, except in an emergency.</div>
     </details>
   </div>
 
@@ -460,7 +477,7 @@
     <h2>How to Apply</h2>
     <div class="steps">
       <div class="step"><span class="step-num">1</span><div class="step-body"><b>Pre-screen</b><span>Quick form — move-in date, budget, length of stay.</span></div></div>
-      <div class="step"><span class="step-num">2</span><div class="step-body"><b>Tour</b><span>In person or virtual — see Room A, B, or C before you commit.</span></div></div>
+      <div class="step"><span class="step-num">2</span><div class="step-body"><b>Tour</b><span>In person or virtual — see the room or suite before you commit.</span></div></div>
       <div class="step"><span class="step-num">3</span><div class="step-body"><b>Apply &amp; screen</b><span>Formal application plus background, credit, and eviction check.</span></div></div>
       <div class="step"><span class="step-num">4</span><div class="step-body"><b>Sign &amp; move in</b><span>Digital lease, deposit collected, the room is yours.</span></div></div>
     </div>
