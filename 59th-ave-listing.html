@@ -238,9 +238,9 @@
     <div class="hero-eyebrow">MIT Secure Stay · 5311 59th Ave · Riverdale, MD 20737</div>
     <h1>Three private households, one Riverdale address.</h1>
     <p class="hero-sub">This property is split into three separate, non-connected units — Front, Patio, and Lower Level — each its own small household. Furnished, all-inclusive, on the Green Line corridor.</p>
-    <p class="last-updated">Last updated: June 2026</p>
+    <p class="last-updated">Last updated: November 2026</p>
     <div class="price-row">
-      <span class="price-num">$800–$950</span>
+      <span class="price-num">$850–$900</span>
       <span class="price-sub">/ month, per room — utilities included</span>
     </div>
     <div class="cta-row">
@@ -258,7 +258,7 @@
   </div>
 
   <div class="facts-strip">
-    <div class="fact-card"><div class="fact-label">Rent Range</div><div class="fact-val">$800–$950/mo</div></div>
+    <div class="fact-card"><div class="fact-label">Rent Range</div><div class="fact-val">$850–$900/mo</div></div>
     <div class="fact-card"><div class="fact-label">Structure</div><div class="fact-val">3 Separate Units</div></div>
     <div class="fact-card"><div class="fact-label">Available Now</div><div class="fact-val accent">1 Room</div></div>
     <div class="fact-card"><div class="fact-label">Bathroom</div><div class="fact-val">Shared</div></div>
@@ -267,8 +267,11 @@
   <div class="section">
     <h2>Current Availability</h2>
     <div class="avail-label now">Available Today</div>
-    <div class="avail-row is-now" onclick="jumpToRoom('Front','A')"><span class="avail-name">Front Unit — Room A</span><span class="avail-price">$850/mo</span></div>
-    <p class="section-note" style="margin-top:12px;">All other rooms in the Front, Patio, and Lower Level units are currently leased. Complete the pre-screening form and we'll reach out when one opens up.</p>
+    <div class="avail-row is-now" onclick="document.getElementById('unitFront').scrollIntoView({ behavior: 'smooth', block: 'start' })"><span class="avail-name">Front Unit — Room B</span><span class="avail-price">$900/mo</span></div>
+    <div class="avail-label soon">Coming Soon</div>
+    <div class="avail-row is-soon" onclick="jumpToRoom('Front','C')"><span class="avail-name">Front Unit — Room C</span><span class="avail-price">$900/mo</span></div>
+    <div class="avail-row is-soon" onclick="jumpToRoom('Lower','F')"><span class="avail-name">Lower Level — Room F</span><span class="avail-price">$850/mo</span></div>
+    <p class="section-note" style="margin-top:12px;">All other rooms in the Front, Patio, and Lower Level units are currently leased. Complete the pre-screening form and we'll reach out about the open and upcoming rooms.</p>
   </div>
 
   <div class="section">
@@ -285,7 +288,7 @@
     <p class="policy-note">Single occupancy per room across all units — one tenant, one room, no exceptions.</p>
   </div>
 
-  <div class="unit-block">
+  <div class="unit-block" id="unitFront">
     <div class="unit-heading">Front Unit — 3BR / 1BA</div>
     <div class="unit-sub">Rooms A, B, C · its own small household, not shared with the other two units · Up to 3 residents</div>
 
@@ -310,8 +313,8 @@
 
     <div class="room-panel active" id="panelFront-A">
       <div class="room-detail-grid">
-        <div class="room-detail"><div class="room-detail-label">Rent</div><div class="room-detail-val">$850/mo</div></div>
-        <div class="room-detail"><div class="room-detail-label">Available</div><div class="room-detail-val">Now</div></div>
+        <div class="room-detail"><div class="room-detail-label">Rent</div><div class="room-detail-val">$825/mo</div></div>
+        <div class="room-detail"><div class="room-detail-label">Available</div><div class="room-detail-val">Leased</div></div>
         <div class="room-detail"><div class="room-detail-label">Bathroom</div><div class="room-detail-val">Shared</div></div>
       </div>
       <div class="photo-grid">
@@ -324,7 +327,7 @@
     <div class="room-panel" id="panelFront-C">
       <div class="room-detail-grid">
         <div class="room-detail"><div class="room-detail-label">Rent</div><div class="room-detail-val">$900/mo</div></div>
-        <div class="room-detail"><div class="room-detail-label">Available</div><div class="room-detail-val">Leased</div></div>
+        <div class="room-detail"><div class="room-detail-label">Available</div><div class="room-detail-val">Soon</div></div>
         <div class="room-detail"><div class="room-detail-label">Bathroom</div><div class="room-detail-val">Shared</div></div>
       </div>
       <div class="photo-grid">
@@ -413,8 +416,8 @@
 
     <div class="room-panel active" id="panelLower-F">
       <div class="room-detail-grid">
-        <div class="room-detail"><div class="room-detail-label">Rent</div><div class="room-detail-val">$900/mo</div></div>
-        <div class="room-detail"><div class="room-detail-label">Available</div><div class="room-detail-val">Leased</div></div>
+        <div class="room-detail"><div class="room-detail-label">Rent</div><div class="room-detail-val">$850/mo</div></div>
+        <div class="room-detail"><div class="room-detail-label">Available</div><div class="room-detail-val">Soon</div></div>
         <div class="room-detail"><div class="room-detail-label">Bathroom</div><div class="room-detail-val">Shared</div></div>
       </div>
       <div class="photo-grid">
@@ -550,7 +553,7 @@
 
   <div class="cta-bottom">
     <h3>Ready to see it for yourself?</h3>
-    <p>Front Unit Room A is ready now — tours run in person or virtually.</p>
+    <p>Front Unit Room B is open now, with two more rooms coming soon — tours run in person or virtually.</p>
     <div class="cta-row" style="justify-content:center;">
       <a class="btn btn-primary" href="https://calendly.com/mitsecurestay" target="_blank" rel="noopener">📅 Schedule a Tour</a>
       <a class="btn btn-secondary" href="https://forms.gle/Km7K7EZvTzJMK62M9" target="_blank" rel="noopener">Start Pre-Screening</a>
