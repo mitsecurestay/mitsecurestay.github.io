@@ -267,7 +267,7 @@
   <div class="section">
     <h2>Current Availability</h2>
     <div class="avail-label now">Available Today</div>
-    <div class="avail-row is-now" onclick="document.getElementById('unitFront').scrollIntoView({ behavior: 'smooth', block: 'start' })"><span class="avail-name">Front Unit — Room B</span><span class="avail-price">$900/mo</span></div>
+    <div class="avail-row is-now" onclick="jumpToRoom('Front','B')"><span class="avail-name">Front Unit — Room B</span><span class="avail-price">$900/mo</span></div>
     <div class="avail-label soon">Coming Soon</div>
     <div class="avail-row is-soon" onclick="jumpToRoom('Front','C')"><span class="avail-name">Front Unit — Room C</span><span class="avail-price">$900/mo</span></div>
     <div class="avail-row is-soon" onclick="jumpToRoom('Lower','F')"><span class="avail-name">Lower Level — Room F</span><span class="avail-price">$850/mo</span></div>
@@ -288,7 +288,7 @@
     <p class="policy-note">Single occupancy per room across all units — one tenant, one room, no exceptions.</p>
   </div>
 
-  <div class="unit-block" id="unitFront">
+  <div class="unit-block">
     <div class="unit-heading">Front Unit — 3BR / 1BA</div>
     <div class="unit-sub">Rooms A, B, C · its own small household, not shared with the other two units · Up to 3 residents</div>
 
@@ -307,11 +307,12 @@
 
     <div class="subsection-label">Rooms</div>
     <div class="room-toggle">
-      <button class="room-btn active" id="btnFront-A" onclick="showRoom('Front','A')">Room A</button>
+      <button class="room-btn" id="btnFront-A" onclick="showRoom('Front','A')">Room A</button>
+      <button class="room-btn active" id="btnFront-B" onclick="showRoom('Front','B')">Room B</button>
       <button class="room-btn" id="btnFront-C" onclick="showRoom('Front','C')">Room C</button>
     </div>
 
-    <div class="room-panel active" id="panelFront-A">
+    <div class="room-panel" id="panelFront-A">
       <div class="room-detail-grid">
         <div class="room-detail"><div class="room-detail-label">Rent</div><div class="room-detail-val">$825/mo</div></div>
         <div class="room-detail"><div class="room-detail-label">Available</div><div class="room-detail-val">Leased</div></div>
@@ -322,6 +323,17 @@
         <img class="gallery-img" src="59th-ave-photos/front-unit/Room%20A/RL-R-01-A%20TV.jpg" alt="Room A wall-mounted TV" onclick="openLightbox(this)">
         <img class="gallery-img brightened-gallery-img" src="59th-ave-photos/front-unit/Room%20A/rooma-pic.jpg" alt="Room A workspace view" onclick="openLightbox(this)">
         <img class="gallery-img brightened-gallery-img" src="59th-ave-photos/front-unit/Room%20A/rooma-pic1.jpg" alt="Room A comfort styled bed view" onclick="openLightbox(this)">
+      </div>
+    </div>
+    <div class="room-panel active" id="panelFront-B">
+      <div class="room-detail-grid">
+        <div class="room-detail"><div class="room-detail-label">Rent</div><div class="room-detail-val">$900/mo</div></div>
+        <div class="room-detail"><div class="room-detail-label">Available</div><div class="room-detail-val">Now</div></div>
+        <div class="room-detail"><div class="room-detail-label">Bathroom</div><div class="room-detail-val">Shared</div></div>
+      </div>
+      <div class="photo-grid">
+        <img class="gallery-img" src="59th-ave-photos/front-unit/Room%20B/20220812_105240.jpg" alt="Room B bedroom with two windows and queen bed" onclick="openLightbox(this)">
+        <img class="gallery-img" src="59th-ave-photos/front-unit/Room%20B/20220812_105312.jpg" alt="Room B bedroom, alternate angle with ceiling fan" onclick="openLightbox(this)">
       </div>
     </div>
     <div class="room-panel" id="panelFront-C">
@@ -625,7 +637,7 @@
     setTimeout(function () { toast.classList.remove('show'); }, 2200);
   }
 
-  var unitRooms = { Front: ['A','C'], Patio: ['D','E'], Lower: ['F','H'] };
+  var unitRooms = { Front: ['A','B','C'], Patio: ['D','E'], Lower: ['F','H'] };
 
   function showRoom(unit, letter) {
     unitRooms[unit].forEach(function (l) {
