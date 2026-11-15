@@ -165,6 +165,7 @@
   .commute-card .head { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-light); padding: 10px 0 4px; }
   .commute-row { display: grid; grid-template-columns: 1fr auto; gap: 2px 12px; padding: 10px 0; border-top: 1px solid var(--border); font-size: 14px; }
   .commute-row .t { font-weight: 700; color: var(--accent); white-space: nowrap; text-align: right; }
+  .commute-row .t .dr { display: block; font-weight: 500; color: var(--ink-light); font-size: 13px; }
   .commute-row .via { grid-column: 1 / -1; font-size: 12px; color: var(--ink-light); }
 
   .fit-list { display: grid; gap: 10px; }
@@ -402,11 +403,11 @@
     </div>
     <div class="commute-card">
       <div class="head">Popular commutes · typical door-to-door times</div>
-      <div class="commute-row"><span><b>Hospital:</b> UM Capital Region Medical Center</span><span class="t">32–45 min</span><span class="via">Walk, C31 bus, then Blue Line to Downtown Largo</span></div>
-      <div class="commute-row"><span><b>Federal:</b> Department of Justice</span><span class="t">47–59 min</span><span class="via">Walk, C31 bus, then Blue Line to Federal Triangle</span></div>
-      <div class="commute-row"><span><b>School:</b> George Washington University</span><span class="t">48–56 min</span><span class="via">Walk, C31 bus, then Blue Line to Foggy Bottom–GWU</span></div>
+      <div class="commute-row"><span><b>Hospital:</b> UM Capital Region Medical Center</span><span class="t">32–45 min transit<span class="dr">12–22 min drive</span></span><span class="via">Walk, C31 bus, then Blue Line to Downtown Largo</span></div>
+      <div class="commute-row"><span><b>Federal:</b> Department of Justice</span><span class="t">47–59 min transit<span class="dr">20–40 min drive</span></span><span class="via">Walk, C31 bus, then Blue Line to Federal Triangle</span></div>
+      <div class="commute-row"><span><b>School:</b> George Washington University</span><span class="t">48–56 min transit<span class="dr">24–45 min drive</span></span><span class="via">Walk, C31 bus, then Blue Line to Foggy Bottom–GWU</span></div>
           </div>
-    <p class="commute-note">Commute times: Google Maps transit directions, door to door, for a weekday 8:00 AM departure. Nearby drive times: RouteCheck. All are typical estimates, not guarantees — use RouteCheck to check your own route.</p>
+    <p class="commute-note">Commute times: Google Maps, door to door, for a weekday 8:00 AM departure, by transit and by car. Nearby drive times: RouteCheck. All are typical estimates, not guarantees — use RouteCheck to check your own route.</p>
     <div class="transit-card">
       <div class="label">Walk Score 38 · Transit Score 55</div>
       <p>From Capitol Heights, the Blue/Silver Line runs direct to Capitol South, Federal Triangle, Foggy Bottom and Downtown Largo.</p>
