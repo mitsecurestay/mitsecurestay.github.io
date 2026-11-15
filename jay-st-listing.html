@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>5521 Jay St NE — Private Furnished Room | MIT Secure Stay</title>
+<title>Deanwood, Northeast DC — Private Furnished Room | MIT Secure Stay</title>
 <style>
   :root {
     --ink:        #12110F;
@@ -143,8 +143,6 @@
     .lightbox-nav { width: 38px; height: 38px; font-size: 20px; }
   }
 
-  .map-embed { border-radius: var(--card-radius); border: 1px solid var(--border); overflow: hidden; margin-bottom: 14px; }
-  .map-embed iframe { display: block; width: 100%; height: 280px; border: 0; }
   .transit-card { background: var(--accent); color: #fff; border-radius: var(--card-radius); padding: 18px 20px; }
   .transit-card .label { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; opacity: .8; margin-bottom: 6px; }
   .transit-card p { font-size: 14px; line-height: 1.55; opacity: .95; margin-bottom: 12px; }
@@ -153,6 +151,21 @@
   .score-item b { font-size: 20px; display: block; }
   .transit-card a.maps-btn { display: inline-flex; align-items: center; gap: 6px; padding: 9px 16px; background: #fff;
                               color: var(--accent); border-radius: var(--pill-radius); font-size: 13px; font-weight: 700; text-decoration: none; }
+  .map-embed { border-radius: var(--card-radius); border: 1px solid var(--border); overflow: hidden; margin-bottom: 14px; }
+  .map-embed iframe { display: block; width: 100%; height: 280px; border: 0; }
+  .nearby-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
+  .nearby-item { background: var(--surface); border: 1px solid var(--border); border-radius: var(--card-radius); padding: 12px 14px; }
+  .nearby-item .k { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-light); margin-bottom: 4px; }
+  .nearby-item .v { font-size: 14px; font-weight: 700; line-height: 1.35; }
+  .nearby-item .m { font-size: 13px; color: var(--accent); font-weight: 600; margin-top: 2px; }
+  .nearby-item.wide { grid-column: 1 / -1; }
+  .commute-note { font-size: 12px; color: var(--ink-light); margin: -4px 0 14px; line-height: 1.5; }
+  .map-link { display: inline-block; font-size: 13px; font-weight: 600; color: var(--accent); text-decoration: none; margin: -6px 0 14px; }
+  .commute-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--card-radius); padding: 4px 14px; margin-bottom: 8px; }
+  .commute-card .head { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-light); padding: 10px 0 4px; }
+  .commute-row { display: grid; grid-template-columns: 1fr auto; gap: 2px 12px; padding: 10px 0; border-top: 1px solid var(--border); font-size: 14px; }
+  .commute-row .t { font-weight: 700; color: var(--accent); white-space: nowrap; text-align: right; }
+  .commute-row .via { grid-column: 1 / -1; font-size: 12px; color: var(--ink-light); }
 
   .fit-list { display: grid; gap: 10px; }
   .fit-item { background: var(--surface); border: 1px solid var(--border); border-radius: var(--card-radius);
@@ -218,10 +231,10 @@
   </div>
 
   <div class="hero">
-    <div class="hero-eyebrow">MIT Secure Stay · 5521 Jay St NE · Washington, DC 20019</div>
+    <div class="hero-eyebrow">MIT Secure Stay · Deanwood · Washington, DC</div>
     <h1>Your own private suite, fully furnished — ready when you are.</h1>
-    <p class="hero-sub">A private lower-level suite — with its own kitchen, bathroom, laundry, and entrances — is available now at a screened, all-inclusive home in DC's Deanwood neighborhood, with three Metro stations within walking distance. Built for traveling nurses, contractors, relocators, and anyone landing in DC on a deadline.</p>
-    <p class="last-updated">Last updated: October 2026</p>
+    <p class="hero-sub">A private lower-level suite — with its own kitchen, bathroom, laundry, and entrances — is available now at a screened, all-inclusive home in DC's Deanwood neighborhood, with three Metro stations nearby — Capitol Heights is about a 22-minute walk. Built for traveling nurses, contractors, relocators, and anyone landing in DC on a deadline.</p>
+    <p class="last-updated">Last updated: November 2026</p>
     <div class="price-row">
       <span class="price-num">$1,800</span>
       <span class="price-sub">/ month, private suite — utilities included</span>
@@ -375,13 +388,28 @@
   </div>
 
   <div class="section">
-    <h2>Location &amp; Commute</h2>
+    <h2>Location &amp; Nearby</h2>
     <div class="map-embed">
-      <iframe src="https://www.google.com/maps?q=5521+Jay+St+NE%2C+Washington%2C+DC+20019&output=embed" loading="lazy" title="Map showing the location of 5521 Jay St NE, Washington, DC"></iframe>
+      <iframe src="https://www.google.com/maps?q=Deanwood%2C+Washington%2C+DC&output=embed" loading="lazy" title="Map of the Deanwood area"></iframe>
     </div>
+    <a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=Deanwood%2C+Washington%2C+DC" target="_blank" rel="noopener">Open the area in Google Maps →</a>
+    <div class="nearby-grid">
+      <div class="nearby-item wide"><div class="k">Metro</div><div class="v">Capitol Heights station (Blue/Silver Line)</div><div class="m">About a 22-min walk, or take the C31 bus to the Blue Line</div></div>
+      <div class="nearby-item"><div class="k">Groceries</div><div class="v">Aldi (Ritchie Station)</div><div class="m">8 min drive</div></div>
+      <div class="nearby-item"><div class="k">Pharmacy</div><div class="v">CVS (Seat Pleasant)</div><div class="m">9 min drive</div></div>
+      <div class="nearby-item"><div class="k">Gym</div><div class="v">Gold's Gym, open 24/7</div><div class="m">8 min drive</div></div>
+      <div class="nearby-item"><div class="k">Coffee</div><div class="v">PJ's Coffee (Ritchie Station)</div><div class="m">8 min drive</div></div>
+    </div>
+    <div class="commute-card">
+      <div class="head">Popular commutes · typical door-to-door times</div>
+      <div class="commute-row"><span><b>Hospital:</b> UM Capital Region Medical Center</span><span class="t">32–45 min</span><span class="via">Walk, C31 bus, then Blue Line to Downtown Largo</span></div>
+      <div class="commute-row"><span><b>Federal:</b> Department of Justice</span><span class="t">47–59 min</span><span class="via">Walk, C31 bus, then Blue Line to Federal Triangle</span></div>
+      <div class="commute-row"><span><b>School:</b> George Washington University</span><span class="t">48–56 min</span><span class="via">Walk, C31 bus, then Blue Line to Foggy Bottom–GWU</span></div>
+          </div>
+    <p class="commute-note">Commute times: Google Maps transit directions, door to door, for a weekday 8:00 AM departure. Nearby drive times: RouteCheck. All are typical estimates, not guarantees — use RouteCheck to check your own route.</p>
     <div class="transit-card">
       <div class="label">Walk Score 38 · Transit Score 55</div>
-      <p>Three Metro stations within reach — Benning Road and Capitol Heights (Blue/Silver Line) plus Deanwood (Orange Line). Direct rides to the Pentagon, Navy Yard, Foggy Bottom, and Largo Town Center with zero or one transfer.</p>
+      <p>From Capitol Heights, the Blue/Silver Line runs direct to Capitol South, Federal Triangle, Foggy Bottom and Downtown Largo.</p>
       <div class="score-row">
         <div class="score-item"><b>38</b>Walk Score</div>
         <div class="score-item"><b>55</b>Transit Score</div>
