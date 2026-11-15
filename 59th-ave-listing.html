@@ -177,6 +177,7 @@
   .commute-card .head { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-light); padding: 10px 0 4px; }
   .commute-row { display: grid; grid-template-columns: 1fr auto; gap: 2px 12px; padding: 10px 0; border-top: 1px solid var(--border); font-size: 14px; }
   .commute-row .t { font-weight: 700; color: var(--accent); white-space: nowrap; text-align: right; }
+  .commute-row .t .dr { display: block; font-weight: 500; color: var(--ink-light); font-size: 13px; }
   .commute-row .via { grid-column: 1 / -1; font-size: 12px; color: var(--ink-light); }
 
   .fit-list { display: grid; gap: 10px; }
@@ -489,11 +490,11 @@
     </div>
     <div class="commute-card">
       <div class="head">Popular commutes · typical door-to-door times</div>
-      <div class="commute-row"><span><b>Hospital:</b> Howard University Hospital</span><span class="t">54–58 min</span><span class="via">Walk, P31 or P30 bus, then Yellow or Green Line</span></div>
-      <div class="commute-row"><span><b>Federal:</b> NASA Goddard Space Flight Center</span><span class="t">~20 min drive</span><span class="via">By transit: two buses, 54–79 min</span></div>
-      <div class="commute-row"><span><b>School:</b> University of Maryland, College Park</span><span class="t">35–54 min</span><span class="via">Walk, then P31 bus direct to campus</span></div>
+      <div class="commute-row"><span><b>Hospital:</b> Howard University Hospital</span><span class="t">54–58 min transit<span class="dr">24–50 min drive</span></span><span class="via">Walk, P31 or P30 bus, then Yellow or Green Line</span></div>
+      <div class="commute-row"><span><b>Federal:</b> NASA Goddard Space Flight Center</span><span class="t">16–28 min drive<span class="dr">54–79 min transit</span></span><span class="via">By transit it takes two buses; driving is the practical choice</span></div>
+      <div class="commute-row"><span><b>School:</b> University of Maryland, College Park</span><span class="t">10–20 min drive<span class="dr">35–54 min transit</span></span><span class="via">Or walk, then the P31 bus direct to campus</span></div>
     </div>
-    <p class="commute-note">Commute times: Google Maps transit directions, door to door, for a weekday 8:00 AM departure. Nearby drive times: RouteCheck. All are typical estimates, not guarantees — use RouteCheck to check your own route.</p>
+    <p class="commute-note">Commute times: Google Maps, door to door, for a weekday 8:00 AM departure, by transit and by car. Nearby drive times: RouteCheck. All are typical estimates, not guarantees — use RouteCheck to check your own route.</p>
     <div class="transit-card">
       <div class="label">Bus to campus and Metro</div>
       <p>Local buses on Riverdale Rd run to the University of Maryland and connect to the Green and Yellow Lines into DC. See every commute, by transit or car, in RouteCheck.</p>
