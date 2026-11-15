@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>5311 59th Ave — Furnished Rooms | MIT Secure Stay</title>
+<title>Riverdale, MD — Furnished Rooms | MIT Secure Stay</title>
 <style>
   :root {
     --ink:        #12110F;
@@ -158,13 +158,26 @@
     .lightbox-nav { width: 38px; height: 38px; font-size: 20px; }
   }
 
-  .map-embed { border-radius: var(--card-radius); border: 1px solid var(--border); overflow: hidden; margin-bottom: 14px; }
-  .map-embed iframe { display: block; width: 100%; height: 280px; border: 0; }
   .transit-card { background: var(--accent); color: #fff; border-radius: var(--card-radius); padding: 18px 20px; }
   .transit-card .label { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; opacity: .8; margin-bottom: 6px; }
   .transit-card p { font-size: 14px; line-height: 1.55; opacity: .95; margin-bottom: 12px; }
   .transit-card a.maps-btn { display: inline-flex; align-items: center; gap: 6px; padding: 9px 16px; background: #fff;
                               color: var(--accent); border-radius: var(--pill-radius); font-size: 13px; font-weight: 700; text-decoration: none; }
+  .map-embed { border-radius: var(--card-radius); border: 1px solid var(--border); overflow: hidden; margin-bottom: 14px; }
+  .map-embed iframe { display: block; width: 100%; height: 280px; border: 0; }
+  .nearby-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
+  .nearby-item { background: var(--surface); border: 1px solid var(--border); border-radius: var(--card-radius); padding: 12px 14px; }
+  .nearby-item .k { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-light); margin-bottom: 4px; }
+  .nearby-item .v { font-size: 14px; font-weight: 700; line-height: 1.35; }
+  .nearby-item .m { font-size: 13px; color: var(--accent); font-weight: 600; margin-top: 2px; }
+  .nearby-item.wide { grid-column: 1 / -1; }
+  .commute-note { font-size: 12px; color: var(--ink-light); margin: -4px 0 14px; line-height: 1.5; }
+  .map-link { display: inline-block; font-size: 13px; font-weight: 600; color: var(--accent); text-decoration: none; margin: -6px 0 14px; }
+  .commute-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--card-radius); padding: 4px 14px; margin-bottom: 8px; }
+  .commute-card .head { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-light); padding: 10px 0 4px; }
+  .commute-row { display: grid; grid-template-columns: 1fr auto; gap: 2px 12px; padding: 10px 0; border-top: 1px solid var(--border); font-size: 14px; }
+  .commute-row .t { font-weight: 700; color: var(--accent); white-space: nowrap; text-align: right; }
+  .commute-row .via { grid-column: 1 / -1; font-size: 12px; color: var(--ink-light); }
 
   .fit-list { display: grid; gap: 10px; }
   .fit-item { background: var(--surface); border: 1px solid var(--border); border-radius: var(--card-radius);
@@ -235,7 +248,7 @@
   </div>
 
   <div class="hero">
-    <div class="hero-eyebrow">MIT Secure Stay · 5311 59th Ave · Riverdale, MD 20737</div>
+    <div class="hero-eyebrow">MIT Secure Stay · Riverdale, MD</div>
     <h1>Three private households, one Riverdale address.</h1>
     <p class="hero-sub">This property is split into three separate, non-connected units — Front, Patio, and Lower Level — each its own small household. Furnished, all-inclusive, on the Green Line corridor.</p>
     <p class="last-updated">Last updated: November 2026</p>
@@ -462,13 +475,28 @@
   </div>
 
   <div class="section">
-    <h2>Location &amp; Commute</h2>
+    <h2>Location &amp; Nearby</h2>
     <div class="map-embed">
-      <iframe src="https://www.google.com/maps?q=5311+59th+Ave%2C+Riverdale%2C+MD+20737&output=embed" loading="lazy" title="Map showing the location of 5311 59th Ave, Riverdale, MD"></iframe>
+      <iframe src="https://www.google.com/maps?q=Riverdale%2C+MD&output=embed" loading="lazy" title="Map of the Riverdale area"></iframe>
     </div>
+    <a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=Riverdale%2C+MD" target="_blank" rel="noopener">Open the area in Google Maps →</a>
+    <div class="nearby-grid">
+      <div class="nearby-item wide"><div class="k">Metro</div><div class="v">P31 and P30 buses on Riverdale Rd</div><div class="m">P31 runs direct to UMD; both connect to the Green and Yellow Lines</div></div>
+      <div class="nearby-item"><div class="k">Groceries</div><div class="v">Whole Foods (The Station at Riverdale Park)</div><div class="m">5 min drive</div></div>
+      <div class="nearby-item"><div class="k">Pharmacy</div><div class="v">CVS (Riverdale Rd)</div><div class="m">3 min drive</div></div>
+      <div class="nearby-item"><div class="k">Gym</div><div class="v">Gold's Gym (The Station at Riverdale Park)</div><div class="m">5 min drive</div></div>
+      <div class="nearby-item"><div class="k">Food</div><div class="v">Busboys and Poets (Hyattsville)</div><div class="m">8 min drive</div></div>
+    </div>
+    <div class="commute-card">
+      <div class="head">Popular commutes · typical door-to-door times</div>
+      <div class="commute-row"><span><b>Hospital:</b> Howard University Hospital</span><span class="t">54–58 min</span><span class="via">Walk, P31 or P30 bus, then Yellow or Green Line</span></div>
+      <div class="commute-row"><span><b>Federal:</b> NASA Goddard Space Flight Center</span><span class="t">~20 min drive</span><span class="via">By transit: two buses, 54–79 min</span></div>
+      <div class="commute-row"><span><b>School:</b> University of Maryland, College Park</span><span class="t">35–54 min</span><span class="via">Walk, then P31 bus direct to campus</span></div>
+    </div>
+    <p class="commute-note">Commute times: Google Maps transit directions, door to door, for a weekday 8:00 AM departure. Nearby drive times: RouteCheck. All are typical estimates, not guarantees — use RouteCheck to check your own route.</p>
     <div class="transit-card">
-      <div class="label">Green Line Corridor</div>
-      <p>Riverdale sits on the Green Line — College Park, downtown DC, and major medical centers are all within reach. UMD College Park is 1–2 Metro stops away, and the Green Line runs direct to Capitol Hill and Navy Yard with no transfer.</p>
+      <div class="label">Bus to campus and Metro</div>
+      <p>Local buses on Riverdale Rd run to the University of Maryland and connect to the Green and Yellow Lines into DC. See every commute, by transit or car, in RouteCheck.</p>
       <a class="maps-btn" href="https://mitsecurestay.github.io/routecheck/riverdale.html" target="_blank" rel="noopener">🚇 Check your full commute →</a>
     </div>
   </div>
@@ -476,8 +504,8 @@
   <div class="section">
     <h2>Built for People on a Timeline</h2>
     <div class="fit-list">
-      <div class="fit-item"><b>Students</b> UMD College Park is 1–2 Metro stops away — one of the closest properties to campus.</div>
-      <div class="fit-item"><b>Federal &amp; PG County staff</b> Direct Green Line access to Capitol Hill, Navy Yard, and DOJ.</div>
+      <div class="fit-item"><b>Students</b> One bus, the P31, runs from Riverdale Rd straight onto the UMD campus.</div>
+      <div class="fit-item"><b>Federal &amp; PG County staff</b> Bus connections to the Green and Yellow Lines reach DOJ, Navy Yard, and Capitol Hill.</div>
       <div class="fit-item"><b>Budget-conscious relocators</b> Some of the most affordable rooms in the portfolio, fully furnished.</div>
     </div>
   </div>
