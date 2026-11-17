@@ -172,6 +172,14 @@
   .nearby-item .m { font-size: 13px; color: var(--accent); font-weight: 600; margin-top: 2px; }
   .nearby-item.wide { grid-column: 1 / -1; }
   .commute-note { font-size: 12px; color: var(--ink-light); margin: -4px 0 14px; line-height: 1.5; }
+  .nearby-head { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-light); margin: 4px 0 8px; }
+  .addr-check label { display: block; font-size: 13px; font-weight: 700; margin-bottom: 6px; }
+  .addr-check input { width: 100%; padding: 11px 12px; border: 0; border-radius: var(--pill-radius); font-size: 15px; color: var(--ink); margin-bottom: 10px; }
+  .addr-check .btn-row { display: flex; flex-wrap: wrap; gap: 10px; }
+  .addr-check button { display: inline-flex; align-items: center; gap: 6px; padding: 10px 16px; border-radius: var(--pill-radius); font-size: 13px; font-weight: 700; cursor: pointer; font-family: inherit; }
+  .addr-check button.primary { background: #fff; color: var(--accent); border: 0; }
+  .addr-check button.secondary { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,.7); }
+  .addr-check .hint { font-size: 12px; opacity: .85; margin: 8px 0 0; }
   .map-link { display: inline-block; font-size: 13px; font-weight: 600; color: var(--accent); text-decoration: none; margin: -6px 0 14px; }
   .commute-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--card-radius); padding: 4px 14px; margin-bottom: 8px; }
   .commute-card .head { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-light); padding: 10px 0 4px; }
@@ -483,22 +491,32 @@
     <a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=Riverdale%2C+MD" target="_blank" rel="noopener">Open the area in Google Maps →</a>
     <div class="nearby-grid">
       <div class="nearby-item wide"><div class="k">Metro</div><div class="v">P31 and P30 buses on Riverdale Rd</div><div class="m">P31 runs direct to UMD; both connect to the Green and Yellow Lines</div></div>
+      <div class="nearby-head" style="grid-column:1/-1">Daily life nearby</div>
       <div class="nearby-item"><div class="k">Groceries</div><div class="v">Whole Foods (The Station at Riverdale Park)</div><div class="m">5 min drive</div></div>
       <div class="nearby-item"><div class="k">Pharmacy</div><div class="v">CVS (Riverdale Rd)</div><div class="m">3 min drive</div></div>
       <div class="nearby-item"><div class="k">Gym</div><div class="v">Gold's Gym (The Station at Riverdale Park)</div><div class="m">5 min drive</div></div>
       <div class="nearby-item"><div class="k">Food</div><div class="v">Busboys and Poets (Hyattsville)</div><div class="m">8 min drive</div></div>
+      <div class="nearby-item"><div class="k">Shopping</div><div class="v">The Mall at Prince George's</div><div class="m">10 min drive</div></div>
     </div>
     <div class="commute-card">
       <div class="head">Popular commutes · typical door-to-door times</div>
-      <div class="commute-row"><span><b>Hospital:</b> Howard University Hospital</span><span class="t">54–58 min transit<span class="dr">24–50 min drive</span></span><span class="via">Walk, P31 or P30 bus, then Yellow or Green Line</span></div>
+      <div class="commute-row"><span><b>Hospital:</b> UM Capital Region Medical Center</span><span class="t">21–22 min drive<span class="dr">57–66 min transit</span></span><span class="via">By transit: walk, P31 or P30 bus to New Carrollton, then P5X or P52 bus</span></div>
       <div class="commute-row"><span><b>Federal:</b> NASA Goddard Space Flight Center</span><span class="t">16–28 min drive<span class="dr">54–79 min transit</span></span><span class="via">By transit it takes two buses; driving is the practical choice</span></div>
       <div class="commute-row"><span><b>School:</b> University of Maryland, College Park</span><span class="t">10–20 min drive<span class="dr">35–54 min transit</span></span><span class="via">Or walk, then the P31 bus direct to campus</span></div>
     </div>
-    <p class="commute-note">Commute times: Google Maps, door to door, for a weekday 8:00 AM departure, by transit and by car. Nearby drive times: RouteCheck. All are typical estimates, not guarantees — use RouteCheck to check your own route.</p>
+    <p class="commute-note">Commute times: Google Maps, door to door, for a weekday 8:00 AM departure, by transit and by car. Nearby drive times are typical estimates. None are guarantees — check your own route below.</p>
     <div class="transit-card">
       <div class="label">Bus to campus and Metro</div>
-      <p>Local buses on Riverdale Rd run to the University of Maryland and connect to the Green and Yellow Lines into DC. See every commute, by transit or car, in RouteCheck.</p>
-      <a class="maps-btn" href="https://mitsecurestay.github.io/routecheck/riverdale.html" target="_blank" rel="noopener">🚇 Check your full commute →</a>
+      <p>Local buses on Riverdale Rd run to the University of Maryland and connect to the Green and Yellow Lines into DC.</p>
+      <div class="addr-check">
+        <label for="addrInput">Check your own address</label>
+        <input id="addrInput" type="text" placeholder="Your workplace, school or any address" autocomplete="off">
+        <div class="btn-row">
+          <button type="button" class="primary" onclick="openRoute('transit')">🚇 Transit directions</button>
+          <button type="button" class="secondary" onclick="openRoute('driving')">🚗 Driving directions</button>
+        </div>
+        <p class="hint">Opens Google Maps with directions from the house.</p>
+      </div>
     </div>
   </div>
 
@@ -734,5 +752,19 @@
   });
 </script>
 
+<script>
+(function () {
+  var ORIGIN = '5311 59th Ave, Riverdale, MD 20737';
+  window.openRoute = function (mode) {
+    var input = document.getElementById('addrInput');
+    var dest = input.value.trim();
+    if (!dest) { input.focus(); return; }
+    window.open('https://www.google.com/maps/dir/' + encodeURIComponent(ORIGIN) + '/' + encodeURIComponent(dest) + '/?travelmode=' + mode, '_blank', 'noopener');
+  };
+  document.getElementById('addrInput').addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') { e.preventDefault(); window.openRoute('transit'); }
+  });
+})();
+</script>
 </body>
 </html>
