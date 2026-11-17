@@ -160,6 +160,14 @@
   .nearby-item .m { font-size: 13px; color: var(--accent); font-weight: 600; margin-top: 2px; }
   .nearby-item.wide { grid-column: 1 / -1; }
   .commute-note { font-size: 12px; color: var(--ink-light); margin: -4px 0 14px; line-height: 1.5; }
+  .nearby-head { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-light); margin: 4px 0 8px; }
+  .addr-check label { display: block; font-size: 13px; font-weight: 700; margin-bottom: 6px; }
+  .addr-check input { width: 100%; padding: 11px 12px; border: 0; border-radius: var(--pill-radius); font-size: 15px; color: var(--ink); margin-bottom: 10px; }
+  .addr-check .btn-row { display: flex; flex-wrap: wrap; gap: 10px; }
+  .addr-check button { display: inline-flex; align-items: center; gap: 6px; padding: 10px 16px; border-radius: var(--pill-radius); font-size: 13px; font-weight: 700; cursor: pointer; font-family: inherit; }
+  .addr-check button.primary { background: #fff; color: var(--accent); border: 0; }
+  .addr-check button.secondary { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,.7); }
+  .addr-check .hint { font-size: 12px; opacity: .85; margin: 8px 0 0; }
   .map-link { display: inline-block; font-size: 13px; font-weight: 600; color: var(--accent); text-decoration: none; margin: -6px 0 14px; }
   .commute-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--card-radius); padding: 4px 14px; margin-bottom: 8px; }
   .commute-card .head { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-light); padding: 10px 0 4px; }
@@ -396,10 +404,14 @@
     <a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=Deanwood%2C+Washington%2C+DC" target="_blank" rel="noopener">Open the area in Google Maps →</a>
     <div class="nearby-grid">
       <div class="nearby-item wide"><div class="k">Metro</div><div class="v">Capitol Heights station (Blue/Silver Line)</div><div class="m">About a 22-min walk, or take the C31 bus to the Blue Line</div></div>
+      <div class="nearby-head" style="grid-column:1/-1">Daily life nearby</div>
       <div class="nearby-item"><div class="k">Groceries</div><div class="v">Aldi (Ritchie Station)</div><div class="m">8 min drive</div></div>
+      <div class="nearby-item"><div class="k">Groceries</div><div class="v">Walmart (Landover Hills)</div><div class="m">10 min drive</div></div>
       <div class="nearby-item"><div class="k">Pharmacy</div><div class="v">CVS (Seat Pleasant)</div><div class="m">9 min drive</div></div>
       <div class="nearby-item"><div class="k">Gym</div><div class="v">Gold's Gym, open 24/7</div><div class="m">8 min drive</div></div>
+      <div class="nearby-item"><div class="k">Gym</div><div class="v">Planet Fitness (Seat Pleasant)</div><div class="m">9 min drive</div></div>
       <div class="nearby-item"><div class="k">Coffee</div><div class="v">PJ's Coffee (Ritchie Station)</div><div class="m">8 min drive</div></div>
+      <div class="nearby-item"><div class="k">Shopping</div><div class="v">Dollar Tree (Seat Pleasant)</div><div class="m">9 min drive</div></div>
     </div>
     <div class="commute-card">
       <div class="head">Popular commutes · typical door-to-door times</div>
@@ -407,7 +419,7 @@
       <div class="commute-row"><span><b>Federal:</b> Department of Justice</span><span class="t">47–59 min transit<span class="dr">20–40 min drive</span></span><span class="via">Walk, C31 bus, then Blue Line to Federal Triangle</span></div>
       <div class="commute-row"><span><b>School:</b> George Washington University</span><span class="t">48–56 min transit<span class="dr">24–45 min drive</span></span><span class="via">Walk, C31 bus, then Blue Line to Foggy Bottom–GWU</span></div>
           </div>
-    <p class="commute-note">Commute times: Google Maps, door to door, for a weekday 8:00 AM departure, by transit and by car. Nearby drive times: RouteCheck. All are typical estimates, not guarantees — use RouteCheck to check your own route.</p>
+    <p class="commute-note">Commute times: Google Maps, door to door, for a weekday 8:00 AM departure, by transit and by car. Nearby drive times are typical estimates. None are guarantees — check your own route below.</p>
     <div class="transit-card">
       <div class="label">Walk Score 38 · Transit Score 55</div>
       <p>From Capitol Heights, the Blue/Silver Line runs direct to Capitol South, Federal Triangle, Foggy Bottom and Downtown Largo.</p>
@@ -415,7 +427,15 @@
         <div class="score-item"><b>38</b>Walk Score</div>
         <div class="score-item"><b>55</b>Transit Score</div>
       </div>
-      <a class="maps-btn" href="https://mitsecurestay.github.io/routecheck/jay-st.html" target="_blank" rel="noopener">🚇 Check your full commute →</a>
+      <div class="addr-check">
+        <label for="addrInput">Check your own address</label>
+        <input id="addrInput" type="text" placeholder="Your workplace, school or any address" autocomplete="off">
+        <div class="btn-row">
+          <button type="button" class="primary" onclick="openRoute('transit')">🚇 Transit directions</button>
+          <button type="button" class="secondary" onclick="openRoute('driving')">🚗 Driving directions</button>
+        </div>
+        <p class="hint">Opens Google Maps with directions from the house.</p>
+      </div>
     </div>
   </div>
 
@@ -655,5 +675,19 @@
   });
 </script>
 
+<script>
+(function () {
+  var ORIGIN = '5521 Jay St NE, Washington, DC 20019';
+  window.openRoute = function (mode) {
+    var input = document.getElementById('addrInput');
+    var dest = input.value.trim();
+    if (!dest) { input.focus(); return; }
+    window.open('https://www.google.com/maps/dir/' + encodeURIComponent(ORIGIN) + '/' + encodeURIComponent(dest) + '/?travelmode=' + mode, '_blank', 'noopener');
+  };
+  document.getElementById('addrInput').addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') { e.preventDefault(); window.openRoute('transit'); }
+  });
+})();
+</script>
 </body>
 </html>
