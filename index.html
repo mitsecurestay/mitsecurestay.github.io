@@ -95,7 +95,7 @@
 
   .card-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: auto; }
   .card-actions a {
-    flex: 1; text-align: center; text-decoration: none; padding: 10px 14px; border-radius: var(--pill-radius);
+    flex: 1 1 100%; text-align: center; text-decoration: none; padding: 10px 14px; border-radius: var(--pill-radius);
     font-size: 13.5px; font-weight: 700; border: 1.5px solid var(--accent); color: var(--accent); transition: background .15s, color .15s;
   }
   .card-actions a:hover { background: var(--accent-soft); }
@@ -125,7 +125,6 @@
   }
   @media (max-width: 480px) {
     .value-strip { gap: 12px; font-size: 12px; }
-    .card-actions a { flex: 1 1 100%; }
   }
 </style>
 </head>
@@ -244,7 +243,9 @@
     </div>
 
     <div class="card" data-region="dc">
-      <a href="east-capitol-listing.html" class="card-thumb-placeholder">Photos coming soon</a>
+      <a href="east-capitol-listing.html" class="card-thumb-link">
+        <img class="card-thumb" src="east-capitol-photos/Common%20Areas/AH7A0486.jpg" alt="East Capitol kitchen with island seating">
+      </a>
       <div class="card-tag">Room Rental · Washington, DC</div>
       <div class="badge-row">
         <span class="badge available">Available Now</span>
